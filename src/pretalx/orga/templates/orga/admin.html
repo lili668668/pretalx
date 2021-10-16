@@ -49,12 +49,22 @@
             </ul>
         </li>
         <li>{% translate "Mails" %}
+            {% if settings.DEBUG %}
+                <ul>
+                    <li>
+                        {% blocktranslate trimmed %}
+                            When running in development mode, Pretalx uses Django’s console email backend. This means the development server will print any emails to its stdout, instead of sending them via SMTP.
+                        {% endblocktranslate %}
+                    </li>
+                </ul>
+            {% else %}
             <ul>
                 <li>{% translate "Host" %}: <code>{{ settings.EMAIL_HOST|copyable }}</code></li>
                 <li>{% translate "Port" %}: <code>{{ settings.EMAIL_PORT|copyable }}</code></li>
                 <li>{% translate "User" %}: <code>{{ settings.EMAIL_HOST_USER|copyable }}</code></li>
                 <li>{% translate "Password" %}: {% if settings.EMAIL_HOST_PASSWORD %}{% translate "An email password has been set." %}{% else %}{% translate "No email password has been set." %}{% endif %}</li>
             </ul>
+            {% endif %}
         </li>
     </ul>
     <h2>{% translate "System" %}</h2>
