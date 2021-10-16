@@ -24,7 +24,7 @@ msgstr "Jane Doe"
 
 #: tests/screenshots/conftest.py:78 pretalx/orga/templates/orga/base.html:394
 msgid "Organisers"
-msgstr "主辦者"
+msgstr "組織"
 
 #: tests/screenshots/conftest.py:89
 msgid "John Doe"
@@ -52,7 +52,7 @@ msgstr "這場議程沒有錄影。"
 
 #: pretalx/agenda/templates/agenda/base.html:22
 msgid "This schedule-related page is non-public. Only organisers can see it."
-msgstr "這個跟議程表相關的頁面尚未公開。只有主辦者可以查看。"
+msgstr "這個跟議程表相關的頁面尚未公開。只有組織可以查看。"
 
 #: pretalx/agenda/templates/agenda/changelog.html:11
 #: pretalx/agenda/templates/agenda/header_row.html:16
@@ -339,7 +339,7 @@ msgstr ""
 msgid ""
 "There was an error when logging in. Please contact the organiser for further "
 "help."
-msgstr "登入時發生了錯誤。請聯繫主辦者以尋求協助。"
+msgstr "登入時發生了錯誤。請聯繫組織以尋求協助。"
 
 #: pretalx/cfp/flow.py:457
 #, fuzzy
@@ -721,7 +721,7 @@ msgid ""
 "them in your email inbox, but this page serves as a helper in case your "
 "email address was unavailable or the emails got lost in some way."
 msgstr ""
-"這些是主辦者傳送給您的電子郵件，您應該在您自己的信件匣中可以找到。這個頁面是"
+"這些是組織傳送給您的電子郵件，您應該在您自己的信件匣中可以找到。這個頁面是"
 "為了避免您無法讀取電子郵件，或是在傳送中發生問題而沒收到，可以到這裡查看。"
 
 #: pretalx/cfp/templates/cfp/event/user_profile.html:8
@@ -1219,15 +1219,15 @@ msgstr "已停用一個外掛程式。"
 
 #: pretalx/common/log_display.py:16 pretalx/common/log_display.py:24
 msgid "The invitation to the event orga was accepted."
-msgstr "成為活動主辦者的邀請已被接受。"
+msgstr "成為活動組織的邀請已被接受。"
 
 #: pretalx/common/log_display.py:17 pretalx/common/log_display.py:27
 msgid "An invitation to the event orga was retracted."
-msgstr "成為活動主辦者的邀請已被收回。"
+msgstr "成為活動組織的邀請已被收回。"
 
 #: pretalx/common/log_display.py:18 pretalx/common/log_display.py:30
 msgid "An invitation to the event orga was sent."
-msgstr "成為活動主辦者的邀請已傳送。"
+msgstr "成為活動組織的邀請已傳送。"
 
 #: pretalx/common/log_display.py:20 pretalx/common/log_display.py:33
 msgid "The invitation to the review team was retracted."
@@ -1467,7 +1467,7 @@ msgid ""
 "people and create events."
 msgstr ""
 "\n"
-"同時讓我們建立第一個活動主辦者：讓您可以邀請更多人進來建立其他活動。"
+"同時讓我們建立第一個活動組織：讓您可以邀請更多人進來建立其他活動。"
 
 #: pretalx/common/management/commands/init.py:56
 msgid ""
@@ -1475,7 +1475,7 @@ msgid ""
 "Name (e.g. \"The Conference Organiser\"): "
 msgstr ""
 "\n"
-"名字（例如「研討會主辦者」）："
+"名字（例如「研討會組織」）："
 
 #: pretalx/common/management/commands/init.py:57
 msgid "Slug (e.g. \"conforg\", used in urls): "
@@ -1814,7 +1814,7 @@ msgstr "您的頭像"
 
 #: pretalx/common/templates/common/base.html:66
 msgid "This event is currently non-public. Only organisers can see it."
-msgstr "這個活動尚未公開，只有主辦者可以查看。"
+msgstr "這個活動尚未公開，只有組織可以查看。"
 
 #: pretalx/common/templates/common/base.html:76
 #: pretalx/orga/templates/orga/auth/base.html:31
@@ -1838,7 +1838,7 @@ msgstr "我的個人資料"
 #, fuzzy
 #| msgid "Organiser"
 msgid "Organiser area"
-msgstr "主辦者"
+msgstr "組織"
 
 #: pretalx/common/templates/common/base.html:121
 msgid "Logout"
@@ -2001,14 +2001,14 @@ msgstr "請將您的活動會用到的語言全部選入。"
 
 #: pretalx/event/forms.py:110
 msgid "Organiser"
-msgstr "主辦者"
+msgstr "組織"
 
 #: pretalx/event/forms.py:122
 msgid ""
 "The organiser running the event can copy settings from previous events and "
 "share team permissions across all or multiple events."
 msgstr ""
-"此活動的主辦者，可以存先前的活動設定中複製過來，並讓這些活動的主辦團隊共享相"
+"此活動的組織，可以存先前的活動設定中複製過來，並讓這些活動的主辦團隊共享相"
 "同的權限。"
 
 #: pretalx/event/forms.py:138
@@ -2143,7 +2143,7 @@ msgstr "所有的活動日期都會在地化，並且依此時區來解讀。"
 
 #: pretalx/event/models/event.py:136
 msgid "Organiser email address"
-msgstr "主辦者電子郵件地址"
+msgstr "組織電子郵件地址"
 
 #: pretalx/event/models/event.py:137
 msgid "Will be used as Reply-To in emails."
@@ -2293,7 +2293,7 @@ msgstr "團隊成員"
 msgid ""
 "Apply permissions to all events by this organiser (including newly created "
 "ones)"
-msgstr "將權限套用到所有此主辦者主辦的活動（包括新建立的活動）"
+msgstr "將權限套用到所有此組織主辦的活動（包括新建立的活動）"
 
 #: pretalx/event/models/organiser.py:91
 msgid "Limit permissions to these events"
@@ -2314,7 +2314,7 @@ msgstr "可以改變團隊與權限"
 
 #: pretalx/event/models/organiser.py:103
 msgid "Can change organiser settings"
-msgstr "可以改變主辦者設定"
+msgstr "可以改變組織設定"
 
 #: pretalx/event/models/organiser.py:106
 msgid "Can change event settings"
@@ -2606,7 +2606,7 @@ msgstr "活動的全名"
 #, fuzzy
 #| msgid "Organiser email address"
 msgid "The addressed user's email address"
-msgstr "主辦者電子郵件地址"
+msgstr "組織電子郵件地址"
 
 #: pretalx/mail/default_templates.py:4
 #, python-brace-format
@@ -2781,7 +2781,7 @@ msgstr "回覆地址"
 msgid ""
 "Change the Reply-To address if you do not want to use the default organiser "
 "address"
-msgstr "變更回覆地址（Reply-To），預設為主辦者的電子郵件地址"
+msgstr "變更回覆地址（Reply-To），預設為組織的電子郵件地址"
 
 #: pretalx/mail/models.py:55 pretalx/mail/models.py:222
 msgid "BCC"
@@ -2816,7 +2816,7 @@ msgstr "如果有一個以上的電子郵件地址，請用逗號區隔。"
 
 #: pretalx/mail/models.py:209
 msgid "By default, the organiser address is used as Reply-To."
-msgstr "預設會使用主辦者電子郵件地址做為 Reply-To 的地址。"
+msgstr "預設會使用組織電子郵件地址做為 Reply-To 的地址。"
 
 #: pretalx/mail/models.py:215
 msgid "CC"
@@ -2924,7 +2924,7 @@ msgid ""
 "If this setting is checked, you will receive an email to the organiser "
 "address for every received proposal."
 msgstr ""
-"如果勾選此選項，當收到議程投稿時就會傳送一封郵件到主辦者的電子郵件地址。"
+"如果勾選此選項，當收到議程投稿時就會傳送一封郵件到組織的電子郵件地址。"
 
 #: pretalx/orga/forms/cfp.py:115
 #, fuzzy
@@ -4810,7 +4810,7 @@ msgstr "傳送郵件"
 
 #: pretalx/orga/templates/orga/organiser/delete.html:5
 msgid "Do you really want to delete this organiser?"
-msgstr "您確定要刪除此主辦者嗎？"
+msgstr "您確定要刪除此組織嗎？"
 
 #: pretalx/orga/templates/orga/organiser/delete.html:9
 msgid ""
@@ -4822,7 +4822,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/organiser/detail.html:18
 msgid "Delete organiser"
-msgstr "刪除主辦者"
+msgstr "刪除組織"
 
 #: pretalx/orga/templates/orga/organiser/detail.html:38
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
@@ -4867,7 +4867,7 @@ msgstr[0] "個團隊"
 
 #: pretalx/orga/templates/orga/organiser/list.html:48
 msgid "There are no organisers you can edit."
-msgstr "沒有您可以編輯的主辦者。"
+msgstr "沒有您可以編輯的組織。"
 
 #: pretalx/orga/templates/orga/pagination.html:14
 #, python-format
@@ -5384,7 +5384,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Delete organiser"
 msgid "Delete score category"
-msgstr "刪除主辦者"
+msgstr "刪除組織"
 
 #: pretalx/orga/templates/orga/settings/review.html:88
 #: pretalx/orga/templates/orga/settings/review.html:102
@@ -7469,7 +7469,7 @@ msgstr ""
 #~ msgid ""
 #~ "Even the busiest event organisers should make time to see at least one "
 #~ "session ;)"
-#~ msgstr "即使最忙的活動主辦者，也應該要參加至少一場議程。;)"
+#~ msgstr "即使最忙的活動組織，也應該要參加至少一場議程。;)"
 
 #~ msgid "Pudding"
 #~ msgstr "布丁"
