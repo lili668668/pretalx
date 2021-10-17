@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-17 01:30+0000\n"
+"POT-Creation-Date: 2021-10-17 03:18+0000\n"
 "PO-Revision-Date: 2020-09-28 02:42+0000\n"
 "Last-Translator: Satoshi IIDA <nyampire@gmail.com>\n"
 "Language-Team: \n"
@@ -597,7 +597,7 @@ msgid "withdrawn"
 msgstr "取り下げ"
 
 #: pretalx/cfp/templates/cfp/event/index.html:32
-#: pretalx/orga/views/dashboard.py:101
+#: pretalx/orga/views/dashboard.py:100
 msgid "Go to CfP"
 msgstr "提案ページへ"
 
@@ -766,7 +766,7 @@ msgstr ""
 #: pretalx/common/phrases.py:44
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:53
 #: pretalx/orga/templates/orga/mails/outbox_form.html:109
-#: pretalx/orga/templates/orga/organiser/detail.html:25
+#: pretalx/orga/templates/orga/organiser/detail.html:31
 #: pretalx/orga/templates/orga/schedule/quick.html:18
 #: pretalx/orga/templates/orga/settings/form.html:112
 #: pretalx/orga/templates/orga/settings/mail.html:32
@@ -1688,7 +1688,7 @@ msgstr ""
 
 #: pretalx/common/phrases.py:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:75
-#: pretalx/orga/templates/orga/organiser/detail.html:66
+#: pretalx/orga/templates/orga/organiser/detail.html:72
 #: pretalx/orga/templates/orga/submission/review_fragment.html:26
 #: pretalx/orga/templates/orga/submission/speakers.html:52
 msgid "Edit"
@@ -2340,15 +2340,15 @@ msgid ""
 msgstr ""
 "短く、小文字と数字のみを含み、URLで使用されるように一意である必要があります。"
 
-#: pretalx/event/models/organiser.py:87
+#: pretalx/event/models/organiser.py:81
 msgid "Team name"
 msgstr "チームネーム"
 
-#: pretalx/event/models/organiser.py:89
+#: pretalx/event/models/organiser.py:83
 msgid "Team members"
 msgstr "チームメンバー"
 
-#: pretalx/event/models/organiser.py:94
+#: pretalx/event/models/organiser.py:88
 msgid ""
 "Apply permissions to all events by this organiser (including newly created "
 "ones)"
@@ -2356,69 +2356,68 @@ msgstr ""
 "この主催者によるすべてのイベントに権限を適用する（新規作成されたイベントを含"
 "む）"
 
-#: pretalx/event/models/organiser.py:98
+#: pretalx/event/models/organiser.py:92
 msgid "Limit permissions to these events"
 msgstr "以下のイベントのみに限定する"
 
-#: pretalx/event/models/organiser.py:101
-#: pretalx/person/models/information.py:34
+#: pretalx/event/models/organiser.py:95 pretalx/person/models/information.py:34
 #: pretalx/submission/models/review.py:20
 msgid "Limit to tracks"
 msgstr "トラックに限定"
 
-#: pretalx/event/models/organiser.py:104
+#: pretalx/event/models/organiser.py:98
 msgid "Can create events"
 msgstr "イベント作成可能"
 
-#: pretalx/event/models/organiser.py:107
+#: pretalx/event/models/organiser.py:101
 msgid "Can change teams and permissions"
 msgstr "チームと権限の変更が可能"
 
-#: pretalx/event/models/organiser.py:110
+#: pretalx/event/models/organiser.py:104
 msgid "Can change organiser settings"
 msgstr "運営者設定の変更が可能"
 
-#: pretalx/event/models/organiser.py:113
+#: pretalx/event/models/organiser.py:107
 msgid "Can change event settings"
 msgstr "イベント設定の変更が可能"
 
-#: pretalx/event/models/organiser.py:116
+#: pretalx/event/models/organiser.py:110
 msgid "Can work with and change proposals"
 msgstr "修正提案に取り組むことが可能"
 
-#: pretalx/event/models/organiser.py:118
+#: pretalx/event/models/organiser.py:112
 msgid "Is a reviewer"
 msgstr "レビュアーです"
 
-#: pretalx/event/models/organiser.py:120
+#: pretalx/event/models/organiser.py:114
 #, fuzzy
 #| msgid "Title or speaker name"
 msgid "Always hide speaker names"
 msgstr "タイトルもしくは登壇者"
 
-#: pretalx/event/models/organiser.py:122
+#: pretalx/event/models/organiser.py:116
 msgid ""
 "Normally, anonymisation is configured in the event review settings. This "
 "setting will <b>override the event settings</b> and always hide speaker "
 "names for this team."
 msgstr ""
 
-#: pretalx/event/models/organiser.py:130
+#: pretalx/event/models/organiser.py:124
 #, python-brace-format
 msgid "{name} on {orga}"
 msgstr "{name} on {orga}"
 
-#: pretalx/event/models/organiser.py:161
+#: pretalx/event/models/organiser.py:155
 #: pretalx/orga/templates/orga/settings/team_detail.html:19
 msgid "Email"
 msgstr "Eメール"
 
-#: pretalx/event/models/organiser.py:168
+#: pretalx/event/models/organiser.py:162
 #, python-brace-format
 msgid "Invite to team {team} for {email}"
 msgstr "チーム {team} に {email} を招待する"
 
-#: pretalx/event/models/organiser.py:182
+#: pretalx/event/models/organiser.py:176
 #, python-brace-format
 msgid ""
 "Hi!\n"
@@ -2440,7 +2439,7 @@ msgstr ""
 "あちらでお会いしましょう！\n"
 "チーム {organiser}"
 
-#: pretalx/event/models/organiser.py:194
+#: pretalx/event/models/organiser.py:188
 msgid "You have been invited to an organiser team"
 msgstr "あなたは管理者チームに招待"
 
@@ -3830,7 +3829,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/admin.html:28
 #: pretalx/orga/templates/orga/base.html:191
-#: pretalx/orga/templates/orga/organiser/detail.html:10
+#: pretalx/orga/templates/orga/organiser/detail.html:16
 #: pretalx/orga/templates/orga/settings/form.html:24
 msgid "Settings"
 msgstr "設定"
@@ -4014,7 +4013,7 @@ msgid "Dashboard"
 msgstr "ダッシュボード"
 
 #: pretalx/orga/templates/orga/base.html:203
-#: pretalx/orga/templates/orga/organiser/detail.html:34
+#: pretalx/orga/templates/orga/organiser/detail.html:40
 msgid "Teams"
 msgstr "チーム"
 
@@ -4117,7 +4116,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:80
-#: pretalx/orga/templates/orga/organiser/detail.html:71
+#: pretalx/orga/templates/orga/organiser/detail.html:77
 msgid "Delete"
 msgstr "削除"
 
@@ -4642,6 +4641,10 @@ msgstr ""
 "ここで初期のカスタマイズを選択してください - 後でいつでも変更することができま"
 "すし、カスタム CSS で強化することもできます。"
 
+#: pretalx/orga/templates/orga/event/wizard/forbidden.html:7
+msgid "You have created a event. An organiser only has a event."
+msgstr ""
+
 #: pretalx/orga/templates/orga/event/wizard/initial.html:6
 msgid ""
 "The event creation assistant will help you to get started with a new event."
@@ -4667,7 +4670,7 @@ msgstr "あなたの近日公開イベント"
 #: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
-#: pretalx/orga/views/dashboard.py:194
+#: pretalx/orga/views/dashboard.py:193
 #, fuzzy
 #| msgid "proposal"
 #| msgid_plural "submissions"
@@ -4967,11 +4970,11 @@ msgstr ""
 "投稿やスピーカーのプロフィール、アップロードファイルなど、すべてのイベントの"
 "関連データも削除され、復元することはできません。"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:18
+#: pretalx/orga/templates/orga/organiser/detail.html:24
 msgid "Delete organiser"
 msgstr "運営者を削除する"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:38
+#: pretalx/orga/templates/orga/organiser/detail.html:44
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 #: pretalx/orga/templates/orga/settings/team_detail.html:82
@@ -4980,24 +4983,24 @@ msgstr "運営者を削除する"
 msgid "Team"
 msgstr "チーム"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:39
+#: pretalx/orga/templates/orga/organiser/detail.html:45
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 msgid "Members"
 msgstr "メンバー"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:40
+#: pretalx/orga/templates/orga/organiser/detail.html:46
 msgid "All events"
 msgstr "全てのイベント"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:41
+#: pretalx/orga/templates/orga/organiser/detail.html:47
 msgid "Reviewer"
 msgstr "レビュアー"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:52
+#: pretalx/orga/templates/orga/organiser/detail.html:58
 msgid "You are a member of this team"
 msgstr "あなたはこのチームのメンバーです。"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:84
+#: pretalx/orga/templates/orga/organiser/detail.html:90
 #: pretalx/orga/templates/orga/settings/team_detail.html:85
 msgid "New team"
 msgstr "新しいチーム"
@@ -5105,7 +5108,7 @@ msgstr "あなたのスコア"
 #: pretalx/orga/templates/orga/review/dashboard.html:113
 #: pretalx/orga/templates/orga/submission/base.html:73
 #: pretalx/orga/templates/orga/submission/content.html:52
-#: pretalx/orga/views/dashboard.py:121
+#: pretalx/orga/views/dashboard.py:120
 msgid "Reviews"
 msgstr "レビュー"
 
@@ -5847,7 +5850,7 @@ msgid "Add a new note"
 msgstr "ノートを新規追加"
 
 #: pretalx/orga/templates/orga/speaker/list.html:10
-#: pretalx/orga/views/dashboard.py:202
+#: pretalx/orga/views/dashboard.py:201
 msgid "submitter"
 msgid_plural "submitters"
 msgstr[0] "投稿者"
@@ -6340,41 +6343,41 @@ msgstr ""
 "このアクセスコードは投稿に利用され、削除できません。コードを無効化するには過"
 "去の日付を入力してください。"
 
-#: pretalx/orga/views/dashboard.py:97
+#: pretalx/orga/views/dashboard.py:96
 msgid "until the CfP ends"
 msgstr "CfP終了まで"
 
-#: pretalx/orga/views/dashboard.py:125
+#: pretalx/orga/views/dashboard.py:124
 msgid "Active reviewers"
 msgstr "活動中のレビュアー"
 
-#: pretalx/orga/views/dashboard.py:156
+#: pretalx/orga/views/dashboard.py:155
 msgid "day until event start"
 msgid_plural "days until event start"
 msgstr[0] "イベント開始まで"
 msgstr[1] "イベント開始まで"
 
-#: pretalx/orga/views/dashboard.py:166
+#: pretalx/orga/views/dashboard.py:165
 msgid "day since event end"
 msgid_plural "days since event end"
 msgstr[0] "イベント終了から"
 msgstr[1] "イベント終了から"
 
-#: pretalx/orga/views/dashboard.py:174
+#: pretalx/orga/views/dashboard.py:173
 #, python-brace-format
 msgid "Day {number}"
 msgstr "{number} 日"
 
-#: pretalx/orga/views/dashboard.py:175
+#: pretalx/orga/views/dashboard.py:174
 #, python-brace-format
 msgid "of {total_days} days"
 msgstr "全 {total_days} 日"
 
-#: pretalx/orga/views/dashboard.py:185
+#: pretalx/orga/views/dashboard.py:184
 msgid "current schedule"
 msgstr "現在のスケジュール"
 
-#: pretalx/orga/views/dashboard.py:211
+#: pretalx/orga/views/dashboard.py:210
 #, fuzzy
 #| msgid "session"
 #| msgid_plural "talks"
@@ -6383,7 +6386,7 @@ msgid_plural "sessions"
 msgstr[0] "講演"
 msgstr[1] "講演"
 
-#: pretalx/orga/views/dashboard.py:224
+#: pretalx/orga/views/dashboard.py:223
 #, fuzzy
 #| msgid "unconfirmed session"
 #| msgid_plural "unconfirmed talks"
@@ -6392,13 +6395,13 @@ msgid_plural "unconfirmed sessions"
 msgstr[0] "未確認の講演"
 msgstr[1] "未確認の講演"
 
-#: pretalx/orga/views/dashboard.py:237
+#: pretalx/orga/views/dashboard.py:236
 msgid "speaker"
 msgid_plural "speakers"
 msgstr[0] "講演者"
 msgstr[1] "講演者"
 
-#: pretalx/orga/views/dashboard.py:245
+#: pretalx/orga/views/dashboard.py:244
 msgid "sent email"
 msgid_plural "sent emails"
 msgstr[0] "送信済みメール"
@@ -6846,40 +6849,40 @@ msgstr "投稿を作成し、登壇者に対してアカウント作成の招待
 msgid "The proposal has been updated!"
 msgstr "投稿を更新しました！"
 
-#: pretalx/orga/views/submission.py:592
+#: pretalx/orga/views/submission.py:603
 msgid "The anonymisation has been updated."
 msgstr "講演者の未開示情報が更新されました。"
 
-#: pretalx/orga/views/submission.py:594
+#: pretalx/orga/views/submission.py:605
 msgid "This proposal is now marked as anonymised."
 msgstr "この投稿は講演者未開示としてマークされました。"
 
-#: pretalx/orga/views/submission.py:611
+#: pretalx/orga/views/submission.py:622
 #, python-brace-format
 msgid "{name} proposal feed"
 msgstr "{name} 投稿フィード"
 
-#: pretalx/orga/views/submission.py:623
+#: pretalx/orga/views/submission.py:634
 #, python-brace-format
 msgid "Updates to the {name} schedule."
 msgstr "{name} の講演スケジュールが更新されました。"
 
-#: pretalx/orga/views/submission.py:629
+#: pretalx/orga/views/submission.py:640
 #, python-brace-format
 msgid "New {event} proposal: {title}"
 msgstr "新しいイベント {event} への投稿: {title}"
 
-#: pretalx/orga/views/submission.py:684 pretalx/orga/views/submission.py:696
+#: pretalx/orga/views/submission.py:695 pretalx/orga/views/submission.py:707
 msgid "Deadline"
 msgstr "締め切り"
 
-#: pretalx/orga/views/submission.py:927
+#: pretalx/orga/views/submission.py:938
 #, fuzzy
 #| msgid "The track has been saved."
 msgid "The tag has been saved."
 msgstr "トラックが保存されました。"
 
-#: pretalx/orga/views/submission.py:948
+#: pretalx/orga/views/submission.py:959
 #, fuzzy
 #| msgid "The track has been deleted."
 msgid "The tag has been deleted."

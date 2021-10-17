@@ -52,6 +52,7 @@ urlpatterns = [
                     organiser.OrganiserDelete.as_view(),
                     name="organiser.delete",
                 ),
+                path("event/new/", event.EventWizard.as_view(), name="event.create"),
                 path(
                     "api/users", person.UserList.as_view(), name="organiser.user_list"
                 ),
@@ -103,618 +104,617 @@ urlpatterns = [
                         ]
                     ),
                 ),
-            ]
-        ),
-    ),
-    path("event/new/", event.EventWizard.as_view(), name="event.create"),
-    path("event/typeahead/", event.event_list, name="event.typeahead"),
-    path("event/", dashboard.DashboardEventListView.as_view(), name="event.list"),
-    path(
-        "event/<slug:event>/",
-        include(
-            [
                 path(
-                    "", dashboard.EventDashboardView.as_view(), name="event.dashboard"
-                ),
-                path("login/", auth.LoginView.as_view(), name="event.login"),
-                path("reset/", auth.ResetView.as_view(), name="event.auth.reset"),
-                path(
-                    "reset/<token>",
-                    auth.RecoverView.as_view(),
-                    name="event.auth.recover",
-                ),
-                path("delete", event.EventDelete.as_view(), name="event.delete"),
-                path("live", event.EventLive.as_view(), name="event.live"),
-                path("history/", event.EventHistory.as_view(), name="event.history"),
-                path("api/users", person.UserList.as_view(), name="event.user_list"),
-                path(
-                    "cfp/",
-                    RedirectView.as_view(pattern_name="orga:cfp.text.view"),
-                    name="cfp",
-                ),
-                path("cfp/flow/", cfp.CfPFlowEditor.as_view(), name="cfp.flow"),
-                path(
-                    "cfp/questions/",
-                    cfp.CfPQuestionList.as_view(),
-                    name="cfp.questions.view",
-                ),
-                path(
-                    "cfp/questions/new",
-                    cfp.CfPQuestionDetail.as_view(),
-                    name="cfp.questions.create",
-                ),
-                path(
-                    "cfp/questions/remind",
-                    cfp.CfPQuestionRemind.as_view(),
-                    name="cfp.questions.remind",
-                ),
-                path(
-                    "cfp/questions/<int:pk>/",
+                    "event/<slug:event>/",
                     include(
                         [
                             path(
-                                "",
+                                "", dashboard.EventDashboardView.as_view(), name="event.dashboard"
+                            ),
+                            path("login/", auth.LoginView.as_view(), name="event.login"),
+                            path("reset/", auth.ResetView.as_view(), name="event.auth.reset"),
+                            path(
+                                "reset/<token>",
+                                auth.RecoverView.as_view(),
+                                name="event.auth.recover",
+                            ),
+                            path("delete", event.EventDelete.as_view(), name="event.delete"),
+                            path("live", event.EventLive.as_view(), name="event.live"),
+                            path("history/", event.EventHistory.as_view(), name="event.history"),
+                            path("api/users", person.UserList.as_view(), name="event.user_list"),
+                            path(
+                                "cfp/",
+                                RedirectView.as_view(pattern_name="orga:cfp.text.view"),
+                                name="cfp",
+                            ),
+                            path("cfp/flow/", cfp.CfPFlowEditor.as_view(), name="cfp.flow"),
+                            path(
+                                "cfp/questions/",
+                                cfp.CfPQuestionList.as_view(),
+                                name="cfp.questions.view",
+                            ),
+                            path(
+                                "cfp/questions/new",
                                 cfp.CfPQuestionDetail.as_view(),
-                                name="cfp.question.view",
+                                name="cfp.questions.create",
                             ),
                             path(
-                                "up",
-                                cfp.question_move_up,
-                                name="cfp.questions.up",
+                                "cfp/questions/remind",
+                                cfp.CfPQuestionRemind.as_view(),
+                                name="cfp.questions.remind",
                             ),
                             path(
-                                "down",
-                                cfp.question_move_down,
-                                name="cfp.questions.down",
+                                "cfp/questions/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            cfp.CfPQuestionDetail.as_view(),
+                                            name="cfp.question.view",
+                                        ),
+                                        path(
+                                            "up",
+                                            cfp.question_move_up,
+                                            name="cfp.questions.up",
+                                        ),
+                                        path(
+                                            "down",
+                                            cfp.question_move_down,
+                                            name="cfp.questions.down",
+                                        ),
+                                        path(
+                                            "delete",
+                                            cfp.CfPQuestionDelete.as_view(),
+                                            name="cfp.question.delete",
+                                        ),
+                                        path(
+                                            "edit",
+                                            cfp.CfPQuestionDetail.as_view(),
+                                            name="cfp.question.edit",
+                                        ),
+                                        path(
+                                            "toggle",
+                                            cfp.CfPQuestionToggle.as_view(),
+                                            name="cfp.question.toggle",
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            path("cfp/text", cfp.CfPTextDetail.as_view(), name="cfp.text.view"),
+                            path(
+                                "cfp/types/",
+                                cfp.SubmissionTypeList.as_view(),
+                                name="cfp.types.view",
                             ),
                             path(
-                                "delete",
-                                cfp.CfPQuestionDelete.as_view(),
-                                name="cfp.question.delete",
-                            ),
-                            path(
-                                "edit",
-                                cfp.CfPQuestionDetail.as_view(),
-                                name="cfp.question.edit",
-                            ),
-                            path(
-                                "toggle",
-                                cfp.CfPQuestionToggle.as_view(),
-                                name="cfp.question.toggle",
-                            ),
-                        ]
-                    ),
-                ),
-                path("cfp/text", cfp.CfPTextDetail.as_view(), name="cfp.text.view"),
-                path(
-                    "cfp/types/",
-                    cfp.SubmissionTypeList.as_view(),
-                    name="cfp.types.view",
-                ),
-                path(
-                    "cfp/types/new",
-                    cfp.SubmissionTypeDetail.as_view(),
-                    name="cfp.types.create",
-                ),
-                path(
-                    "cfp/types/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "",
+                                "cfp/types/new",
                                 cfp.SubmissionTypeDetail.as_view(),
-                                name="cfp.type.view",
+                                name="cfp.types.create",
                             ),
                             path(
-                                "delete",
-                                cfp.SubmissionTypeDelete.as_view(),
-                                name="cfp.type.delete",
+                                "cfp/types/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            cfp.SubmissionTypeDetail.as_view(),
+                                            name="cfp.type.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            cfp.SubmissionTypeDelete.as_view(),
+                                            name="cfp.type.delete",
+                                        ),
+                                        path(
+                                            "default",
+                                            cfp.SubmissionTypeDefault.as_view(),
+                                            name="cfp.type.default",
+                                        ),
+                                    ]
+                                ),
                             ),
+                            path("cfp/tracks/", cfp.TrackList.as_view(), name="cfp.tracks.view"),
                             path(
-                                "default",
-                                cfp.SubmissionTypeDefault.as_view(),
-                                name="cfp.type.default",
-                            ),
-                        ]
-                    ),
-                ),
-                path("cfp/tracks/", cfp.TrackList.as_view(), name="cfp.tracks.view"),
-                path(
-                    "cfp/tracks/new",
-                    cfp.TrackDetail.as_view(),
-                    name="cfp.track.create",
-                ),
-                path(
-                    "cfp/tracks/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "",
+                                "cfp/tracks/new",
                                 cfp.TrackDetail.as_view(),
-                                name="cfp.track.view",
+                                name="cfp.track.create",
                             ),
                             path(
-                                "delete",
-                                cfp.TrackDelete.as_view(),
-                                name="cfp.track.delete",
+                                "cfp/tracks/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            cfp.TrackDetail.as_view(),
+                                            name="cfp.track.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            cfp.TrackDelete.as_view(),
+                                            name="cfp.track.delete",
+                                        ),
+                                    ]
+                                ),
                             ),
-                        ]
-                    ),
-                ),
-                path(
-                    "cfp/access-codes/",
-                    cfp.AccessCodeList.as_view(),
-                    name="cfp.access_code.view",
-                ),
-                path(
-                    "cfp/access-codes/new",
-                    cfp.AccessCodeDetail.as_view(),
-                    name="cfp.access_code.create",
-                ),
-                path(
-                    "cfp/access-codes/<slug:code>/",
-                    include(
-                        [
                             path(
-                                "",
-                                cfp.AccessCodeDetail.as_view(),
+                                "cfp/access-codes/",
+                                cfp.AccessCodeList.as_view(),
                                 name="cfp.access_code.view",
                             ),
                             path(
-                                "send",
-                                cfp.AccessCodeSend.as_view(),
-                                name="cfp.access_code.send",
+                                "cfp/access-codes/new",
+                                cfp.AccessCodeDetail.as_view(),
+                                name="cfp.access_code.create",
                             ),
                             path(
-                                "delete",
-                                cfp.AccessCodeDelete.as_view(),
-                                name="cfp.access_code.delete",
-                            ),
-                        ]
-                    ),
-                ),
-                path(
-                    "mails/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "",
-                                mails.MailDetail.as_view(),
-                                name="mails.outbox.mail.view",
-                            ),
-                            path(
-                                "copy",
-                                mails.MailCopy.as_view(),
-                                name="mails.outbox.mail.copy",
-                            ),
-                            path(
-                                "delete",
-                                mails.MailDelete.as_view(),
-                                name="mails.outbox.mail.delete",
+                                "cfp/access-codes/<slug:code>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            cfp.AccessCodeDetail.as_view(),
+                                            name="cfp.access_code.view",
+                                        ),
+                                        path(
+                                            "send",
+                                            cfp.AccessCodeSend.as_view(),
+                                            name="cfp.access_code.send",
+                                        ),
+                                        path(
+                                            "delete",
+                                            cfp.AccessCodeDelete.as_view(),
+                                            name="cfp.access_code.delete",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "send",
-                                mails.OutboxSend.as_view(),
-                                name="mails.outbox.mail.send",
+                                "mails/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            mails.MailDetail.as_view(),
+                                            name="mails.outbox.mail.view",
+                                        ),
+                                        path(
+                                            "copy",
+                                            mails.MailCopy.as_view(),
+                                            name="mails.outbox.mail.copy",
+                                        ),
+                                        path(
+                                            "delete",
+                                            mails.MailDelete.as_view(),
+                                            name="mails.outbox.mail.delete",
+                                        ),
+                                        path(
+                                            "send",
+                                            mails.OutboxSend.as_view(),
+                                            name="mails.outbox.mail.send",
+                                        ),
+                                        path(
+                                            "preview",
+                                            mails.MailPreview.as_view(),
+                                            name="mails.outbox.mail.preview",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "preview",
-                                mails.MailPreview.as_view(),
-                                name="mails.outbox.mail.preview",
+                                "mails/templates/",
+                                mails.TemplateList.as_view(),
+                                name="mails.templates.list",
                             ),
-                        ]
-                    ),
-                ),
-                path(
-                    "mails/templates/",
-                    mails.TemplateList.as_view(),
-                    name="mails.templates.list",
-                ),
-                path(
-                    "mails/templates/new",
-                    mails.TemplateDetail.as_view(),
-                    name="mails.templates.create",
-                ),
-                path(
-                    "mails/templates/<int:pk>/",
-                    include(
-                        [
                             path(
-                                "",
+                                "mails/templates/new",
                                 mails.TemplateDetail.as_view(),
-                                name="mails.templates.view",
+                                name="mails.templates.create",
                             ),
                             path(
-                                "delete",
-                                mails.TemplateDelete.as_view(),
-                                name="mails.templates.delete",
-                            ),
-                        ]
-                    ),
-                ),
-                path(
-                    "mails/compose",
-                    mails.ComposeMail.as_view(),
-                    name="mails.compose",
-                ),
-                path("mails/sent", mails.SentMail.as_view(), name="mails.sent"),
-                path(
-                    "mails/outbox/",
-                    mails.OutboxList.as_view(),
-                    name="mails.outbox.list",
-                ),
-                path(
-                    "mails/outbox/send",
-                    mails.OutboxSend.as_view(),
-                    name="mails.outbox.send",
-                ),
-                path(
-                    "mails/outbox/purge",
-                    mails.OutboxPurge.as_view(),
-                    name="mails.outbox.purge",
-                ),
-                path(
-                    "submissions/",
-                    submission.SubmissionList.as_view(),
-                    name="submissions.list",
-                ),
-                path(
-                    "submissions/new",
-                    submission.SubmissionContent.as_view(),
-                    name="submissions.create",
-                ),
-                path(
-                    "submissions/cards/",
-                    cards.SubmissionCards.as_view(),
-                    name="submissions.cards",
-                ),
-                path(
-                    "submissions/feed/",
-                    submission.SubmissionFeed(),
-                    name="submissions.feed",
-                ),
-                path(
-                    "submissions/statistics/",
-                    submission.SubmissionStats.as_view(),
-                    name="submissions.statistics",
-                ),
-                path(
-                    "submissions/feedback/",
-                    submission.AllFeedbacksList.as_view(),
-                    name="submissions.feedback",
-                ),
-                path(
-                    "submissions/tags/",
-                    submission.TagList.as_view(),
-                    name="submissions.tags.view",
-                ),
-                path(
-                    "submissions/tags/new",
-                    submission.TagDetail.as_view(),
-                    name="submissions.tag.create",
-                ),
-                path(
-                    "submissions/tags/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "",
-                                submission.TagDetail.as_view(),
-                                name="submissions.tag.view",
+                                "mails/templates/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            mails.TemplateDetail.as_view(),
+                                            name="mails.templates.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            mails.TemplateDelete.as_view(),
+                                            name="mails.templates.delete",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "delete",
-                                submission.TagDelete.as_view(),
-                                name="submissions.tag.delete",
+                                "mails/compose",
+                                mails.ComposeMail.as_view(),
+                                name="mails.compose",
                             ),
-                        ]
-                    ),
-                ),
-                path(
-                    "submissions/<code>/",
-                    include(
-                        [
+                            path("mails/sent", mails.SentMail.as_view(), name="mails.sent"),
                             path(
-                                "",
+                                "mails/outbox/",
+                                mails.OutboxList.as_view(),
+                                name="mails.outbox.list",
+                            ),
+                            path(
+                                "mails/outbox/send",
+                                mails.OutboxSend.as_view(),
+                                name="mails.outbox.send",
+                            ),
+                            path(
+                                "mails/outbox/purge",
+                                mails.OutboxPurge.as_view(),
+                                name="mails.outbox.purge",
+                            ),
+                            path(
+                                "submissions/",
+                                submission.SubmissionList.as_view(),
+                                name="submissions.list",
+                            ),
+                            path(
+                                "submissions/new",
                                 submission.SubmissionContent.as_view(),
-                                name="submissions.content.view",
+                                name="submissions.create",
                             ),
                             path(
-                                "submit",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.submit",
+                                "submissions/cards/",
+                                cards.SubmissionCards.as_view(),
+                                name="submissions.cards",
                             ),
                             path(
-                                "accept",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.accept",
+                                "submissions/feed/",
+                                submission.SubmissionFeed(),
+                                name="submissions.feed",
                             ),
                             path(
-                                "reject",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.reject",
+                                "submissions/statistics/",
+                                submission.SubmissionStats.as_view(),
+                                name="submissions.statistics",
                             ),
                             path(
-                                "confirm",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.confirm",
+                                "submissions/feedback/",
+                                submission.AllFeedbacksList.as_view(),
+                                name="submissions.feedback",
                             ),
                             path(
-                                "withdraw",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.withdraw",
+                                "submissions/tags/",
+                                submission.TagList.as_view(),
+                                name="submissions.tags.view",
                             ),
                             path(
-                                "delete",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.delete",
+                                "submissions/tags/new",
+                                submission.TagDetail.as_view(),
+                                name="submissions.tag.create",
                             ),
                             path(
-                                "cancel",
-                                submission.SubmissionStateChange.as_view(),
-                                name="submissions.cancel",
+                                "submissions/tags/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            submission.TagDetail.as_view(),
+                                            name="submissions.tag.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            submission.TagDelete.as_view(),
+                                            name="submissions.tag.delete",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "speakers/",
-                                submission.SubmissionSpeakers.as_view(),
-                                name="submissions.speakers.view",
+                                "submissions/<code>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            submission.SubmissionContent.as_view(),
+                                            name="submissions.content.view",
+                                        ),
+                                        path(
+                                            "submit",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.submit",
+                                        ),
+                                        path(
+                                            "accept",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.accept",
+                                        ),
+                                        path(
+                                            "reject",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.reject",
+                                        ),
+                                        path(
+                                            "confirm",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.confirm",
+                                        ),
+                                        path(
+                                            "withdraw",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.withdraw",
+                                        ),
+                                        path(
+                                            "delete",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.delete",
+                                        ),
+                                        path(
+                                            "cancel",
+                                            submission.SubmissionStateChange.as_view(),
+                                            name="submissions.cancel",
+                                        ),
+                                        path(
+                                            "speakers/",
+                                            submission.SubmissionSpeakers.as_view(),
+                                            name="submissions.speakers.view",
+                                        ),
+                                        path(
+                                            "speakers/add",
+                                            submission.SubmissionSpeakersAdd.as_view(),
+                                            name="submissions.speakers.add",
+                                        ),
+                                        path(
+                                            "speakers/delete",
+                                            submission.SubmissionSpeakersDelete.as_view(),
+                                            name="submissions.speakers.delete",
+                                        ),
+                                        path(
+                                            "reviews/",
+                                            review.ReviewSubmission.as_view(),
+                                            name="submissions.reviews",
+                                        ),
+                                        path(
+                                            "reviews/delete",
+                                            review.ReviewSubmissionDelete.as_view(),
+                                            name="submissions.reviews.submission.delete",
+                                        ),
+                                        path(
+                                            "feedback/",
+                                            submission.FeedbackList.as_view(),
+                                            name="submissions.feedback.list",
+                                        ),
+                                        path(
+                                            "toggle_featured",
+                                            submission.ToggleFeatured.as_view(),
+                                            name="submissions.toggle_featured",
+                                        ),
+                                        path(
+                                            "anonymise/",
+                                            submission.Anonymise.as_view(),
+                                            name="submissions.anonymise",
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            path("speakers/", speaker.SpeakerList.as_view(), name="speakers.list"),
+                            path(
+                                "speakers/export/",
+                                speaker.SpeakerExport.as_view(),
+                                name="speakers.export",
                             ),
                             path(
-                                "speakers/add",
-                                submission.SubmissionSpeakersAdd.as_view(),
-                                name="submissions.speakers.add",
+                                "speakers/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            speaker.SpeakerDetail.as_view(),
+                                            name="speakers.view",
+                                        ),
+                                        path(
+                                            "reset",
+                                            speaker.SpeakerPasswordReset.as_view(),
+                                            name="speakers.reset",
+                                        ),
+                                        path(
+                                            "toggle-arrived",
+                                            speaker.SpeakerToggleArrived.as_view(),
+                                            name="speakers.arrived",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "speakers/delete",
-                                submission.SubmissionSpeakersDelete.as_view(),
-                                name="submissions.speakers.delete",
+                                "info/",
+                                speaker.InformationList.as_view(),
+                                name="speakers.information.list",
+                            ),
+                            path(
+                                "info/new",
+                                speaker.InformationDetail.as_view(),
+                                name="speakers.information.create",
+                            ),
+                            path(
+                                "info/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            speaker.InformationDetail.as_view(),
+                                            name="speakers.information.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            speaker.InformationDelete.as_view(),
+                                            name="speakers.information.delete",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
                                 "reviews/",
-                                review.ReviewSubmission.as_view(),
-                                name="submissions.reviews",
+                                review.ReviewDashboard.as_view(),
+                                name="reviews.dashboard",
                             ),
                             path(
-                                "reviews/delete",
-                                review.ReviewSubmissionDelete.as_view(),
-                                name="submissions.reviews.submission.delete",
+                                "reviews/regenerate/",
+                                review.RegenerateDecisionMails.as_view(),
+                                name="reviews.regenerate",
                             ),
                             path(
-                                "feedback/",
-                                submission.FeedbackList.as_view(),
-                                name="submissions.feedback.list",
+                                "settings/",
+                                event.EventDetail.as_view(),
+                                name="settings.event.view",
                             ),
                             path(
-                                "toggle_featured",
-                                submission.ToggleFeatured.as_view(),
-                                name="submissions.toggle_featured",
+                                "settings/mail",
+                                event.EventMailSettings.as_view(),
+                                name="settings.mail.view",
                             ),
                             path(
-                                "anonymise/",
-                                submission.Anonymise.as_view(),
-                                name="submissions.anonymise",
-                            ),
-                        ]
-                    ),
-                ),
-                path("speakers/", speaker.SpeakerList.as_view(), name="speakers.list"),
-                path(
-                    "speakers/export/",
-                    speaker.SpeakerExport.as_view(),
-                    name="speakers.export",
-                ),
-                path(
-                    "speakers/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "",
-                                speaker.SpeakerDetail.as_view(),
-                                name="speakers.view",
+                                "settings/plugins",
+                                plugins.EventPluginsView.as_view(),
+                                name="settings.plugins.select",
                             ),
                             path(
-                                "reset",
-                                speaker.SpeakerPasswordReset.as_view(),
-                                name="speakers.reset",
+                                "settings/widget",
+                                event.WidgetSettings.as_view(),
+                                name="settings.widget",
                             ),
                             path(
-                                "toggle-arrived",
-                                speaker.SpeakerToggleArrived.as_view(),
-                                name="speakers.arrived",
-                            ),
-                        ]
-                    ),
-                ),
-                path(
-                    "info/",
-                    speaker.InformationList.as_view(),
-                    name="speakers.information.list",
-                ),
-                path(
-                    "info/new",
-                    speaker.InformationDetail.as_view(),
-                    name="speakers.information.create",
-                ),
-                path(
-                    "info/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "",
-                                speaker.InformationDetail.as_view(),
-                                name="speakers.information.view",
+                                "settings/review/",
+                                event.EventReviewSettings.as_view(),
+                                name="settings.review",
                             ),
                             path(
-                                "delete",
-                                speaker.InformationDelete.as_view(),
-                                name="speakers.information.delete",
-                            ),
-                        ]
-                    ),
-                ),
-                path(
-                    "reviews/",
-                    review.ReviewDashboard.as_view(),
-                    name="reviews.dashboard",
-                ),
-                path(
-                    "reviews/regenerate/",
-                    review.RegenerateDecisionMails.as_view(),
-                    name="reviews.regenerate",
-                ),
-                path(
-                    "settings/",
-                    event.EventDetail.as_view(),
-                    name="settings.event.view",
-                ),
-                path(
-                    "settings/mail",
-                    event.EventMailSettings.as_view(),
-                    name="settings.mail.view",
-                ),
-                path(
-                    "settings/plugins",
-                    plugins.EventPluginsView.as_view(),
-                    name="settings.plugins.select",
-                ),
-                path(
-                    "settings/widget",
-                    event.WidgetSettings.as_view(),
-                    name="settings.widget",
-                ),
-                path(
-                    "settings/review/",
-                    event.EventReviewSettings.as_view(),
-                    name="settings.review",
-                ),
-                path(
-                    "settings/review/phase/<int:pk>/",
-                    include(
-                        [
-                            path(
-                                "up",
-                                event.phase_move_up,
-                                name="settings.review.phase.up",
+                                "settings/review/phase/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "up",
+                                            event.phase_move_up,
+                                            name="settings.review.phase.up",
+                                        ),
+                                        path(
+                                            "down",
+                                            event.phase_move_down,
+                                            name="settings.review.phase.down",
+                                        ),
+                                        path(
+                                            "delete",
+                                            event.PhaseDelete.as_view(),
+                                            name="settings.review.phasedelete",
+                                        ),
+                                        path(
+                                            "activate",
+                                            event.PhaseActivate.as_view(),
+                                            name="settings.review.phasedelete",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "down",
-                                event.phase_move_down,
-                                name="settings.review.phase.down",
+                                "settings/review/category/<int:pk>/delete",
+                                event.ScoreCategoryDelete.as_view(),
+                                name="settings.review.categorydelete",
                             ),
                             path(
-                                "delete",
-                                event.PhaseDelete.as_view(),
-                                name="settings.review.phasedelete",
+                                "schedule/", schedule.ScheduleView.as_view(), name="schedule.main"
                             ),
                             path(
-                                "activate",
-                                event.PhaseActivate.as_view(),
-                                name="settings.review.phasedelete",
+                                "schedule/export/",
+                                schedule.ScheduleExportView.as_view(),
+                                name="schedule.export",
                             ),
-                        ]
-                    ),
-                ),
-                path(
-                    "settings/review/category/<int:pk>/delete",
-                    event.ScoreCategoryDelete.as_view(),
-                    name="settings.review.categorydelete",
-                ),
-                path(
-                    "schedule/", schedule.ScheduleView.as_view(), name="schedule.main"
-                ),
-                path(
-                    "schedule/export/",
-                    schedule.ScheduleExportView.as_view(),
-                    name="schedule.export",
-                ),
-                path(
-                    "schedule/export/trigger",
-                    schedule.ScheduleExportTriggerView.as_view(),
-                    name="schedule.export.trigger",
-                ),
-                path(
-                    "schedule/export/download",
-                    schedule.ScheduleExportDownloadView.as_view(),
-                    name="schedule.export.download",
-                ),
-                path(
-                    "schedule/release",
-                    schedule.ScheduleReleaseView.as_view(),
-                    name="schedule.release",
-                ),
-                path(
-                    "schedule/quick/<code>/",
-                    schedule.QuickScheduleView.as_view(),
-                    name="schedule.quick",
-                ),
-                path(
-                    "schedule/reset",
-                    schedule.ScheduleResetView.as_view(),
-                    name="schedule.reset",
-                ),
-                path(
-                    "schedule/toggle",
-                    schedule.ScheduleToggleView.as_view(),
-                    name="schedule.toggle",
-                ),
-                path(
-                    "schedule/resend_mails",
-                    schedule.ScheduleResendMailsView.as_view(),
-                    name="schedule.resend_mails",
-                ),
-                path(
-                    "schedule/rooms/",
-                    schedule.RoomList.as_view(),
-                    name="schedule.rooms.list",
-                ),
-                path(
-                    "schedule/rooms/new",
-                    schedule.RoomDetail.as_view(),
-                    name="schedule.rooms.create",
-                ),
-                path(
-                    "schedule/rooms/<int:pk>/",
-                    include(
-                        [
                             path(
-                                "",
+                                "schedule/export/trigger",
+                                schedule.ScheduleExportTriggerView.as_view(),
+                                name="schedule.export.trigger",
+                            ),
+                            path(
+                                "schedule/export/download",
+                                schedule.ScheduleExportDownloadView.as_view(),
+                                name="schedule.export.download",
+                            ),
+                            path(
+                                "schedule/release",
+                                schedule.ScheduleReleaseView.as_view(),
+                                name="schedule.release",
+                            ),
+                            path(
+                                "schedule/quick/<code>/",
+                                schedule.QuickScheduleView.as_view(),
+                                name="schedule.quick",
+                            ),
+                            path(
+                                "schedule/reset",
+                                schedule.ScheduleResetView.as_view(),
+                                name="schedule.reset",
+                            ),
+                            path(
+                                "schedule/toggle",
+                                schedule.ScheduleToggleView.as_view(),
+                                name="schedule.toggle",
+                            ),
+                            path(
+                                "schedule/resend_mails",
+                                schedule.ScheduleResendMailsView.as_view(),
+                                name="schedule.resend_mails",
+                            ),
+                            path(
+                                "schedule/rooms/",
+                                schedule.RoomList.as_view(),
+                                name="schedule.rooms.list",
+                            ),
+                            path(
+                                "schedule/rooms/new",
                                 schedule.RoomDetail.as_view(),
-                                name="schedule.rooms.view",
+                                name="schedule.rooms.create",
                             ),
                             path(
-                                "delete",
-                                schedule.RoomDelete.as_view(),
-                                name="schedule.rooms.delete",
+                                "schedule/rooms/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            schedule.RoomDetail.as_view(),
+                                            name="schedule.rooms.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            schedule.RoomDelete.as_view(),
+                                            name="schedule.rooms.delete",
+                                        ),
+                                        path(
+                                            "up",
+                                            schedule.room_move_up,
+                                            name="schedule.rooms.up",
+                                        ),
+                                        path(
+                                            "down",
+                                            schedule.room_move_down,
+                                            name="schedule.rooms.down",
+                                        ),
+                                    ]
+                                ),
                             ),
                             path(
-                                "up",
-                                schedule.room_move_up,
-                                name="schedule.rooms.up",
+                                "schedule/api/talks/",
+                                schedule.TalkList.as_view(),
+                                name="schedule.api.talks",
                             ),
                             path(
-                                "down",
-                                schedule.room_move_down,
-                                name="schedule.rooms.down",
+                                "schedule/api/talks/<int:pk>/",
+                                schedule.TalkUpdate.as_view(),
+                                name="schedule.api.update",
+                            ),
+                            path(
+                                "schedule/api/availabilities/<int:talkid>/<int:roomid>/",
+                                schedule.RoomTalkAvailabilities.as_view(),
+                                name="schedule.api.availabilities",
                             ),
                         ]
                     ),
-                ),
-                path(
-                    "schedule/api/talks/",
-                    schedule.TalkList.as_view(),
-                    name="schedule.api.talks",
-                ),
-                path(
-                    "schedule/api/talks/<int:pk>/",
-                    schedule.TalkUpdate.as_view(),
-                    name="schedule.api.update",
-                ),
-                path(
-                    "schedule/api/availabilities/<int:talkid>/<int:roomid>/",
-                    schedule.RoomTalkAvailabilities.as_view(),
-                    name="schedule.api.availabilities",
                 ),
             ]
         ),
     ),
+    path("event/typeahead/", event.event_list, name="event.typeahead"),
+    path("event/", dashboard.DashboardEventListView.as_view(), name="event.list"),
 ]

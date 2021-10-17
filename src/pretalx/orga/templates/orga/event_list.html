@@ -14,6 +14,7 @@
         {% for event in current_orga_events %}
             <a class="event-block dashboard-block" href="{{ event.orga_urls.base }}">
                 <h2 class="name">{{ event.name }}</h2>
+                <h6>{% translate "Organisers" %}: {{ event.organiser.name }}</h6>
                 <div class="dashboard-description">
                     <div class="date">{{ event.get_date_range_display }}</div>
                 </div>
@@ -38,11 +39,6 @@
                 </div>
             </a>
         {% endfor %}
-        {% if can_create_event %}
-            <a class="dashboard-block symbol" href="{% url "orga:event.create" %}">
-                <i class="fa fa-plus-circle" title="{% translate "Create a new event" %}"></i>
-            </a>
-        {% endif %}
     </div>
     {% if past_orga_events %}
         <h2>{% translate "Your most recent events" %}</h2>

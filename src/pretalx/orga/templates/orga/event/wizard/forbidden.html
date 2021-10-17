@@ -1,0 +1,12 @@
+{% extends "orga/base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+    <div class="alert alert-danger"><span></span><span>
+        {% blocktranslate trimmed %}
+            You have created a event. An organiser only has a event.
+        {% endblocktranslate %}
+    </span>
+    </div>
+{% endblock %}

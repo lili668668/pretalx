@@ -74,7 +74,7 @@ class Command(BaseCommand):  # pragma: no cover
         )
         self.stdout.write(
             _(
-                " - Invite somebody to the organiser team at {team_url} and let them create the event"
+                " - Invite somebody to the organiser team at {team_url}"
             ).format(team_url=team_url)
         )
         self.stdout.write(

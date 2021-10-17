@@ -50,6 +50,7 @@ class Organiser(LogMixin, models.Model):
         delete = "{base}delete"
         teams = "{base}teams/"
         new_team = "{teams}new"
+        new_event = "{base}event/new"
 
     @transaction.atomic
     def shred(self):

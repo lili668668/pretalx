@@ -40,6 +40,7 @@ def validate_event_slug_permitted(value):
         "orga",
         "redirect",
         "widget",
+        "new",
         "400",
         "403",
         "404",
@@ -115,10 +116,10 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         verbose_name=_("Short form"),
         help_text=_("The slug may only contain letters, numbers, dots and dashes."),
     )
-    organiser = models.ForeignKey(
+    organiser = models.OneToOneField(
         to="Organiser",
         null=True,  # backwards compatibility, won't ever be empty
-        related_name="events",
+        related_name="event",
         on_delete=models.PROTECT,
     )
     is_public = models.BooleanField(default=False, verbose_name=_("Event is public"))
@@ -273,8 +274,7 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         widget_data = "{schedule}widget/v2.json"
 
     class orga_urls(EventUrls):
-        create = "/orga/event/new"
-        base = "/orga/event/{self.slug}/"
+        base = "/orga/organiser/{self.organiser.slug}/event/{self.slug}/"
         live = "{base}live"
         delete = "{base}delete"
         cfp = "{base}cfp/"

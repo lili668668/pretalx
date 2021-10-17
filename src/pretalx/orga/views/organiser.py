@@ -1,5 +1,6 @@
+from django import forms
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -223,7 +224,8 @@ class OrganiserDetail(PermissionRequired, CreateOrUpdateView):
 
     def get_success_url(self):
         messages.success(self.request, _("Saved!"))
-        return self.request.path
+        if self.get_object() is None: return self.get_form().instance.orga_urls.new_event
+        else: return self.request.path
 
 
 class OrganiserDelete(PermissionRequired, DeleteView):

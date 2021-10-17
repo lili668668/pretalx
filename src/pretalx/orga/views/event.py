@@ -50,7 +50,7 @@ from pretalx.event.forms import (
     EventWizardInitialForm,
     EventWizardTimelineForm,
 )
-from pretalx.event.models import Event, Team, TeamInvite
+from pretalx.event.models import Event, Team, TeamInvite, organiser
 from pretalx.orga.forms import EventForm, EventSettingsForm
 from pretalx.orga.forms.event import (
     MailSettingsForm,
@@ -606,7 +606,8 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
     condition_dict = {"copy": condition_copy}
 
     def get_template_names(self):
-        return f"orga/event/wizard/{self.steps.current}.html"
+        if hasattr(self.request.organiser, "event"): return f"orga/event/wizard/forbidden.html"
+        else: return f"orga/event/wizard/{self.steps.current}.html"
 
     @context
     def has_organiser(self):
@@ -621,11 +622,7 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
 
     @context
     def organiser(self):
-        return (
-            self.get_cleaned_data_for_step("initial").get("organiser")
-            if self.steps.current != "initial"
-            else None
-        )
+        return self.request.organiser
 
     def render(self, form=None, **kwargs):
         if self.steps.current != "initial":
@@ -657,7 +654,7 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
         return super().render(form, **kwargs)
 
     def get_form_kwargs(self, step=None):
-        kwargs = {"user": self.request.user}
+        kwargs = {"organiser": self.request.organiser, "user": self.request.user}
         if step != "initial":
             fdata = self.get_cleaned_data_for_step("initial")
             kwargs.update(fdata or {})
@@ -672,7 +669,7 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
 
         with scopes_disabled():
             event = Event.objects.create(
-                organiser=steps["initial"]["organiser"],
+                organiser=self.request.organiser,
                 locale_array=",".join(steps["initial"]["locales"]),
                 name=steps["basics"]["name"],
                 slug=steps["basics"]["slug"],

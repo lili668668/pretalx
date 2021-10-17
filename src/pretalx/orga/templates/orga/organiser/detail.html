@@ -2,6 +2,12 @@
 {% load bootstrap4 %}
 {% load i18n %}
 {% load rules %}
+{% load compress %}
+{% load static %}
+
+{% block scripts %}
+    {% compress js %}<script src="{% static 'orga/js/organiser_wizard.js' %}" defer></script>{% endcompress %}
+{% endblock %}
 
 {% block title %}{% if request.event %}{{ request.event.name }}{% else %}{{ request.organiser.name }}{% endif %}{% endblock %}
 
@@ -9,7 +15,7 @@
     <form method="post"><fieldset>
         <legend>{% translate "Settings" %}</legend>
         {% csrf_token %}
-        {% bootstrap_form form layout='event' %}
+        <div id="organiser">{% bootstrap_form form layout='event' %}</div>
         <div class="submit-group panel">
             <span>
                 {% has_perm "person.is_administrator" request.user request.organiser as can_delete_event %}

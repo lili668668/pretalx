@@ -288,7 +288,7 @@
                                 </a>
                             </div>
                         </div>
-                        <a class="nav-link {% if "reviews." in url_name %}active{% endif %}" href="{% url "orga:reviews.dashboard" event=request.event.slug %}">
+                        <a class="nav-link {% if "reviews." in url_name %}active{% endif %}" href="{% url "orga:reviews.dashboard" event=request.event.slug organiser=request.organiser.slug %}">
                             <i class="fa fa-eye"></i>
                             <span class="sidebar-text">{% translate "Review" %}</span>
                         </a>

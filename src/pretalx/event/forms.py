@@ -9,7 +9,7 @@ from i18nfield.forms import I18nModelForm
 
 from pretalx.common.forms.fields import ImageField
 from pretalx.common.mixins.forms import I18nHelpText, ReadOnlyFlag
-from pretalx.event.models import Event, Organiser, Team, TeamInvite
+from pretalx.event.models import Event, Organiser, Team, TeamInvite, organiser
 from pretalx.orga.forms.widgets import HeaderSelect, MultipleLanguagesWidget
 from pretalx.submission.models import Track
 
@@ -104,25 +104,8 @@ class EventWizardInitialForm(forms.Form):
         widget=MultipleLanguagesWidget,
     )
 
-    def __init__(self, *args, user=None, **kwargs):
+    def __init__(self, *args, user=None, organiser=None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["organiser"] = forms.ModelChoiceField(
-            label=_("Organiser"),
-            queryset=Organiser.objects.filter(
-                id__in=user.teams.filter(can_create_events=True).values_list(
-                    "organiser", flat=True
-                )
-            )
-            if not user.is_administrator
-            else Organiser.objects.all(),
-            widget=forms.RadioSelect,
-            empty_label=None,
-            required=True,
-            help_text=_(
-                "The organiser running the event can copy settings from previous events and share team permissions across all or multiple events."
-            ),
-        )
-        self.fields["organiser"].initial = self.fields["organiser"].queryset.first()
 
 
 class EventWizardBasicsForm(I18nHelpText, I18nModelForm):

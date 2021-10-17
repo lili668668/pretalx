@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-17 01:30+0000\n"
+"POT-Creation-Date: 2021-10-17 03:18+0000\n"
 "PO-Revision-Date: 2021-08-31 11:44+0000\n"
 "Last-Translator: laurent fernandez <laurent@ushova.io>\n"
 "Language-Team: \n"
@@ -608,7 +608,7 @@ msgid "withdrawn"
 msgstr "retiré"
 
 #: pretalx/cfp/templates/cfp/event/index.html:32
-#: pretalx/orga/views/dashboard.py:101
+#: pretalx/orga/views/dashboard.py:100
 msgid "Go to CfP"
 msgstr "Aller à l'appel à participation"
 
@@ -782,7 +782,7 @@ msgstr ""
 #: pretalx/common/phrases.py:44
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:53
 #: pretalx/orga/templates/orga/mails/outbox_form.html:109
-#: pretalx/orga/templates/orga/organiser/detail.html:25
+#: pretalx/orga/templates/orga/organiser/detail.html:31
 #: pretalx/orga/templates/orga/schedule/quick.html:18
 #: pretalx/orga/templates/orga/settings/form.html:112
 #: pretalx/orga/templates/orga/settings/mail.html:32
@@ -1714,7 +1714,7 @@ msgstr ""
 
 #: pretalx/common/phrases.py:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:75
-#: pretalx/orga/templates/orga/organiser/detail.html:66
+#: pretalx/orga/templates/orga/organiser/detail.html:72
 #: pretalx/orga/templates/orga/submission/review_fragment.html:26
 #: pretalx/orga/templates/orga/submission/speakers.html:52
 msgid "Edit"
@@ -2369,15 +2369,15 @@ msgstr ""
 "Doit être court, unique, ne contenir que des caractères en minuscules, car "
 "il est utilisé dans les URLs."
 
-#: pretalx/event/models/organiser.py:87
+#: pretalx/event/models/organiser.py:81
 msgid "Team name"
 msgstr "Nom de l'équipe"
 
-#: pretalx/event/models/organiser.py:89
+#: pretalx/event/models/organiser.py:83
 msgid "Team members"
 msgstr "Membres de l'équipe"
 
-#: pretalx/event/models/organiser.py:94
+#: pretalx/event/models/organiser.py:88
 msgid ""
 "Apply permissions to all events by this organiser (including newly created "
 "ones)"
@@ -2385,69 +2385,68 @@ msgstr ""
 "Appliquer les permissions à tous les évènements de cet organisateur (dont "
 "les nouvellement créés)"
 
-#: pretalx/event/models/organiser.py:98
+#: pretalx/event/models/organiser.py:92
 msgid "Limit permissions to these events"
 msgstr "Limiter les permissions à ces évènements"
 
-#: pretalx/event/models/organiser.py:101
-#: pretalx/person/models/information.py:34
+#: pretalx/event/models/organiser.py:95 pretalx/person/models/information.py:34
 #: pretalx/submission/models/review.py:20
 msgid "Limit to tracks"
 msgstr "Limiter à des parcours"
 
-#: pretalx/event/models/organiser.py:104
+#: pretalx/event/models/organiser.py:98
 msgid "Can create events"
 msgstr "Peut créer des évènements"
 
-#: pretalx/event/models/organiser.py:107
+#: pretalx/event/models/organiser.py:101
 msgid "Can change teams and permissions"
 msgstr "Peut changer les équipes et les permissions"
 
-#: pretalx/event/models/organiser.py:110
+#: pretalx/event/models/organiser.py:104
 msgid "Can change organiser settings"
 msgstr "Peut changer les paramètres d'organisation"
 
-#: pretalx/event/models/organiser.py:113
+#: pretalx/event/models/organiser.py:107
 msgid "Can change event settings"
 msgstr "Peut changer les paramètres des évènements"
 
-#: pretalx/event/models/organiser.py:116
+#: pretalx/event/models/organiser.py:110
 msgid "Can work with and change proposals"
 msgstr "Peut travailler sur les propositions et les modifier"
 
-#: pretalx/event/models/organiser.py:118
+#: pretalx/event/models/organiser.py:112
 msgid "Is a reviewer"
 msgstr "Peut évaluer les interventions"
 
-#: pretalx/event/models/organiser.py:120
+#: pretalx/event/models/organiser.py:114
 #, fuzzy
 #| msgid "Title or speaker name"
 msgid "Always hide speaker names"
 msgstr "Titre ou nom de l'intervenant"
 
-#: pretalx/event/models/organiser.py:122
+#: pretalx/event/models/organiser.py:116
 msgid ""
 "Normally, anonymisation is configured in the event review settings. This "
 "setting will <b>override the event settings</b> and always hide speaker "
 "names for this team."
 msgstr ""
 
-#: pretalx/event/models/organiser.py:130
+#: pretalx/event/models/organiser.py:124
 #, python-brace-format
 msgid "{name} on {orga}"
 msgstr "{name} de {orga}"
 
-#: pretalx/event/models/organiser.py:161
+#: pretalx/event/models/organiser.py:155
 #: pretalx/orga/templates/orga/settings/team_detail.html:19
 msgid "Email"
 msgstr "Courriel"
 
-#: pretalx/event/models/organiser.py:168
+#: pretalx/event/models/organiser.py:162
 #, python-brace-format
 msgid "Invite to team {team} for {email}"
 msgstr "Invitation dans l'équipe {team} pour {email}"
 
-#: pretalx/event/models/organiser.py:182
+#: pretalx/event/models/organiser.py:176
 #, python-brace-format
 msgid ""
 "Hi!\n"
@@ -2469,7 +2468,7 @@ msgstr ""
 "\n"
 "L'équipe {organiser}"
 
-#: pretalx/event/models/organiser.py:194
+#: pretalx/event/models/organiser.py:188
 msgid "You have been invited to an organiser team"
 msgstr "Vous avez été invité dans une équipe d'organisation"
 
@@ -3850,7 +3849,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/admin.html:28
 #: pretalx/orga/templates/orga/base.html:191
-#: pretalx/orga/templates/orga/organiser/detail.html:10
+#: pretalx/orga/templates/orga/organiser/detail.html:16
 #: pretalx/orga/templates/orga/settings/form.html:24
 msgid "Settings"
 msgstr "Paramètres"
@@ -4037,7 +4036,7 @@ msgid "Dashboard"
 msgstr "Tableau de bord"
 
 #: pretalx/orga/templates/orga/base.html:203
-#: pretalx/orga/templates/orga/organiser/detail.html:34
+#: pretalx/orga/templates/orga/organiser/detail.html:40
 msgid "Teams"
 msgstr "Équipes"
 
@@ -4140,7 +4139,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:80
-#: pretalx/orga/templates/orga/organiser/detail.html:71
+#: pretalx/orga/templates/orga/organiser/detail.html:77
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -4695,6 +4694,10 @@ msgstr ""
 "Choisissez vos modifications initiales ici - vous pourrez toujours les "
 "changer par la suite, ou les améliorer avec un CSS personnalisé."
 
+#: pretalx/orga/templates/orga/event/wizard/forbidden.html:7
+msgid "You have created a event. An organiser only has a event."
+msgstr ""
+
 #: pretalx/orga/templates/orga/event/wizard/initial.html:6
 msgid ""
 "The event creation assistant will help you to get started with a new event."
@@ -4720,7 +4723,7 @@ msgstr "Vos évènements à venir"
 #: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
-#: pretalx/orga/views/dashboard.py:194
+#: pretalx/orga/views/dashboard.py:193
 msgid "proposal"
 msgid_plural "proposals"
 msgstr[0] "proposition"
@@ -5017,11 +5020,11 @@ msgstr ""
 "profils des intervenants et les fichiers envoyés seront aussi supprimés et "
 "ne pourront être restaurés."
 
-#: pretalx/orga/templates/orga/organiser/detail.html:18
+#: pretalx/orga/templates/orga/organiser/detail.html:24
 msgid "Delete organiser"
 msgstr "Supprimer l'organisateur"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:38
+#: pretalx/orga/templates/orga/organiser/detail.html:44
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 #: pretalx/orga/templates/orga/settings/team_detail.html:82
@@ -5030,24 +5033,24 @@ msgstr "Supprimer l'organisateur"
 msgid "Team"
 msgstr "Équipe"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:39
+#: pretalx/orga/templates/orga/organiser/detail.html:45
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 msgid "Members"
 msgstr "Membres"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:40
+#: pretalx/orga/templates/orga/organiser/detail.html:46
 msgid "All events"
 msgstr "Tous les évènements"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:41
+#: pretalx/orga/templates/orga/organiser/detail.html:47
 msgid "Reviewer"
 msgstr "Évaluateurs"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:52
+#: pretalx/orga/templates/orga/organiser/detail.html:58
 msgid "You are a member of this team"
 msgstr "Vous êtes membre de cette équipe"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:84
+#: pretalx/orga/templates/orga/organiser/detail.html:90
 #: pretalx/orga/templates/orga/settings/team_detail.html:85
 msgid "New team"
 msgstr "Nouvelle équipe"
@@ -5148,7 +5151,7 @@ msgstr "Votre score"
 #: pretalx/orga/templates/orga/review/dashboard.html:113
 #: pretalx/orga/templates/orga/submission/base.html:73
 #: pretalx/orga/templates/orga/submission/content.html:52
-#: pretalx/orga/views/dashboard.py:121
+#: pretalx/orga/views/dashboard.py:120
 msgid "Reviews"
 msgstr "Évaluations"
 
@@ -5890,7 +5893,7 @@ msgid "Add a new note"
 msgstr "Ajouter une nouvelle note"
 
 #: pretalx/orga/templates/orga/speaker/list.html:10
-#: pretalx/orga/views/dashboard.py:202
+#: pretalx/orga/views/dashboard.py:201
 msgid "submitter"
 msgid_plural "submitters"
 msgstr[0] "personne ayant déposé une proposition"
@@ -6398,59 +6401,59 @@ msgstr ""
 "supprimé. Pour le désactiver, vous pouvez configurer sa date de validité "
 "dans le passé."
 
-#: pretalx/orga/views/dashboard.py:97
+#: pretalx/orga/views/dashboard.py:96
 msgid "until the CfP ends"
 msgstr "avant la fin de l'appel à participation"
 
-#: pretalx/orga/views/dashboard.py:125
+#: pretalx/orga/views/dashboard.py:124
 msgid "Active reviewers"
 msgstr "Évaluateurs actif"
 
-#: pretalx/orga/views/dashboard.py:156
+#: pretalx/orga/views/dashboard.py:155
 msgid "day until event start"
 msgid_plural "days until event start"
 msgstr[0] "jour avant que l'évènement commence"
 msgstr[1] "jours avant que l'évènement commence"
 
-#: pretalx/orga/views/dashboard.py:166
+#: pretalx/orga/views/dashboard.py:165
 msgid "day since event end"
 msgid_plural "days since event end"
 msgstr[0] "jour depuis la fin de l'évènement"
 msgstr[1] "jours depuis la fin de l'évènement"
 
-#: pretalx/orga/views/dashboard.py:174
+#: pretalx/orga/views/dashboard.py:173
 #, python-brace-format
 msgid "Day {number}"
 msgstr "Jour {number}"
 
-#: pretalx/orga/views/dashboard.py:175
+#: pretalx/orga/views/dashboard.py:174
 #, python-brace-format
 msgid "of {total_days} days"
 msgstr "de {total_days} jours"
 
-#: pretalx/orga/views/dashboard.py:185
+#: pretalx/orga/views/dashboard.py:184
 msgid "current schedule"
 msgstr "version actuelle du planning"
 
-#: pretalx/orga/views/dashboard.py:211
+#: pretalx/orga/views/dashboard.py:210
 msgid "session"
 msgid_plural "sessions"
 msgstr[0] "intervention"
 msgstr[1] "interventions"
 
-#: pretalx/orga/views/dashboard.py:224
+#: pretalx/orga/views/dashboard.py:223
 msgid "unconfirmed session"
 msgid_plural "unconfirmed sessions"
 msgstr[0] "intervention non confirmée"
 msgstr[1] "interventions non confirmées"
 
-#: pretalx/orga/views/dashboard.py:237
+#: pretalx/orga/views/dashboard.py:236
 msgid "speaker"
 msgid_plural "speakers"
 msgstr[0] "intervenant"
 msgstr[1] "intervenants"
 
-#: pretalx/orga/views/dashboard.py:245
+#: pretalx/orga/views/dashboard.py:244
 msgid "sent email"
 msgid_plural "sent emails"
 msgstr[0] "courriel envoyé"
@@ -6918,38 +6921,38 @@ msgstr ""
 msgid "The proposal has been updated!"
 msgstr "La proposition a été mise à jour !"
 
-#: pretalx/orga/views/submission.py:592
+#: pretalx/orga/views/submission.py:603
 msgid "The anonymisation has been updated."
 msgstr "L'anonymisation a été mise à jour."
 
-#: pretalx/orga/views/submission.py:594
+#: pretalx/orga/views/submission.py:605
 msgid "This proposal is now marked as anonymised."
 msgstr "Cette proposition est maintenant considérée comme étant anonymisée."
 
-#: pretalx/orga/views/submission.py:611
+#: pretalx/orga/views/submission.py:622
 #, python-brace-format
 msgid "{name} proposal feed"
 msgstr "Flux {name}"
 
-#: pretalx/orga/views/submission.py:623
+#: pretalx/orga/views/submission.py:634
 #, python-brace-format
 msgid "Updates to the {name} schedule."
 msgstr "Mise à jour du planning {name}."
 
-#: pretalx/orga/views/submission.py:629
+#: pretalx/orga/views/submission.py:640
 #, python-brace-format
 msgid "New {event} proposal: {title}"
 msgstr "Nouvelle proposition pour {event} : {title}"
 
-#: pretalx/orga/views/submission.py:684 pretalx/orga/views/submission.py:696
+#: pretalx/orga/views/submission.py:695 pretalx/orga/views/submission.py:707
 msgid "Deadline"
 msgstr "Date butoir"
 
-#: pretalx/orga/views/submission.py:927
+#: pretalx/orga/views/submission.py:938
 msgid "The tag has been saved."
 msgstr "L'étiquette a été sauvegardée."
 
-#: pretalx/orga/views/submission.py:948
+#: pretalx/orga/views/submission.py:959
 msgid "The tag has been deleted."
 msgstr "L'étiquette a été supprimée."
 
