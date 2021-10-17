@@ -41,4 +41,14 @@
             {% endfor %}
         </ul>
     {% endif %}
+    {% if no_login %}
+        <a class="btn btn-info btn-lg btn-block" href="/orga/login">
+            {% translate "Login" %}
+        </a>
+    {% endif %}
+    {% if is_staff %}
+        <a class="btn btn-info btn-lg btn-block" href="/orga">
+            {% translate "Enter the dashboard" %}
+        </a>
+    {% endif %}
 {% endblock %}

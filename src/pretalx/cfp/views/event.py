@@ -68,6 +68,14 @@ class EventCfP(EventStartpage):
 class GeneralView(TemplateView):
     template_name = "cfp/index.html"
 
+    @context
+    def no_login(self):
+        return self.request.user.is_anonymous
+
+    @context
+    def is_staff(self):
+        return self.request.user.is_staff
+
     def filter_events(self, events):
         if self.request.user.is_anonymous:
             events.filter(is_public=True)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-16 10:38+0000\n"
+"POT-Creation-Date: 2021-10-17 01:30+0000\n"
 "PO-Revision-Date: 2021-08-31 11:44+0000\n"
 "Last-Translator: laurent fernandez <laurent@ushova.io>\n"
 "Language-Team: \n"
@@ -23,6 +23,7 @@ msgid "Jane Doe"
 msgstr "Jane Doe"
 
 #: tests/screenshots/conftest.py:78 pretalx/orga/templates/orga/base.html:394
+#: pretalx/orga/templates/orga/event_list.html:17
 msgid "Organisers"
 msgstr "Organisateurs"
 
@@ -642,6 +643,7 @@ msgid "Accept"
 msgstr "Accepter"
 
 #: pretalx/cfp/templates/cfp/event/login.html:5
+#: pretalx/cfp/templates/cfp/index.html:46
 msgid "Login"
 msgstr "Connexion"
 
@@ -1104,6 +1106,12 @@ msgstr "Évènements à venir"
 msgid "Past events"
 msgstr "Évènements passés"
 
+#: pretalx/cfp/templates/cfp/index.html:51
+#, fuzzy
+#| msgid "Review dashboard"
+msgid "Enter the dashboard"
+msgstr "Tableau de bord d'évaluation"
+
 #: pretalx/cfp/templates/widgets/track-select-widget.html:9
 #: pretalx/cfp/templates/widgets/track-select-widget.html:22
 msgid "Track descriptions"
@@ -1556,10 +1564,11 @@ msgid " - Create your first event at {event_url}"
 msgstr " - Créer votre premier évènement à l'adresse {event_url}"
 
 #: pretalx/common/management/commands/init.py:77
-#, python-brace-format
-msgid ""
-" - Invite somebody to the organiser team at {team_url} and let them create "
-"the event"
+#, fuzzy, python-brace-format
+#| msgid ""
+#| " - Invite somebody to the organiser team at {team_url} and let them "
+#| "create the event"
+msgid " - Invite somebody to the organiser team at {team_url}"
 msgstr ""
 " - Inviter quelqu'un dans l'équipe d'organisation à l'adresse {team_url} et "
 "le laisser créer l'évènement"
@@ -2084,20 +2093,7 @@ msgstr "Langues actives"
 msgid "Choose all languages that your event should be available in."
 msgstr "Choisissez toutes les langues de votre évènement."
 
-#: pretalx/event/forms.py:110
-msgid "Organiser"
-msgstr "Organisateur"
-
-#: pretalx/event/forms.py:122
-msgid ""
-"The organiser running the event can copy settings from previous events and "
-"share team permissions across all or multiple events."
-msgstr ""
-"L'organisateur qui gère l'évènement peut copier des paramètres depuis des "
-"évènements précédents et partager des permissions d'équipes entre différents "
-"évènements."
-
-#: pretalx/event/forms.py:138
+#: pretalx/event/forms.py:121
 msgid ""
 "This is the address your event will be available at. Should be short, only "
 "contain lowercase letters and numbers, and must be unique. We recommend some "
@@ -2109,11 +2105,11 @@ msgstr ""
 "être unique. Nous vous recommandons d'utiliser une abréviation de moins de "
 "10 caractères qui peut être mémorisée facilement."
 
-#: pretalx/event/forms.py:144
+#: pretalx/event/forms.py:127
 msgid "You cannot change the slug later on!"
 msgstr "Vous ne pourrez pas changer le nom court par la suite !"
 
-#: pretalx/event/forms.py:154
+#: pretalx/event/forms.py:137
 msgid ""
 "This short name is already taken, please choose another one (or ask the "
 "owner of that event to add you to their team)."
@@ -2121,7 +2117,7 @@ msgstr ""
 "Ce nom court est déjà pris, veuillez en choisir un autre (ou demandez à "
 "l'organisateur de l'évènement de vous ajouter dans son équipe)."
 
-#: pretalx/event/forms.py:169
+#: pretalx/event/forms.py:152
 msgid ""
 "The default deadline for your Call for Papers. You can assign additional "
 "deadlines to individual session types, which will take precedence over this "
@@ -2131,11 +2127,11 @@ msgstr ""
 "des dates butoirs additionnelles pour les différents types de propositions, "
 "qui auront la priorité par rapport à cette date butoir."
 
-#: pretalx/event/forms.py:191 pretalx/event/models/event.py:146
+#: pretalx/event/forms.py:174 pretalx/event/models/event.py:147
 msgid "Main event colour"
 msgstr "Couleur principale de l'évènement"
 
-#: pretalx/event/forms.py:193 pretalx/event/models/event.py:148
+#: pretalx/event/forms.py:176 pretalx/event/models/event.py:149
 msgid ""
 "Provide a hex value like #00ff00 if you want to style pretalx in your "
 "event's colour scheme."
@@ -2143,11 +2139,11 @@ msgstr ""
 "Spécifiez une valeur hexadécimale comme #00ff00 si vous souhaitez "
 "personnaliser pretalx avec la couleur de votre évènement."
 
-#: pretalx/event/forms.py:198 pretalx/orga/forms/event.py:247
+#: pretalx/event/forms.py:181 pretalx/orga/forms/event.py:247
 msgid "Frontpage header pattern"
 msgstr "Le pattern de la bannière de la page d'accueil"
 
-#: pretalx/event/forms.py:200
+#: pretalx/event/forms.py:183
 msgid ""
 "Choose how the frontpage header banner will be styled. Pattern source: <a "
 "href=\"http://www.heropatterns.com/\">heropatterns.com</a>, CC BY 4.0."
@@ -2156,45 +2152,45 @@ msgstr ""
 "patterns : <a href=\"http://www.heropatterns.com/\">heropatterns.com</a>, CC "
 "BY 4.0."
 
-#: pretalx/event/forms.py:203 pretalx/orga/forms/event.py:253
+#: pretalx/event/forms.py:186 pretalx/orga/forms/event.py:253
 msgid "Plain"
 msgstr "Uni"
 
-#: pretalx/event/forms.py:204 pretalx/orga/forms/event.py:254
+#: pretalx/event/forms.py:187 pretalx/orga/forms/event.py:254
 msgid "Circuits"
 msgstr "Circuits"
 
-#: pretalx/event/forms.py:205 pretalx/orga/forms/event.py:255
+#: pretalx/event/forms.py:188 pretalx/orga/forms/event.py:255
 msgid "Circles"
 msgstr "Cercles"
 
-#: pretalx/event/forms.py:206 pretalx/orga/forms/event.py:256
+#: pretalx/event/forms.py:189 pretalx/orga/forms/event.py:256
 msgid "Signal"
 msgstr "Signal"
 
-#: pretalx/event/forms.py:207 pretalx/orga/forms/event.py:257
+#: pretalx/event/forms.py:190 pretalx/orga/forms/event.py:257
 msgid "Topography"
 msgstr "Topographie"
 
-#: pretalx/event/forms.py:208 pretalx/orga/forms/event.py:258
+#: pretalx/event/forms.py:191 pretalx/orga/forms/event.py:258
 msgid "Graph Paper"
 msgstr "Papier quadrillé"
 
-#: pretalx/event/forms.py:242
+#: pretalx/event/forms.py:225
 msgid "Copy configuration from"
 msgstr "Copier la configuration depuis"
 
-#: pretalx/event/forms.py:245
+#: pretalx/event/forms.py:228
 msgid "Do not copy"
 msgstr "Ne pas copier"
 
-#: pretalx/event/models/event.py:50
+#: pretalx/event/models/event.py:51
 #, python-brace-format
 msgid "Invalid event slug – this slug is reserved: {value}."
 msgstr ""
 "Identifiant invalide pour l'évènement. Cet identifiant est réservé : {value}."
 
-#: pretalx/event/models/event.py:101 pretalx/event/models/organiser.py:25
+#: pretalx/event/models/event.py:102 pretalx/event/models/organiser.py:25
 #: pretalx/orga/templates/orga/admin.html:41
 #: pretalx/orga/templates/orga/schedule/room_list.html:18
 #: pretalx/orga/templates/orga/settings/team_detail.html:18
@@ -2206,47 +2202,47 @@ msgstr ""
 msgid "Name"
 msgstr "Nom"
 
-#: pretalx/event/models/event.py:110 pretalx/event/models/event.py:116
+#: pretalx/event/models/event.py:111 pretalx/event/models/event.py:117
 #: pretalx/event/models/organiser.py:34
 msgid "The slug may only contain letters, numbers, dots and dashes."
 msgstr ""
 "L'identifiant doit être composé uniquement de lettres, nombres, points et "
 "tirets."
 
-#: pretalx/event/models/event.py:115 pretalx/event/models/organiser.py:38
+#: pretalx/event/models/event.py:116 pretalx/event/models/organiser.py:38
 msgid "Short form"
 msgstr "Nom court"
 
-#: pretalx/event/models/event.py:124
+#: pretalx/event/models/event.py:125
 msgid "Event is public"
 msgstr "L'évènement est public"
 
-#: pretalx/event/models/event.py:125
+#: pretalx/event/models/event.py:126
 msgid "Event start date"
 msgstr "Date de début de l'évènement"
 
-#: pretalx/event/models/event.py:126
+#: pretalx/event/models/event.py:127
 msgid "Event end date"
 msgstr "Date de fin de l'évènement"
 
-#: pretalx/event/models/event.py:132
+#: pretalx/event/models/event.py:133
 msgid ""
 "All event dates will be localised and interpreted to be in this timezone."
 msgstr "Toutes les dates seront adaptées à ce fuseau horaire."
 
-#: pretalx/event/models/event.py:136
+#: pretalx/event/models/event.py:137
 msgid "Organiser email address"
 msgstr "Adresse électronique de l'organisation"
 
-#: pretalx/event/models/event.py:137
+#: pretalx/event/models/event.py:138
 msgid "Will be used as Reply-To in emails."
 msgstr "Sera utilisée comme adresse de réponse (Reply-To) dans les courriels."
 
-#: pretalx/event/models/event.py:155
+#: pretalx/event/models/event.py:156
 msgid "Custom Event CSS"
 msgstr "CSS personnalisé"
 
-#: pretalx/event/models/event.py:157
+#: pretalx/event/models/event.py:158
 msgid ""
 "Upload a custom CSS file if changing the primary colour is not sufficient "
 "for you."
@@ -2254,11 +2250,11 @@ msgstr ""
 "Envoyer un fichier CSS personnalisé si le choix de la couleur n'est pas "
 "suffisant."
 
-#: pretalx/event/models/event.py:164
+#: pretalx/event/models/event.py:165
 msgid "Logo"
 msgstr "Logo"
 
-#: pretalx/event/models/event.py:166
+#: pretalx/event/models/event.py:167
 msgid ""
 "If you provide a logo image, your event's name will not be shown in the "
 "event header. The logo will be scaled down to a height of 150px."
@@ -2267,11 +2263,11 @@ msgstr ""
 "dans l'entête. La taille du logo sera réduite pour avoir une hauteur de "
 "150px."
 
-#: pretalx/event/models/event.py:174
+#: pretalx/event/models/event.py:175
 msgid "Header image"
 msgstr "Image d'entête"
 
-#: pretalx/event/models/event.py:176
+#: pretalx/event/models/event.py:177
 msgid ""
 "If you provide a header image, it will be displayed instead of your event's "
 "color and/or header pattern at the top of all event pages. It will be center-"
@@ -2284,15 +2280,15 @@ msgstr ""
 "quand la fenêtre rétrécit les parties centrales continueront à être "
 "affichées et ne seront pas déformées."
 
-#: pretalx/event/models/event.py:186
+#: pretalx/event/models/event.py:187
 msgid "Default language"
 msgstr "Langue par défaut"
 
-#: pretalx/event/models/event.py:224
+#: pretalx/event/models/event.py:225
 msgid "Landing page text"
 msgstr "Texte de la page d'accueil"
 
-#: pretalx/event/models/event.py:226
+#: pretalx/event/models/event.py:227
 msgid ""
 "This text will be shown on the landing page, alongside with links to the CfP "
 "and schedule, if appropriate."
@@ -2300,11 +2296,11 @@ msgstr ""
 "Ce texte sera affiché sur la page d'accueil, à côté des liens pour l'appel à "
 "participation et le planning, si c'est pertinent."
 
-#: pretalx/event/models/event.py:234
+#: pretalx/event/models/event.py:235
 msgid "Featured sessions text"
 msgstr "Texte des interventions planifiées"
 
-#: pretalx/event/models/event.py:236
+#: pretalx/event/models/event.py:237
 msgid ""
 "This text will be shown at the top of the featured sessions page instead of "
 "the default text."
@@ -2312,7 +2308,7 @@ msgstr ""
 "Ce texte sera affiché au-dessus des interventions en lieu et place du texte "
 "par défaut."
 
-#: pretalx/event/models/event.py:243 pretalx/orga/templates/orga/admin.html:73
+#: pretalx/event/models/event.py:244 pretalx/orga/templates/orga/admin.html:73
 #: pretalx/orga/templates/orga/base.html:216
 #: pretalx/orga/templates/orga/plugins.html:4
 #: pretalx/orga/templates/orga/plugins.html:6
@@ -2373,15 +2369,15 @@ msgstr ""
 "Doit être court, unique, ne contenir que des caractères en minuscules, car "
 "il est utilisé dans les URLs."
 
-#: pretalx/event/models/organiser.py:80
+#: pretalx/event/models/organiser.py:87
 msgid "Team name"
 msgstr "Nom de l'équipe"
 
-#: pretalx/event/models/organiser.py:82
+#: pretalx/event/models/organiser.py:89
 msgid "Team members"
 msgstr "Membres de l'équipe"
 
-#: pretalx/event/models/organiser.py:87
+#: pretalx/event/models/organiser.py:94
 msgid ""
 "Apply permissions to all events by this organiser (including newly created "
 "ones)"
@@ -2389,68 +2385,69 @@ msgstr ""
 "Appliquer les permissions à tous les évènements de cet organisateur (dont "
 "les nouvellement créés)"
 
-#: pretalx/event/models/organiser.py:91
+#: pretalx/event/models/organiser.py:98
 msgid "Limit permissions to these events"
 msgstr "Limiter les permissions à ces évènements"
 
-#: pretalx/event/models/organiser.py:94 pretalx/person/models/information.py:34
+#: pretalx/event/models/organiser.py:101
+#: pretalx/person/models/information.py:34
 #: pretalx/submission/models/review.py:20
 msgid "Limit to tracks"
 msgstr "Limiter à des parcours"
 
-#: pretalx/event/models/organiser.py:97
+#: pretalx/event/models/organiser.py:104
 msgid "Can create events"
 msgstr "Peut créer des évènements"
 
-#: pretalx/event/models/organiser.py:100
+#: pretalx/event/models/organiser.py:107
 msgid "Can change teams and permissions"
 msgstr "Peut changer les équipes et les permissions"
 
-#: pretalx/event/models/organiser.py:103
+#: pretalx/event/models/organiser.py:110
 msgid "Can change organiser settings"
 msgstr "Peut changer les paramètres d'organisation"
 
-#: pretalx/event/models/organiser.py:106
+#: pretalx/event/models/organiser.py:113
 msgid "Can change event settings"
 msgstr "Peut changer les paramètres des évènements"
 
-#: pretalx/event/models/organiser.py:109
+#: pretalx/event/models/organiser.py:116
 msgid "Can work with and change proposals"
 msgstr "Peut travailler sur les propositions et les modifier"
 
-#: pretalx/event/models/organiser.py:111
+#: pretalx/event/models/organiser.py:118
 msgid "Is a reviewer"
 msgstr "Peut évaluer les interventions"
 
-#: pretalx/event/models/organiser.py:113
+#: pretalx/event/models/organiser.py:120
 #, fuzzy
 #| msgid "Title or speaker name"
 msgid "Always hide speaker names"
 msgstr "Titre ou nom de l'intervenant"
 
-#: pretalx/event/models/organiser.py:115
+#: pretalx/event/models/organiser.py:122
 msgid ""
 "Normally, anonymisation is configured in the event review settings. This "
 "setting will <b>override the event settings</b> and always hide speaker "
 "names for this team."
 msgstr ""
 
-#: pretalx/event/models/organiser.py:123
+#: pretalx/event/models/organiser.py:130
 #, python-brace-format
 msgid "{name} on {orga}"
 msgstr "{name} de {orga}"
 
-#: pretalx/event/models/organiser.py:154
+#: pretalx/event/models/organiser.py:161
 #: pretalx/orga/templates/orga/settings/team_detail.html:19
 msgid "Email"
 msgstr "Courriel"
 
-#: pretalx/event/models/organiser.py:161
+#: pretalx/event/models/organiser.py:168
 #, python-brace-format
 msgid "Invite to team {team} for {email}"
 msgstr "Invitation dans l'équipe {team} pour {email}"
 
-#: pretalx/event/models/organiser.py:175
+#: pretalx/event/models/organiser.py:182
 #, python-brace-format
 msgid ""
 "Hi!\n"
@@ -2472,7 +2469,7 @@ msgstr ""
 "\n"
 "L'équipe {organiser}"
 
-#: pretalx/event/models/organiser.py:187
+#: pretalx/event/models/organiser.py:194
 msgid "You have been invited to an organiser team"
 msgstr "Vous avez été invité dans une équipe d'organisation"
 
@@ -4719,8 +4716,8 @@ msgstr ""
 msgid "Your upcoming events"
 msgstr "Vos évènements à venir"
 
-#: pretalx/orga/templates/orga/event_list.html:24
-#: pretalx/orga/templates/orga/event_list.html:60
+#: pretalx/orga/templates/orga/event_list.html:25
+#: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
 #: pretalx/orga/views/dashboard.py:194
@@ -4729,30 +4726,26 @@ msgid_plural "proposals"
 msgstr[0] "proposition"
 msgstr[1] "propositions"
 
-#: pretalx/orga/templates/orga/event_list.html:30
-#: pretalx/orga/templates/orga/event_list.html:66
+#: pretalx/orga/templates/orga/event_list.html:31
+#: pretalx/orga/templates/orga/event_list.html:62
 msgid "No proposals yet"
 msgstr "Aucune proposition pour l'instant"
 
-#: pretalx/orga/templates/orga/event_list.html:34
-#: pretalx/orga/templates/orga/event_list.html:71
+#: pretalx/orga/templates/orga/event_list.html:35
+#: pretalx/orga/templates/orga/event_list.html:67
 msgid "Live"
 msgstr "Actif"
 
-#: pretalx/orga/templates/orga/event_list.html:36
-#: pretalx/orga/templates/orga/event_list.html:74
+#: pretalx/orga/templates/orga/event_list.html:37
+#: pretalx/orga/templates/orga/event_list.html:70
 msgid "Not public"
 msgstr "Non public"
 
-#: pretalx/orga/templates/orga/event_list.html:43
-msgid "Create a new event"
-msgstr "Créer un nouvel événement"
-
-#: pretalx/orga/templates/orga/event_list.html:48
+#: pretalx/orga/templates/orga/event_list.html:44
 msgid "Your most recent events"
 msgstr "Vos évènements les plus récents"
 
-#: pretalx/orga/templates/orga/event_list.html:71
+#: pretalx/orga/templates/orga/event_list.html:67
 msgid "CfP open"
 msgstr "Appel à participation ouvert"
 
@@ -5060,18 +5053,12 @@ msgid "New team"
 msgstr "Nouvelle équipe"
 
 #: pretalx/orga/templates/orga/organiser/list.html:28
-msgid "event"
-msgid_plural "events"
-msgstr[0] "évènement"
-msgstr[1] "évènements"
-
-#: pretalx/orga/templates/orga/organiser/list.html:36
 msgid "team"
 msgid_plural "teams"
 msgstr[0] "équipe"
 msgstr[1] "équipes"
 
-#: pretalx/orga/templates/orga/organiser/list.html:48
+#: pretalx/orga/templates/orga/organiser/list.html:40
 msgid "There are no organisers you can edit."
 msgstr "Il n'y a pas d'organisateur que vous pouvez éditer."
 
@@ -6568,7 +6555,7 @@ msgstr ""
 "Oh :( Nous avons eu des difficultés pour sauvegarder vos modifications. "
 "Regardez ci-dessous pour les détails."
 
-#: pretalx/orga/views/event.py:646
+#: pretalx/orga/views/event.py:643
 #, python-brace-format
 msgid ""
 "Please consider including your event's year in the slug, e.g. "
@@ -6577,16 +6564,16 @@ msgstr ""
 "Veuillez envisager d'inclure l'année de votre évènement dans le nom court, e."
 "g. monevenement{number}."
 
-#: pretalx/orga/views/event.py:655
+#: pretalx/orga/views/event.py:652
 msgid "Did you really mean to make your event take place in the past?"
 msgstr "Voulez-vous vraiment que votre évènement ait lieu dans le passé ?"
 
-#: pretalx/orga/views/event.py:710
+#: pretalx/orga/views/event.py:707
 #, python-brace-format
 msgid "Team {event.name}"
 msgstr "Équipe {event.name}"
 
-#: pretalx/orga/views/event.py:791
+#: pretalx/orga/views/event.py:788
 msgid "The widget settings have been saved."
 msgstr "Les paramètres du widget ont été sauvegardés."
 
@@ -6688,44 +6675,44 @@ msgstr ""
 "La liste des questions auxquelles l'utilisateur n'a pas répondu, sous forme "
 "de puces"
 
-#: pretalx/orga/views/organiser.py:73
+#: pretalx/orga/views/organiser.py:74
 msgid "The invitation has been sent."
 msgstr "L'invitation a été envoyée."
 
-#: pretalx/orga/views/organiser.py:82 pretalx/orga/views/organiser.py:105
+#: pretalx/orga/views/organiser.py:83 pretalx/orga/views/organiser.py:106
 msgid "The settings have been saved."
 msgstr "Les paramètres ont été sauvés."
 
-#: pretalx/orga/views/organiser.py:131
+#: pretalx/orga/views/organiser.py:132
 msgid "The member was removed from the team."
 msgstr "Le membre a été retiré de l'équipe."
 
-#: pretalx/orga/views/organiser.py:134
+#: pretalx/orga/views/organiser.py:135
 msgid "The team was removed."
 msgstr "L'équipe a été supprimée."
 
-#: pretalx/orga/views/organiser.py:164
+#: pretalx/orga/views/organiser.py:165
 msgid "The team invitation was retracted."
 msgstr "L'invitation dans l'équipe a été retirée."
 
-#: pretalx/orga/views/organiser.py:175
+#: pretalx/orga/views/organiser.py:176
 #, fuzzy
 #| msgid "The team invitation was retracted."
 msgid "The team invitation was sent again."
 msgstr "L'invitation dans l'équipe a été retirée."
 
-#: pretalx/orga/views/organiser.py:203 pretalx/orga/views/speaker.py:211
+#: pretalx/orga/views/organiser.py:204 pretalx/orga/views/speaker.py:211
 msgid "The password was reset and the user was notified."
 msgstr "Le mot de passe a été réinitialisé et l'utilisateur en a été informé."
 
-#: pretalx/orga/views/organiser.py:209 pretalx/orga/views/speaker.py:217
+#: pretalx/orga/views/organiser.py:210 pretalx/orga/views/speaker.py:217
 msgid ""
 "The password reset email could not be sent, so the password was not reset."
 msgstr ""
 "Le courriel pour la réinitialisation du mot de passe n'a pas pu être envoyé, "
 "donc le mot de passe n'a pas été réinitialisé."
 
-#: pretalx/orga/views/organiser.py:225 pretalx/orga/views/schedule.py:494
+#: pretalx/orga/views/organiser.py:226 pretalx/orga/views/schedule.py:494
 msgid "Saved!"
 msgstr "Sauvegardé !"
 
@@ -7805,6 +7792,25 @@ msgstr "{name} ({duration} heures)"
 msgid "{name} ({duration} minutes)"
 msgstr "{name} ({duration} minutes)"
 
+#~ msgid "Organiser"
+#~ msgstr "Organisateur"
+
+#~ msgid ""
+#~ "The organiser running the event can copy settings from previous events "
+#~ "and share team permissions across all or multiple events."
+#~ msgstr ""
+#~ "L'organisateur qui gère l'évènement peut copier des paramètres depuis des "
+#~ "évènements précédents et partager des permissions d'équipes entre "
+#~ "différents évènements."
+
+#~ msgid "Create a new event"
+#~ msgstr "Créer un nouvel événement"
+
+#~ msgid "event"
+#~ msgid_plural "events"
+#~ msgstr[0] "évènement"
+#~ msgstr[1] "évènements"
+
 #~ msgid "Add a question now!"
 #~ msgstr "Ajouter immédiatement une question !"
 
@@ -8262,9 +8268,6 @@ msgstr "{name} ({duration} minutes)"
 
 #~ msgid "Speaker information"
 #~ msgstr "Informations pour les intervenants"
-
-#~ msgid "Review dashboard"
-#~ msgstr "Tableau de bord d'évaluation"
 
 #~ msgid "Please choose a different email address, this one is taken."
 #~ msgstr ""
