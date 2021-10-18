@@ -83,7 +83,6 @@ Feel free to look around, but don\'t be alarmed if something doesn\'t quite make
             )
         with scope(event=event):
             event.build_initial_data()
-            team.limit_events.add(event)
             SubmissionType.objects.create(
                 event=event, name="Workshop", default_duration=90
             )
@@ -243,7 +242,6 @@ If you have any interest in {self.fake.catch_phrase().lower()}, {self.fake.catch
         team = Team.objects.create(
             organiser=self.event.organiser, name="DemoCon Reviewers", is_reviewer=True
         )
-        team.limit_events.add(self.event)
         all_submissions = list(self.event.submissions.all())
 
         reviewer = reviewers[0]

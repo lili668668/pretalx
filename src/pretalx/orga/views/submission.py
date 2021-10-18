@@ -140,8 +140,6 @@ class ReviewerSubmissionFilter:
         if "can_change_submissions" in permissions and not self._for_reviews:
             return None
         limit_tracks = self.request.user.teams.filter(
-            Q(all_events=True)
-            | Q(Q(all_events=False) & Q(limit_events__in=[self.request.event])),
             limit_tracks__isnull=False,
         ).prefetch_related("limit_tracks", "limit_tracks__event")
         if limit_tracks:

@@ -124,8 +124,6 @@ class Review(models.Model):
             .annotate(review_count=models.Count("reviews"))
         )
         limit_tracks = user.teams.filter(
-            models.Q(all_events=True)
-            | models.Q(models.Q(all_events=False) & models.Q(limit_events__in=[event])),
             limit_tracks__isnull=False,
         )
         if limit_tracks.exists():

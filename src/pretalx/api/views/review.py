@@ -27,11 +27,6 @@ class ReviewViewSet(viewsets.ReadOnlyModelViewSet):
             .exclude(submission__state=SubmissionStates.DELETED)
         )
         limit_tracks = self.request.user.teams.filter(
-            models.Q(all_events=True)
-            | models.Q(
-                models.Q(all_events=False)
-                & models.Q(limit_events__in=[self.request.event])
-            ),
             limit_tracks__isnull=False,
         )
         if limit_tracks.exists():

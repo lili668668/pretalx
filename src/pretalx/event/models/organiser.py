@@ -56,9 +56,7 @@ class Organiser(LogMixin, models.Model):
     def shred(self):
         """Irrevocably deletes the organiser and all related events and their
         data."""
-        for event in self.events.all():
-            with scope(event=event):
-                event.shred()
+        if hasattr(self, "event"): self.event.shred()
         with scopes_disabled():
             self.logged_actions().delete()
         self.delete()
@@ -82,20 +80,8 @@ class Team(LogMixin, models.Model):
     members = models.ManyToManyField(
         to=User, related_name="teams", verbose_name=_("Team members")
     )
-    all_events = models.BooleanField(
-        default=False,
-        verbose_name=_(
-            "Apply permissions to all events by this organiser (including newly created ones)"
-        ),
-    )
-    limit_events = models.ManyToManyField(
-        to="Event", verbose_name=_("Limit permissions to these events"), blank=True
-    )
     limit_tracks = models.ManyToManyField(
         to="submission.Track", verbose_name=_("Limit to tracks"), blank=True
-    )
-    can_create_events = models.BooleanField(
-        default=False, verbose_name=_("Can create events")
     )
     can_change_teams = models.BooleanField(
         default=False, verbose_name=_("Can change teams and permissions")

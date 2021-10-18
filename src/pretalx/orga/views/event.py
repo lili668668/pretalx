@@ -612,7 +612,7 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
     @context
     def has_organiser(self):
         return (
-            self.request.user.teams.filter(can_create_events=True).exists()
+            self.request.user.teams.exists()
             or self.request.user.is_administrator
         )
 
@@ -697,7 +697,6 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
 
         has_control_rights = self.request.user.teams.filter(
             organiser=event.organiser,
-            all_events=True,
             can_change_event_settings=True,
             can_change_submissions=True,
         ).exists()
@@ -709,7 +708,6 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
                 can_change_submissions=True,
             )
             t.members.add(self.request.user)
-            t.limit_events.add(event)
 
         logdata = {}
         for f in form_list:

@@ -20,10 +20,8 @@ class TeamForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
         self.fields["organiser"].widget = forms.HiddenInput()
         if instance and getattr(instance, "pk", None):
             self.fields.pop("organiser")
-            self.fields["limit_events"].queryset = instance.organiser.events.all()
         else:
             self.fields["organiser"].initial = organiser
-            self.fields["limit_events"].queryset = organiser.events.all()
         if instance and instance.pk:
             self.fields["is_reviewer"].help_text = mark_safe(
                 f' (<a href="{instance.orga_urls.base}tracks">'
@@ -36,9 +34,6 @@ class TeamForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
         fields = [
             "name",
             "organiser",
-            "all_events",
-            "limit_events",
-            "can_create_events",
             "can_change_teams",
             "can_change_organiser_settings",
             "can_change_event_settings",
@@ -52,14 +47,9 @@ class TeamTrackForm(I18nHelpText, I18nModelForm):
     def __init__(self, *args, organiser=None, **kwargs):
         super().__init__(*args, **kwargs)
         instance = kwargs.get("instance")
-        if instance and not instance.all_events and instance.limit_events.count():
-            self.fields["limit_tracks"].queryset = Track.objects.filter(
-                event__in=instance.limit_events.all()
-            )
-        else:
-            self.fields["limit_tracks"].queryset = Track.objects.filter(
-                event__organiser=organiser
-            ).order_by("-event__date_from", "name")
+        self.fields["limit_tracks"].queryset = Track.objects.filter(
+            event__organiser=organiser
+        ).order_by("-event__date_from", "name")
 
     @scopes_disabled()
     def save(self, *args, **kwargs):
@@ -208,14 +198,7 @@ class EventWizardCopyForm(forms.Form):
     def copy_from_queryset(user):
         return Event.objects.filter(
             Q(
-                organiser_id__in=user.teams.filter(
-                    all_events=True, can_change_event_settings=True
-                ).values_list("organiser", flat=True)
-            )
-            | Q(
-                id__in=user.teams.filter(can_change_event_settings=True).values_list(
-                    "limit_events__id", flat=True
-                )
+                organiser_id__in=user.teams.filter(can_change_event_settings=True).values_list("organiser", flat=True)
             )
         )
 

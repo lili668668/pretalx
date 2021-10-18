@@ -289,11 +289,10 @@ class User(PermissionsMixin, GenerateCode, FileCleanupMixin, AbstractBaseUser):
 
         return Event.objects.filter(
             Q(
-                organiser_id__in=self.teams.filter(all_events=True).values_list(
+                organiser_id__in=self.teams.values_list(
                     "organiser", flat=True
                 )
             )
-            | Q(id__in=self.teams.values_list("limit_events__id", flat=True))
         )
 
     def get_events_for_permission(self, **kwargs):
@@ -309,14 +308,8 @@ class User(PermissionsMixin, GenerateCode, FileCleanupMixin, AbstractBaseUser):
             return Event.objects.all()
 
         orga_teams = self.teams.filter(**kwargs)
-        absolute = orga_teams.filter(all_events=True).values_list(
-            "organiser", flat=True
-        )
-        relative = orga_teams.filter(all_events=False).values_list(
-            "limit_events", flat=True
-        )
         return Event.objects.filter(
-            models.Q(organiser__in=absolute) | models.Q(pk__in=relative)
+            models.Q(organiser__in=orga_teams.values_list("organiser", flat=True))
         ).distinct()
 
     def get_permissions_for_event(self, event) -> set:
@@ -326,7 +319,6 @@ class User(PermissionsMixin, GenerateCode, FileCleanupMixin, AbstractBaseUser):
         """
         if self.is_administrator:
             return {
-                "can_create_events",
                 "can_change_teams",
                 "can_change_organiser_settings",
                 "can_change_event_settings",

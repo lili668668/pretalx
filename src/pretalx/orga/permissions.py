@@ -52,7 +52,7 @@ def can_change_any_organiser_settings(user, obj):
 
 @rules.predicate
 def can_create_events(user, obj):
-    return user.is_administrator or user.teams.filter(can_create_events=True).exists()
+    return user.is_administrator or user.teams.exists()
 
 
 @rules.predicate

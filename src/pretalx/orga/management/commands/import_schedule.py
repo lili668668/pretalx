@@ -32,7 +32,6 @@ class Command(BaseCommand):
             if not event:
                 event = self.create_event(event_data)
             team = event.organiser.teams.filter(
-                can_create_events=True,
                 can_change_teams=True,
                 can_change_organiser_settings=True,
                 can_change_event_settings=True,
@@ -70,8 +69,6 @@ class Command(BaseCommand):
         return Team.objects.create(
             name=name,
             organiser=organiser,
-            all_events=True,
-            can_create_events=True,
             can_change_teams=True,
             can_change_organiser_settings=True,
             can_change_event_settings=True,

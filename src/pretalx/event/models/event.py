@@ -706,7 +706,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         from .organiser import Team
 
         return Team.objects.filter(
-            models.Q(limit_events__in=[self]) | models.Q(all_events=True),
             organiser=self.organiser,
         )
 
