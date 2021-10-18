@@ -703,9 +703,12 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
         if not has_control_rights:
             t = Team.objects.create(
                 organiser=event.organiser,
-                name=_(f"Team {event.name}"),
+                name=_(f"{event.name} 主辦團隊"),
+                can_change_teams=True,
+                can_change_organiser_settings=True,
                 can_change_event_settings=True,
                 can_change_submissions=True,
+                is_reviewer=True
             )
             t.members.add(self.request.user)
 

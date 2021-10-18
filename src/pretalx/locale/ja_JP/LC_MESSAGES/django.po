@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 01:00+0000\n"
+"POT-Creation-Date: 2021-10-18 14:11+0000\n"
 "PO-Revision-Date: 2020-09-28 02:42+0000\n"
 "Last-Translator: Satoshi IIDA <nyampire@gmail.com>\n"
 "Language-Team: \n"
@@ -766,7 +766,7 @@ msgstr ""
 #: pretalx/common/phrases.py:44
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:53
 #: pretalx/orga/templates/orga/mails/outbox_form.html:109
-#: pretalx/orga/templates/orga/organiser/detail.html:31
+#: pretalx/orga/templates/orga/organiser/detail.html:33
 #: pretalx/orga/templates/orga/schedule/quick.html:18
 #: pretalx/orga/templates/orga/settings/form.html:112
 #: pretalx/orga/templates/orga/settings/mail.html:32
@@ -1688,7 +1688,7 @@ msgstr ""
 
 #: pretalx/common/phrases.py:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:75
-#: pretalx/orga/templates/orga/organiser/detail.html:68
+#: pretalx/orga/templates/orga/organiser/detail.html:70
 #: pretalx/orga/templates/orga/submission/review_fragment.html:26
 #: pretalx/orga/templates/orga/submission/speakers.html:52
 msgid "Edit"
@@ -3997,7 +3997,7 @@ msgid "Dashboard"
 msgstr "ダッシュボード"
 
 #: pretalx/orga/templates/orga/base.html:203
-#: pretalx/orga/templates/orga/organiser/detail.html:40
+#: pretalx/orga/templates/orga/organiser/detail.html:42
 msgid "Teams"
 msgstr "チーム"
 
@@ -4100,7 +4100,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:80
-#: pretalx/orga/templates/orga/organiser/detail.html:73
+#: pretalx/orga/templates/orga/organiser/detail.html:75
 msgid "Delete"
 msgstr "削除"
 
@@ -4954,11 +4954,11 @@ msgstr ""
 "投稿やスピーカーのプロフィール、アップロードファイルなど、すべてのイベントの"
 "関連データも削除され、復元することはできません。"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:24
+#: pretalx/orga/templates/orga/organiser/detail.html:25
 msgid "Delete organiser"
 msgstr "運営者を削除する"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:44
+#: pretalx/orga/templates/orga/organiser/detail.html:46
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 #: pretalx/orga/templates/orga/settings/team_detail.html:82
@@ -4967,20 +4967,20 @@ msgstr "運営者を削除する"
 msgid "Team"
 msgstr "チーム"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:45
+#: pretalx/orga/templates/orga/organiser/detail.html:47
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 msgid "Members"
 msgstr "メンバー"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:46
+#: pretalx/orga/templates/orga/organiser/detail.html:48
 msgid "Reviewer"
 msgstr "レビュアー"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:57
+#: pretalx/orga/templates/orga/organiser/detail.html:59
 msgid "You are a member of this team"
 msgstr "あなたはこのチームのメンバーです。"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:85
+#: pretalx/orga/templates/orga/organiser/detail.html:87
 #: pretalx/orga/templates/orga/settings/team_detail.html:85
 msgid "New team"
 msgstr "新しいチーム"
@@ -6491,10 +6491,10 @@ msgstr "本当に、過去に開催されたイベントにしてしまって良
 
 #: pretalx/orga/views/event.py:706
 #, python-brace-format
-msgid "Team {event.name}"
-msgstr "{event.name} チーム"
+msgid "{event.name} 主辦團隊"
+msgstr ""
 
-#: pretalx/orga/views/event.py:786
+#: pretalx/orga/views/event.py:789
 msgid "The widget settings have been saved."
 msgstr "ウィジェット設定が保存されました。"
 
@@ -7687,6 +7687,10 @@ msgstr "{name} ({duration} 時間)"
 #, python-brace-format
 msgid "{name} ({duration} minutes)"
 msgstr "{name} ({duration} 分)"
+
+#, python-brace-format
+#~ msgid "Team {event.name}"
+#~ msgstr "{event.name} チーム"
 
 #~ msgid ""
 #~ "Apply permissions to all events by this organiser (including newly "

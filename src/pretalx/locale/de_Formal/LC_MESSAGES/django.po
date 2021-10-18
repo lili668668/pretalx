@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 01:00+0000\n"
+"POT-Creation-Date: 2021-10-18 14:11+0000\n"
 "PO-Revision-Date: 2021-09-13 19:27+0000\n"
 "Last-Translator: Tobias Kunze <r@rixx.de>\n"
 "Language-Team: \n"
@@ -772,7 +772,7 @@ msgstr ""
 #: pretalx/common/phrases.py:44
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:53
 #: pretalx/orga/templates/orga/mails/outbox_form.html:109
-#: pretalx/orga/templates/orga/organiser/detail.html:31
+#: pretalx/orga/templates/orga/organiser/detail.html:33
 #: pretalx/orga/templates/orga/schedule/quick.html:18
 #: pretalx/orga/templates/orga/settings/form.html:112
 #: pretalx/orga/templates/orga/settings/mail.html:32
@@ -1713,7 +1713,7 @@ msgstr ""
 
 #: pretalx/common/phrases.py:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:75
-#: pretalx/orga/templates/orga/organiser/detail.html:68
+#: pretalx/orga/templates/orga/organiser/detail.html:70
 #: pretalx/orga/templates/orga/submission/review_fragment.html:26
 #: pretalx/orga/templates/orga/submission/speakers.html:52
 msgid "Edit"
@@ -3953,7 +3953,7 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 #: pretalx/orga/templates/orga/base.html:203
-#: pretalx/orga/templates/orga/organiser/detail.html:40
+#: pretalx/orga/templates/orga/organiser/detail.html:42
 msgid "Teams"
 msgstr "Teams"
 
@@ -4056,7 +4056,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:80
-#: pretalx/orga/templates/orga/organiser/detail.html:73
+#: pretalx/orga/templates/orga/organiser/detail.html:75
 msgid "Delete"
 msgstr "Löschen"
 
@@ -4922,11 +4922,11 @@ msgstr ""
 "Vortragendenprofile, und Dateien, werden ebenfalls gelöscht und können nicht "
 "wieder hergestellt werden."
 
-#: pretalx/orga/templates/orga/organiser/detail.html:24
+#: pretalx/orga/templates/orga/organiser/detail.html:25
 msgid "Delete organiser"
 msgstr "Veranstalter löschen"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:44
+#: pretalx/orga/templates/orga/organiser/detail.html:46
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 #: pretalx/orga/templates/orga/settings/team_detail.html:82
@@ -4935,20 +4935,20 @@ msgstr "Veranstalter löschen"
 msgid "Team"
 msgstr "Team"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:45
+#: pretalx/orga/templates/orga/organiser/detail.html:47
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 msgid "Members"
 msgstr "Mitglieder"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:46
+#: pretalx/orga/templates/orga/organiser/detail.html:48
 msgid "Reviewer"
 msgstr "Reviewer"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:57
+#: pretalx/orga/templates/orga/organiser/detail.html:59
 msgid "You are a member of this team"
 msgstr "Sie sind ein Mitglied dieses Teams"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:85
+#: pretalx/orga/templates/orga/organiser/detail.html:87
 #: pretalx/orga/templates/orga/settings/team_detail.html:85
 msgid "New team"
 msgstr "Team anlegen"
@@ -6441,10 +6441,10 @@ msgstr "Soll die Veranstaltung wirklich in der Vergangenheit stattfinden?"
 
 #: pretalx/orga/views/event.py:706
 #, python-brace-format
-msgid "Team {event.name}"
-msgstr "Team {event.name}"
+msgid "{event.name} 主辦團隊"
+msgstr ""
 
-#: pretalx/orga/views/event.py:786
+#: pretalx/orga/views/event.py:789
 msgid "The widget settings have been saved."
 msgstr "Ihre Änderungen an den Widget-Einstellungen wurden gespeichert."
 
@@ -7645,6 +7645,10 @@ msgstr "{name} ({duration} Stunden)"
 #, python-brace-format
 msgid "{name} ({duration} minutes)"
 msgstr "{name} ({duration} Minuten)"
+
+#, python-brace-format
+#~ msgid "Team {event.name}"
+#~ msgstr "Team {event.name}"
 
 #~ msgid ""
 #~ "Apply permissions to all events by this organiser (including newly "
