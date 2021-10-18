@@ -19,10 +19,12 @@
         <div class="submit-group panel">
             <span>
                 {% has_perm "person.is_administrator" request.user request.organiser as can_delete_event %}
-                {% if can_delete_event %}
-                    <a class="btn btn-outline-danger btn-lg" href="{{ request.organiser.orga_urls.delete }}">
-                        {% translate "Delete organiser" %}
-                    </a>
+                {% if request.organiser %}
+                    {% if can_delete_event %}
+                        <a class="btn btn-outline-danger btn-lg" href="{{ request.organiser.orga_urls.delete }}">
+                            {% translate "Delete organiser" %}
+                        </a>
+                    {% endif %}
                 {% endif %}
             </span>
             <span>
