@@ -278,6 +278,7 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         live = "{base}live"
         delete = "{base}delete"
         cfp = "{base}cfp/"
+        cft = "{base}cft/"
         history = "{base}history/"
         users = "{base}api/users"
         mail = "{base}mails/"
@@ -444,14 +445,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             plugins_active.remove(module)
             self.plugin_list = plugins_active
 
-    def _get_default_submission_type(self):
-        from pretalx.submission.models import SubmissionType
-
-        sub_type = SubmissionType.objects.filter(event=self).first()
-        if not sub_type:
-            sub_type = SubmissionType.objects.create(event=self, name="Talk")
-        return sub_type
-
     @cached_property
     def fixed_templates(self) -> list:
         return [
@@ -474,11 +467,15 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             UPDATE_TEXT,
         )
         from pretalx.mail.models import MailTemplate
-        from pretalx.submission.models import CfP
+        from pretalx.submission.models import CfP, CfT
 
         if not hasattr(self, "cfp"):
             CfP.objects.create(
-                event=self, default_type=self._get_default_submission_type()
+                event=self
+            )
+        if not hasattr(self, "cft"):
+            CfT.objects.create(
+                event=self
             )
 
         if not self.schedules.filter(version__isnull=True).exists():

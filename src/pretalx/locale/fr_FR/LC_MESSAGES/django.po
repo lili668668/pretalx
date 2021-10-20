@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 14:11+0000\n"
+"POT-Creation-Date: 2021-10-20 14:04+0000\n"
 "PO-Revision-Date: 2021-08-31 11:44+0000\n"
 "Last-Translator: laurent fernandez <laurent@ushova.io>\n"
 "Language-Team: \n"
@@ -608,7 +608,7 @@ msgid "withdrawn"
 msgstr "retiré"
 
 #: pretalx/cfp/templates/cfp/event/index.html:32
-#: pretalx/orga/views/dashboard.py:100
+#: pretalx/orga/views/dashboard.py:101
 msgid "Go to CfP"
 msgstr "Aller à l'appel à participation"
 
@@ -631,7 +631,7 @@ msgid "Abstract:"
 msgstr "Résumé :"
 
 #: pretalx/cfp/templates/cfp/event/invitation.html:30
-#: pretalx/event/models/event.py:538 pretalx/submission/models/question.py:378
+#: pretalx/event/models/event.py:535 pretalx/submission/models/question.py:378
 #: pretalx/submission/models/submission.py:663
 msgid "No"
 msgstr "Non"
@@ -1714,7 +1714,7 @@ msgstr ""
 
 #: pretalx/common/phrases.py:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:75
-#: pretalx/orga/templates/orga/organiser/detail.html:70
+#: pretalx/orga/templates/orga/organiser/detail.html:97
 #: pretalx/orga/templates/orga/submission/review_fragment.html:26
 #: pretalx/orga/templates/orga/submission/speakers.html:52
 msgid "Edit"
@@ -2117,21 +2117,19 @@ msgstr ""
 "Ce nom court est déjà pris, veuillez en choisir un autre (ou demandez à "
 "l'organisateur de l'évènement de vous ajouter dans son équipe)."
 
-#: pretalx/event/forms.py:142
-msgid ""
-"The default deadline for your Call for Papers. You can assign additional "
-"deadlines to individual session types, which will take precedence over this "
-"deadline."
+#: pretalx/event/forms.py:140
+msgid "Call for Partincipates Deadline"
 msgstr ""
-"La date butoir par défaut pour l'appel à participation. Vous pouvez définir "
-"des dates butoirs additionnelles pour les différents types de propositions, "
-"qui auront la priorité par rapport à cette date butoir."
 
-#: pretalx/event/forms.py:164 pretalx/event/models/event.py:147
+#: pretalx/event/forms.py:144
+msgid "Call for Proposal Deadline"
+msgstr ""
+
+#: pretalx/event/forms.py:167 pretalx/event/models/event.py:147
 msgid "Main event colour"
 msgstr "Couleur principale de l'évènement"
 
-#: pretalx/event/forms.py:166 pretalx/event/models/event.py:149
+#: pretalx/event/forms.py:169 pretalx/event/models/event.py:149
 msgid ""
 "Provide a hex value like #00ff00 if you want to style pretalx in your "
 "event's colour scheme."
@@ -2139,11 +2137,11 @@ msgstr ""
 "Spécifiez une valeur hexadécimale comme #00ff00 si vous souhaitez "
 "personnaliser pretalx avec la couleur de votre évènement."
 
-#: pretalx/event/forms.py:171 pretalx/orga/forms/event.py:247
+#: pretalx/event/forms.py:174 pretalx/orga/forms/event.py:247
 msgid "Frontpage header pattern"
 msgstr "Le pattern de la bannière de la page d'accueil"
 
-#: pretalx/event/forms.py:173
+#: pretalx/event/forms.py:176
 msgid ""
 "Choose how the frontpage header banner will be styled. Pattern source: <a "
 "href=\"http://www.heropatterns.com/\">heropatterns.com</a>, CC BY 4.0."
@@ -2152,35 +2150,35 @@ msgstr ""
 "patterns : <a href=\"http://www.heropatterns.com/\">heropatterns.com</a>, CC "
 "BY 4.0."
 
-#: pretalx/event/forms.py:176 pretalx/orga/forms/event.py:253
+#: pretalx/event/forms.py:179 pretalx/orga/forms/event.py:253
 msgid "Plain"
 msgstr "Uni"
 
-#: pretalx/event/forms.py:177 pretalx/orga/forms/event.py:254
+#: pretalx/event/forms.py:180 pretalx/orga/forms/event.py:254
 msgid "Circuits"
 msgstr "Circuits"
 
-#: pretalx/event/forms.py:178 pretalx/orga/forms/event.py:255
+#: pretalx/event/forms.py:181 pretalx/orga/forms/event.py:255
 msgid "Circles"
 msgstr "Cercles"
 
-#: pretalx/event/forms.py:179 pretalx/orga/forms/event.py:256
+#: pretalx/event/forms.py:182 pretalx/orga/forms/event.py:256
 msgid "Signal"
 msgstr "Signal"
 
-#: pretalx/event/forms.py:180 pretalx/orga/forms/event.py:257
+#: pretalx/event/forms.py:183 pretalx/orga/forms/event.py:257
 msgid "Topography"
 msgstr "Topographie"
 
-#: pretalx/event/forms.py:181 pretalx/orga/forms/event.py:258
+#: pretalx/event/forms.py:184 pretalx/orga/forms/event.py:258
 msgid "Graph Paper"
 msgstr "Papier quadrillé"
 
-#: pretalx/event/forms.py:208
+#: pretalx/event/forms.py:211
 msgid "Copy configuration from"
 msgstr "Copier la configuration depuis"
 
-#: pretalx/event/forms.py:211
+#: pretalx/event/forms.py:214
 msgid "Do not copy"
 msgstr "Ne pas copier"
 
@@ -2315,7 +2313,7 @@ msgstr ""
 msgid "Plugins"
 msgstr "Plugins"
 
-#: pretalx/event/models/event.py:512 pretalx/event/models/event.py:753
+#: pretalx/event/models/event.py:509 pretalx/event/models/event.py:750
 #: pretalx/event/stages.py:68 pretalx/orga/templates/orga/base.html:207
 #: pretalx/orga/templates/orga/base.html:293
 #: pretalx/orga/templates/orga/submission/review.html:180
@@ -2323,21 +2321,21 @@ msgstr "Plugins"
 msgid "Review"
 msgstr "Évaluation"
 
-#: pretalx/event/models/event.py:520
+#: pretalx/event/models/event.py:517
 msgid "Selection"
 msgstr "Sélection"
 
-#: pretalx/event/models/event.py:533
+#: pretalx/event/models/event.py:530
 #: pretalx/orga/templates/orga/submission/review.html:171
 #: pretalx/submission/models/review.py:91
 msgid "Score"
 msgstr "Score"
 
-#: pretalx/event/models/event.py:543
+#: pretalx/event/models/event.py:540
 msgid "Maybe"
 msgstr "Peut-être"
 
-#: pretalx/event/models/event.py:548
+#: pretalx/event/models/event.py:545
 #: pretalx/orga/templates/orga/cfp/access_code_delete.html:15
 #: pretalx/orga/templates/orga/cfp/question_delete.html:15
 #: pretalx/orga/templates/orga/cfp/submission_type_delete.html:15
@@ -2357,7 +2355,7 @@ msgstr "Peut-être"
 msgid "Yes"
 msgstr "Oui"
 
-#: pretalx/event/models/event.py:893
+#: pretalx/event/models/event.py:890
 msgid "News from your content system"
 msgstr "Actualité de votre gestionnaire de contenus"
 
@@ -2513,6 +2511,8 @@ msgid "Inform your speakers about the infrastructure"
 msgstr "Informer les intervenants sur vos infrastructures"
 
 #: pretalx/event/stages.py:96
+#: pretalx/orga/templates/orga/organiser/detail.html:41
+#: pretalx/orga/templates/orga/organiser/detail.html:45
 msgid "Event"
 msgstr "Évènement"
 
@@ -4020,7 +4020,7 @@ msgid "Dashboard"
 msgstr "Tableau de bord"
 
 #: pretalx/orga/templates/orga/base.html:203
-#: pretalx/orga/templates/orga/organiser/detail.html:42
+#: pretalx/orga/templates/orga/organiser/detail.html:69
 msgid "Teams"
 msgstr "Équipes"
 
@@ -4123,7 +4123,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:80
-#: pretalx/orga/templates/orga/organiser/detail.html:75
+#: pretalx/orga/templates/orga/organiser/detail.html:102
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -4520,6 +4520,22 @@ msgstr "Image pour la proposition"
 msgid "Duration"
 msgstr "Durée"
 
+#: pretalx/orga/templates/orga/cfp/toggle.html:13
+msgid "CfP status"
+msgstr ""
+
+#: pretalx/orga/templates/orga/cfp/toggle.html:19
+#, fuzzy
+#| msgid "Close"
+msgid "Go Close"
+msgstr "Fermer"
+
+#: pretalx/orga/templates/orga/cfp/toggle.html:21
+#, fuzzy
+#| msgid "Start"
+msgid "Go Start"
+msgstr "Début"
+
 #: pretalx/orga/templates/orga/cfp/track_delete.html:5
 msgid "Do you really want to delete this track?"
 msgstr "Voulez-vous vraiment supprimer ce parcours ?"
@@ -4641,6 +4657,7 @@ msgstr "Désactiver"
 
 #: pretalx/orga/templates/orga/event/wizard/base.html:9
 #: pretalx/orga/templates/orga/event/wizard/basics.html:15
+#: pretalx/orga/templates/orga/organiser/detail.html:61
 msgid "New event"
 msgstr "Nouvel évènement"
 
@@ -4689,16 +4706,6 @@ msgstr ""
 "L'assistant de création d'événements va vous aider à lancer un nouvel "
 "évènement."
 
-#: pretalx/orga/templates/orga/event/wizard/timeline.html:17
-msgid ""
-"What's your timeline like? You can later add session types with different "
-"deadlines (e.g. if you accept workshop proposals later than your talk "
-"proposals)."
-msgstr ""
-"A quoi ressemble votre échéancier ? Vous pourrez ensuite ajouter des types "
-"de proposition avec des dates butoirs différentes (e.g. si vous acceptez les "
-"propositions d'ateliers plus tard que celles de conférences)."
-
 #: pretalx/orga/templates/orga/event_list.html:12
 msgid "Your upcoming events"
 msgstr "Vos évènements à venir"
@@ -4707,7 +4714,7 @@ msgstr "Vos évènements à venir"
 #: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
-#: pretalx/orga/views/dashboard.py:193
+#: pretalx/orga/views/dashboard.py:213
 msgid "proposal"
 msgid_plural "proposals"
 msgstr[0] "proposition"
@@ -5008,7 +5015,7 @@ msgstr ""
 msgid "Delete organiser"
 msgstr "Supprimer l'organisateur"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:46
+#: pretalx/orga/templates/orga/organiser/detail.html:73
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 #: pretalx/orga/templates/orga/settings/team_detail.html:82
@@ -5017,20 +5024,20 @@ msgstr "Supprimer l'organisateur"
 msgid "Team"
 msgstr "Équipe"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:47
+#: pretalx/orga/templates/orga/organiser/detail.html:74
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 msgid "Members"
 msgstr "Membres"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:48
+#: pretalx/orga/templates/orga/organiser/detail.html:75
 msgid "Reviewer"
 msgstr "Évaluateurs"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:59
+#: pretalx/orga/templates/orga/organiser/detail.html:86
 msgid "You are a member of this team"
 msgstr "Vous êtes membre de cette équipe"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:87
+#: pretalx/orga/templates/orga/organiser/detail.html:114
 #: pretalx/orga/templates/orga/settings/team_detail.html:85
 msgid "New team"
 msgstr "Nouvelle équipe"
@@ -5131,7 +5138,7 @@ msgstr "Votre score"
 #: pretalx/orga/templates/orga/review/dashboard.html:113
 #: pretalx/orga/templates/orga/submission/base.html:73
 #: pretalx/orga/templates/orga/submission/content.html:52
-#: pretalx/orga/views/dashboard.py:120
+#: pretalx/orga/views/dashboard.py:139
 msgid "Reviews"
 msgstr "Évaluations"
 
@@ -5873,7 +5880,7 @@ msgid "Add a new note"
 msgstr "Ajouter une nouvelle note"
 
 #: pretalx/orga/templates/orga/speaker/list.html:10
-#: pretalx/orga/views/dashboard.py:201
+#: pretalx/orga/views/dashboard.py:221
 msgid "submitter"
 msgid_plural "submitters"
 msgstr[0] "personne ayant déposé une proposition"
@@ -6381,59 +6388,119 @@ msgstr ""
 "supprimé. Pour le désactiver, vous pouvez configurer sa date de validité "
 "dans le passé."
 
-#: pretalx/orga/views/dashboard.py:96
+#: pretalx/orga/views/cfp.py:702
+#, fuzzy
+#| msgid "This event was already live."
+msgid "This cfp was already started."
+msgstr "L'évènement était déjà actif."
+
+#: pretalx/orga/views/cfp.py:712
+#, fuzzy
+#| msgid "This page is no more."
+msgid "This cfp is now start."
+msgstr "Cette page n'est plus."
+
+#: pretalx/orga/views/cfp.py:715
+#, fuzzy
+#| msgid "This event was already hidden."
+msgid "This cfp was already end."
+msgstr "L'évènement était déjà caché."
+
+#: pretalx/orga/views/cfp.py:725
+#, fuzzy
+#| msgid "This page is no more."
+msgid "This cfp is now end."
+msgstr "Cette page n'est plus."
+
+#: pretalx/orga/views/dashboard.py:97
 msgid "until the CfP ends"
 msgstr "avant la fin de l'appel à participation"
 
-#: pretalx/orga/views/dashboard.py:124
+#: pretalx/orga/views/dashboard.py:99
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfP is end"
+msgstr "L'appel à participation est ouvert"
+
+#: pretalx/orga/views/dashboard.py:104
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfP is not open"
+msgstr "L'appel à participation est ouvert"
+
+#: pretalx/orga/views/dashboard.py:113
+#, fuzzy
+#| msgid "until the CfP ends"
+msgid "until the CfT ends"
+msgstr "avant la fin de l'appel à participation"
+
+#: pretalx/orga/views/dashboard.py:115
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfT is end"
+msgstr "L'appel à participation est ouvert"
+
+#: pretalx/orga/views/dashboard.py:117
+#, fuzzy
+#| msgid "Go to CfP"
+msgid "Go to CfT"
+msgstr "Aller à l'appel à participation"
+
+#: pretalx/orga/views/dashboard.py:120
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfT is not open"
+msgstr "L'appel à participation est ouvert"
+
+#: pretalx/orga/views/dashboard.py:143
 msgid "Active reviewers"
 msgstr "Évaluateurs actif"
 
-#: pretalx/orga/views/dashboard.py:155
+#: pretalx/orga/views/dashboard.py:175
 msgid "day until event start"
 msgid_plural "days until event start"
 msgstr[0] "jour avant que l'évènement commence"
 msgstr[1] "jours avant que l'évènement commence"
 
-#: pretalx/orga/views/dashboard.py:165
+#: pretalx/orga/views/dashboard.py:185
 msgid "day since event end"
 msgid_plural "days since event end"
 msgstr[0] "jour depuis la fin de l'évènement"
 msgstr[1] "jours depuis la fin de l'évènement"
 
-#: pretalx/orga/views/dashboard.py:173
+#: pretalx/orga/views/dashboard.py:193
 #, python-brace-format
 msgid "Day {number}"
 msgstr "Jour {number}"
 
-#: pretalx/orga/views/dashboard.py:174
+#: pretalx/orga/views/dashboard.py:194
 #, python-brace-format
 msgid "of {total_days} days"
 msgstr "de {total_days} jours"
 
-#: pretalx/orga/views/dashboard.py:184
+#: pretalx/orga/views/dashboard.py:204
 msgid "current schedule"
 msgstr "version actuelle du planning"
 
-#: pretalx/orga/views/dashboard.py:210
+#: pretalx/orga/views/dashboard.py:230
 msgid "session"
 msgid_plural "sessions"
 msgstr[0] "intervention"
 msgstr[1] "interventions"
 
-#: pretalx/orga/views/dashboard.py:223
+#: pretalx/orga/views/dashboard.py:243
 msgid "unconfirmed session"
 msgid_plural "unconfirmed sessions"
 msgstr[0] "intervention non confirmée"
 msgstr[1] "interventions non confirmées"
 
-#: pretalx/orga/views/dashboard.py:236
+#: pretalx/orga/views/dashboard.py:256
 msgid "speaker"
 msgid_plural "speakers"
 msgstr[0] "intervenant"
 msgstr[1] "intervenants"
 
-#: pretalx/orga/views/dashboard.py:244
+#: pretalx/orga/views/dashboard.py:264
 msgid "sent email"
 msgid_plural "sent emails"
 msgstr[0] "courriel envoyé"
@@ -6551,12 +6618,12 @@ msgstr ""
 msgid "Did you really mean to make your event take place in the past?"
 msgstr "Voulez-vous vraiment que votre évènement ait lieu dans le passé ?"
 
-#: pretalx/orga/views/event.py:706
+#: pretalx/orga/views/event.py:712
 #, python-brace-format
 msgid "{event.name} 主辦團隊"
 msgstr ""
 
-#: pretalx/orga/views/event.py:789
+#: pretalx/orga/views/event.py:795
 msgid "The widget settings have been saved."
 msgstr "Les paramètres du widget ont été sauvegardés."
 
@@ -7357,25 +7424,21 @@ msgstr ""
 "Nombre de fois que ce code d'accès peut être utilisé pour déposer une "
 "proposition. Laissez vide pour ne pas mettre de limite."
 
-#: pretalx/submission/models/cfp.py:24
+#: pretalx/submission/models/cfp.py:25 pretalx/submission/models/cft.py:19
 msgid "headline"
 msgstr "titre"
 
-#: pretalx/submission/models/cfp.py:29
+#: pretalx/submission/models/cfp.py:30 pretalx/submission/models/cft.py:24
 msgid "text"
 msgstr "texte"
 
-#: pretalx/submission/models/cfp.py:36
-msgid "Default session type"
-msgstr "Type de proposition par défaut"
-
-#: pretalx/submission/models/cfp.py:41
+#: pretalx/submission/models/cfp.py:36 pretalx/submission/models/cft.py:30
 #: pretalx/submission/models/question.py:125
 #: pretalx/submission/models/type.py:39
 msgid "deadline"
 msgstr "date butoir"
 
-#: pretalx/submission/models/cfp.py:43
+#: pretalx/submission/models/cfp.py:38 pretalx/submission/models/cft.py:32
 msgid "Please put in the last date you want to accept proposals from users."
 msgstr "Veuillez entrer la date de fin de dépôt des propositions."
 
@@ -7774,6 +7837,27 @@ msgstr "{name} ({duration} heures)"
 #, python-brace-format
 msgid "{name} ({duration} minutes)"
 msgstr "{name} ({duration} minutes)"
+
+#~ msgid ""
+#~ "The default deadline for your Call for Papers. You can assign additional "
+#~ "deadlines to individual session types, which will take precedence over "
+#~ "this deadline."
+#~ msgstr ""
+#~ "La date butoir par défaut pour l'appel à participation. Vous pouvez "
+#~ "définir des dates butoirs additionnelles pour les différents types de "
+#~ "propositions, qui auront la priorité par rapport à cette date butoir."
+
+#~ msgid ""
+#~ "What's your timeline like? You can later add session types with different "
+#~ "deadlines (e.g. if you accept workshop proposals later than your talk "
+#~ "proposals)."
+#~ msgstr ""
+#~ "A quoi ressemble votre échéancier ? Vous pourrez ensuite ajouter des "
+#~ "types de proposition avec des dates butoirs différentes (e.g. si vous "
+#~ "acceptez les propositions d'ateliers plus tard que celles de conférences)."
+
+#~ msgid "Default session type"
+#~ msgstr "Type de proposition par défaut"
 
 #, python-brace-format
 #~ msgid "Team {event.name}"

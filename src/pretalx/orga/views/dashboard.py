@@ -90,15 +90,35 @@ class EventDashboardView(EventPermissionRequired, TemplateView):
 
     def get_cfp_tiles(self, _now):
         result = []
-        max_deadline = self.request.event.cfp.max_deadline
-        if max_deadline and _now < max_deadline:
-            result.append(
-                {"large": timeuntil(max_deadline), "small": _("until the CfP ends")}
-            )
+        deadline = self.request.event.cfp.deadline
         if self.request.event.cfp.is_open:
+            if deadline and _now <= deadline:
+                result.append(
+                    {"url": self.request.event.cfp.urls.toggle, "large": timeuntil(deadline), "small": _("until the CfP ends")})
+            elif _now > deadline:
+                result.append(
+                    {"url": self.request.event.cfp.urls.toggle, "large": _("CfP is end")})
             result.append(
                 {"url": self.request.event.cfp.urls.public, "large": _("Go to CfP")}
             )
+        else:
+            result.append({"url": self.request.event.cfp.urls.toggle, "large": _("CfP is not open")})
+        return result
+
+    def get_cft_tiles(self, _now):
+        result = []
+        deadline = self.request.event.cft.deadline
+        if self.request.event.cft.is_open:
+            small = ''
+            if deadline and _now <= deadline:
+                small = timeuntil(deadline) + _("until the CfT ends")
+            elif _now > deadline:
+                small = _("CfT is end")
+            result.append(
+                {"url": self.request.event.cft.urls.public, "large": _("Go to CfT"), "small": small}
+            )
+        else:
+            result.append({"large": _("CfT is not open")})
         return result
 
     def get_review_tiles(self):
@@ -145,7 +165,8 @@ class EventDashboardView(EventPermissionRequired, TemplateView):
         )
         _now = now()
         today = _now.date()
-        result["tiles"] = self.get_cfp_tiles(_now)
+        result["tiles"] = self.get_cft_tiles(_now)
+        result["tiles"] += self.get_cfp_tiles(_now)
         if today < event.date_from:
             days = (event.date_from - today).days
             result["tiles"].append(

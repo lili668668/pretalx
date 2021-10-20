@@ -136,16 +136,19 @@ class EventWizardBasicsForm(I18nHelpText, I18nModelForm):
 
 
 class EventWizardTimelineForm(forms.ModelForm):
-    deadline = forms.DateTimeField(
-        required=False,
-        help_text=_(
-            "The default deadline for your Call for Papers. You can assign additional deadlines to individual session types, which will take precedence over this deadline."
-        ),
+    cft_deadline = forms.DateTimeField(
+        label=_("Call for Partincipates Deadline"),
+        required=True,
+    )
+    cfp_deadline = forms.DateTimeField(
+        label=_("Call for Proposal Deadline"),
+        required=True,
     )
 
     def __init__(self, *args, user=None, locales=None, organiser=None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["deadline"].widget.attrs["class"] = "datetimepickerfield"
+        self.fields["cfp_deadline"].widget.attrs["class"] = "datetimepickerfield"
+        self.fields["cft_deadline"].widget.attrs["class"] = "datetimepickerfield"
 
     class Meta:
         model = Event

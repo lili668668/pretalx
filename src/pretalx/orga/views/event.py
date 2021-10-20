@@ -682,11 +682,17 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
                 date_to=steps["timeline"]["date_to"],
             )
         with scope(event=event):
-            deadline = steps["timeline"].get("deadline")
-            if deadline:
+            cfp_deadline = steps["timeline"].get("cfp_deadline")
+            cft_deadline = steps["timeline"].get("cft_deadline")
+            if cfp_deadline:
                 zone = timezone(event.timezone)
-                event.cfp.deadline = zone.localize(deadline.replace(tzinfo=None))
+                event.cfp.deadline = zone.localize(cfp_deadline.replace(tzinfo=None))
                 event.cfp.save()
+            if cft_deadline:
+                zone = timezone(event.timezone)
+                event.cft.deadline = zone.localize(cft_deadline.replace(tzinfo=None))
+                event.cft.save()
+
             for setting in [
                 "custom_domain",
                 "display_header_data",

@@ -127,6 +127,7 @@ urlpatterns = [
                                 RedirectView.as_view(pattern_name="orga:cfp.text.view"),
                                 name="cfp",
                             ),
+                            path("cfp/toggle/", cfp.CfPToggle.as_view(), name="cfp.toggle"),
                             path("cfp/flow/", cfp.CfPFlowEditor.as_view(), name="cfp.flow"),
                             path(
                                 "cfp/questions/",

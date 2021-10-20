@@ -12,13 +12,7 @@ from pretalx.common.phrases import phrases
 from pretalx.common.urls import EventUrls
 
 
-class CfP(LogMixin, models.Model):
-    """Every :class:`~pretalx.event.models.event.Event` has one Call for
-    Papers/Participation/Proposals.
-
-    :param deadline: The regular deadline. Please note that submissions can be available for longer than this if different deadlines are configured on single submission types.
-    """
-
+class CfT(LogMixin, models.Model):
     event = models.OneToOneField(to="event.Event", on_delete=models.PROTECT)
     is_start = models.BooleanField(default=False)
     headline = I18nCharField(
@@ -42,8 +36,7 @@ class CfP(LogMixin, models.Model):
     objects = ScopedManager(event="event")
 
     class urls(EventUrls):
-        base = "{self.event.orga_urls.cfp}"
-        toggle = "{base}toggle/"
+        base = "{self.event.orga_urls.cft}"
         editor = "{base}flow/"
         questions = "{base}questions/"
         new_question = "{questions}new"

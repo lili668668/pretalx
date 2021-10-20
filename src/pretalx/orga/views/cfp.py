@@ -386,8 +386,8 @@ class CfPQuestionRemind(EventPermissionRequired, TemplateView):
         submissions = self.filter_form.get_submissions()
         people = request.event.submitters.filter(submissions__in=submissions)
         questions = (
-            self.filter_form.cleaned_data["questions"]
-            or self.filter_form.get_question_queryset()
+                self.filter_form.cleaned_data["questions"]
+                or self.filter_form.get_question_queryset()
         )
         data = {
             "url": request.event.urls.user_submissions.full(),
@@ -689,6 +689,43 @@ class AccessCodeDelete(PermissionRequired, DetailView):
         return redirect(self.request.event.cfp.urls.access_codes)
 
 
+class CfPToggle(EventPermissionRequired, TemplateView):
+    template_name = "orga/cfp/toggle.html"
+    permission_required = "orga.edit_cfp"
+
+    def post(self, request, *args, **kwargs):
+        event = request.event
+        cfp = request.event.cfp
+        action = request.POST.get("action")
+        if action == "activate":
+            if cfp.is_start:
+                messages.success(request, _("This cfp was already started."))
+            else:
+                cfp.is_start = True
+                cfp.save()
+                cfp.log_action(
+                    "pretalx.cfp.activate",
+                    person=self.request.user,
+                    orga=True,
+                    data={},
+                )
+                messages.success(request, _("This cfp is now start."))
+        else:  # action == 'deactivate'
+            if not cfp.is_start:
+                messages.success(request, _("This cfp was already end."))
+            else:
+                cfp.is_start = False
+                cfp.save()
+                cfp.log_action(
+                    "pretalx.cfp.deactivate",
+                    person=self.request.user,
+                    orga=True,
+                    data={},
+                )
+                messages.success(request, _("This cfp is now end."))
+        return redirect(event.orga_urls.base)
+
+
 @method_decorator(csp_update(SCRIPT_SRC="'self' 'unsafe-eval'"), name="dispatch")
 class CfPFlowEditor(EventPermissionRequired, TemplateView):
     template_name = "orga/cfp/flow.html"
@@ -701,7 +738,7 @@ class CfPFlowEditor(EventPermissionRequired, TemplateView):
         ] = self.request.event.cfp_flow.get_editor_config(json_compat=True)
         context["event_configuration"] = {
             "header_pattern": self.request.event.settings.display_header_pattern
-            or "bg-primary",
+                              or "bg-primary",
             "header_image": self.request.event.header_image.url
             if self.request.event.header_image
             else None,

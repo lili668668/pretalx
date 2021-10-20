@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 14:11+0000\n"
+"POT-Creation-Date: 2021-10-20 14:04+0000\n"
 "PO-Revision-Date: 2021-09-13 11:09+0000\n"
 "Last-Translator: hamza Hamwie <hamza@live.hk>\n"
 "Language-Team: none\n"
@@ -589,7 +589,7 @@ msgid "withdrawn"
 msgstr "منسحب"
 
 #: pretalx/cfp/templates/cfp/event/index.html:32
-#: pretalx/orga/views/dashboard.py:100
+#: pretalx/orga/views/dashboard.py:101
 msgid "Go to CfP"
 msgstr "الذهاب الى دعوة المشاركة"
 
@@ -611,7 +611,7 @@ msgid "Abstract:"
 msgstr "الملخص:"
 
 #: pretalx/cfp/templates/cfp/event/invitation.html:30
-#: pretalx/event/models/event.py:538 pretalx/submission/models/question.py:378
+#: pretalx/event/models/event.py:535 pretalx/submission/models/question.py:378
 #: pretalx/submission/models/submission.py:663
 msgid "No"
 msgstr "لا"
@@ -1675,7 +1675,7 @@ msgstr ""
 
 #: pretalx/common/phrases.py:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:75
-#: pretalx/orga/templates/orga/organiser/detail.html:70
+#: pretalx/orga/templates/orga/organiser/detail.html:97
 #: pretalx/orga/templates/orga/submission/review_fragment.html:26
 #: pretalx/orga/templates/orga/submission/speakers.html:52
 msgid "Edit"
@@ -2060,20 +2060,19 @@ msgstr ""
 "هذا الاسم المختصر تم استخدمه مسبقا ، يرجى اختيار اسم آخر (أو اطلب من صاحب "
 "هذا الحدث إضافتك إلى فريقه)."
 
-#: pretalx/event/forms.py:142
-msgid ""
-"The default deadline for your Call for Papers. You can assign additional "
-"deadlines to individual session types, which will take precedence over this "
-"deadline."
+#: pretalx/event/forms.py:140
+msgid "Call for Partincipates Deadline"
 msgstr ""
-"الموعد النهائي الافتراضي للحصول على أوراق. يمكنك تعيين مواعيد نهائية إضافية "
-"للجلسات الفردية ، والتي ستكون لها الأسبقية على هذا الموعد النهائي."
 
-#: pretalx/event/forms.py:164 pretalx/event/models/event.py:147
+#: pretalx/event/forms.py:144
+msgid "Call for Proposal Deadline"
+msgstr ""
+
+#: pretalx/event/forms.py:167 pretalx/event/models/event.py:147
 msgid "Main event colour"
 msgstr "لون الواجهة الريئسية للحدث"
 
-#: pretalx/event/forms.py:166 pretalx/event/models/event.py:149
+#: pretalx/event/forms.py:169 pretalx/event/models/event.py:149
 msgid ""
 "Provide a hex value like #00ff00 if you want to style pretalx in your "
 "event's colour scheme."
@@ -2081,11 +2080,11 @@ msgstr ""
 "قم بتوفير قيمة ال hex مثل # 00ff00 إذا كنت ترغب في تصميم نمط pretalx في نظام "
 "ألوان الحدث الخاص بك."
 
-#: pretalx/event/forms.py:171 pretalx/orga/forms/event.py:247
+#: pretalx/event/forms.py:174 pretalx/orga/forms/event.py:247
 msgid "Frontpage header pattern"
 msgstr "نمط رأس الصفحة الأمامية"
 
-#: pretalx/event/forms.py:173
+#: pretalx/event/forms.py:176
 msgid ""
 "Choose how the frontpage header banner will be styled. Pattern source: <a "
 "href=\"http://www.heropatterns.com/\">heropatterns.com</a>, CC BY 4.0."
@@ -2093,35 +2092,35 @@ msgstr ""
 "يمكنك اختيار كيف سيتم تصميم شعار رأس الصفحة الأمامية. مصدر النمط: <a href="
 "\"http://www.heropatterns.com/\">heropatterns.com</a>, CC BY 4.0."
 
-#: pretalx/event/forms.py:176 pretalx/orga/forms/event.py:253
+#: pretalx/event/forms.py:179 pretalx/orga/forms/event.py:253
 msgid "Plain"
 msgstr "Plain"
 
-#: pretalx/event/forms.py:177 pretalx/orga/forms/event.py:254
+#: pretalx/event/forms.py:180 pretalx/orga/forms/event.py:254
 msgid "Circuits"
 msgstr "الحلقات"
 
-#: pretalx/event/forms.py:178 pretalx/orga/forms/event.py:255
+#: pretalx/event/forms.py:181 pretalx/orga/forms/event.py:255
 msgid "Circles"
 msgstr "الدوائر"
 
-#: pretalx/event/forms.py:179 pretalx/orga/forms/event.py:256
+#: pretalx/event/forms.py:182 pretalx/orga/forms/event.py:256
 msgid "Signal"
 msgstr "الاشارة"
 
-#: pretalx/event/forms.py:180 pretalx/orga/forms/event.py:257
+#: pretalx/event/forms.py:183 pretalx/orga/forms/event.py:257
 msgid "Topography"
 msgstr "الطبوغرافيا"
 
-#: pretalx/event/forms.py:181 pretalx/orga/forms/event.py:258
+#: pretalx/event/forms.py:184 pretalx/orga/forms/event.py:258
 msgid "Graph Paper"
 msgstr "ورقة الرسم البياني"
 
-#: pretalx/event/forms.py:208
+#: pretalx/event/forms.py:211
 msgid "Copy configuration from"
 msgstr "نسخ الرسم من"
 
-#: pretalx/event/forms.py:211
+#: pretalx/event/forms.py:214
 msgid "Do not copy"
 msgstr "لا تنسخ"
 
@@ -2247,7 +2246,7 @@ msgstr "سيظهر هذا النص أعلى صفحة الجلسات المميز
 msgid "Plugins"
 msgstr "الإضافات"
 
-#: pretalx/event/models/event.py:512 pretalx/event/models/event.py:753
+#: pretalx/event/models/event.py:509 pretalx/event/models/event.py:750
 #: pretalx/event/stages.py:68 pretalx/orga/templates/orga/base.html:207
 #: pretalx/orga/templates/orga/base.html:293
 #: pretalx/orga/templates/orga/submission/review.html:180
@@ -2255,21 +2254,21 @@ msgstr "الإضافات"
 msgid "Review"
 msgstr "التقييم"
 
-#: pretalx/event/models/event.py:520
+#: pretalx/event/models/event.py:517
 msgid "Selection"
 msgstr "تحديد"
 
-#: pretalx/event/models/event.py:533
+#: pretalx/event/models/event.py:530
 #: pretalx/orga/templates/orga/submission/review.html:171
 #: pretalx/submission/models/review.py:91
 msgid "Score"
 msgstr "النتيجة"
 
-#: pretalx/event/models/event.py:543
+#: pretalx/event/models/event.py:540
 msgid "Maybe"
 msgstr "ربما"
 
-#: pretalx/event/models/event.py:548
+#: pretalx/event/models/event.py:545
 #: pretalx/orga/templates/orga/cfp/access_code_delete.html:15
 #: pretalx/orga/templates/orga/cfp/question_delete.html:15
 #: pretalx/orga/templates/orga/cfp/submission_type_delete.html:15
@@ -2289,7 +2288,7 @@ msgstr "ربما"
 msgid "Yes"
 msgstr "نعم"
 
-#: pretalx/event/models/event.py:893
+#: pretalx/event/models/event.py:890
 msgid "News from your content system"
 msgstr "أخبار من نظام المحتوى الخاص بك"
 
@@ -2444,6 +2443,8 @@ msgid "Inform your speakers about the infrastructure"
 msgstr "أعلم المتحدثين عن بنية المعلومات الأساسية"
 
 #: pretalx/event/stages.py:96
+#: pretalx/orga/templates/orga/organiser/detail.html:41
+#: pretalx/orga/templates/orga/organiser/detail.html:45
 msgid "Event"
 msgstr "الحدث"
 
@@ -3846,7 +3847,7 @@ msgid "Dashboard"
 msgstr "لوحة القيادة"
 
 #: pretalx/orga/templates/orga/base.html:203
-#: pretalx/orga/templates/orga/organiser/detail.html:42
+#: pretalx/orga/templates/orga/organiser/detail.html:69
 msgid "Teams"
 msgstr "الفريق"
 
@@ -3949,7 +3950,7 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:46
 #: pretalx/orga/templates/orga/cfp/question_view.html:80
-#: pretalx/orga/templates/orga/organiser/detail.html:75
+#: pretalx/orga/templates/orga/organiser/detail.html:102
 msgid "Delete"
 msgstr "حذف"
 
@@ -4323,6 +4324,22 @@ msgstr "صورة الجلسة"
 msgid "Duration"
 msgstr "المدة"
 
+#: pretalx/orga/templates/orga/cfp/toggle.html:13
+msgid "CfP status"
+msgstr ""
+
+#: pretalx/orga/templates/orga/cfp/toggle.html:19
+#, fuzzy
+#| msgid "Close"
+msgid "Go Close"
+msgstr "إغلاق"
+
+#: pretalx/orga/templates/orga/cfp/toggle.html:21
+#, fuzzy
+#| msgid "Start"
+msgid "Go Start"
+msgstr "ابدأ"
+
 #: pretalx/orga/templates/orga/cfp/track_delete.html:5
 msgid "Do you really want to delete this track?"
 msgstr "هل أنت متأكد من رغبتك بحذف عذا المسار؟"
@@ -4437,6 +4454,7 @@ msgstr "غير متصل"
 
 #: pretalx/orga/templates/orga/event/wizard/base.html:9
 #: pretalx/orga/templates/orga/event/wizard/basics.html:15
+#: pretalx/orga/templates/orga/organiser/detail.html:61
 msgid "New event"
 msgstr "حدث جديد"
 
@@ -4483,16 +4501,6 @@ msgid ""
 "The event creation assistant will help you to get started with a new event."
 msgstr "سيساعدك \"مضيف إنشاء الحدث\" على البدء بحدث جديد."
 
-#: pretalx/orga/templates/orga/event/wizard/timeline.html:17
-msgid ""
-"What's your timeline like? You can later add session types with different "
-"deadlines (e.g. if you accept workshop proposals later than your talk "
-"proposals)."
-msgstr ""
-"ما هو الجدول الزمني الخاص بك مثل؟ يمكنك لاحقًا إضافة أنواع الجلسات بمواعيد "
-"نهائية مختلفة (على سبيل المثال ، إذا قبلت مقترحات ورشة العمل ومن ثم مقترحات "
-"المحادثة)."
-
 #: pretalx/orga/templates/orga/event_list.html:12
 msgid "Your upcoming events"
 msgstr "الأحداث القادمة"
@@ -4501,7 +4509,7 @@ msgstr "الأحداث القادمة"
 #: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
-#: pretalx/orga/views/dashboard.py:193
+#: pretalx/orga/views/dashboard.py:213
 msgid "proposal"
 msgid_plural "proposals"
 msgstr[0] "مقترح"
@@ -4807,7 +4815,7 @@ msgstr ""
 msgid "Delete organiser"
 msgstr "حذف المنظم"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:46
+#: pretalx/orga/templates/orga/organiser/detail.html:73
 #: pretalx/orga/templates/orga/settings/team_delete.html:7
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 #: pretalx/orga/templates/orga/settings/team_detail.html:82
@@ -4816,20 +4824,20 @@ msgstr "حذف المنظم"
 msgid "Team"
 msgstr "الفريق"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:47
+#: pretalx/orga/templates/orga/organiser/detail.html:74
 #: pretalx/orga/templates/orga/settings/team_detail.html:11
 msgid "Members"
 msgstr "الأعضاء"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:48
+#: pretalx/orga/templates/orga/organiser/detail.html:75
 msgid "Reviewer"
 msgstr "المراجعين"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:59
+#: pretalx/orga/templates/orga/organiser/detail.html:86
 msgid "You are a member of this team"
 msgstr "أنت عضو من هذا الفريق"
 
-#: pretalx/orga/templates/orga/organiser/detail.html:87
+#: pretalx/orga/templates/orga/organiser/detail.html:114
 #: pretalx/orga/templates/orga/settings/team_detail.html:85
 msgid "New team"
 msgstr "فريق جديد"
@@ -4942,7 +4950,7 @@ msgstr "معدلك"
 #: pretalx/orga/templates/orga/review/dashboard.html:113
 #: pretalx/orga/templates/orga/submission/base.html:73
 #: pretalx/orga/templates/orga/submission/content.html:52
-#: pretalx/orga/views/dashboard.py:120
+#: pretalx/orga/views/dashboard.py:139
 msgid "Reviews"
 msgstr "المراجعات"
 
@@ -5667,7 +5675,7 @@ msgid "Add a new note"
 msgstr "إضافة ملاحظة جديدة"
 
 #: pretalx/orga/templates/orga/speaker/list.html:10
-#: pretalx/orga/views/dashboard.py:201
+#: pretalx/orga/views/dashboard.py:221
 msgid "submitter"
 msgid_plural "submitters"
 msgstr[0] "مقدم الطلب"
@@ -6152,15 +6160,75 @@ msgstr ""
 "تم استخدام رمز الوصول هذاضمن المقترح ولا يمكن حذفه. لتعطيله ، يمكنك ضبط "
 "تاريخ صلاحيته بتاريخ سابق."
 
-#: pretalx/orga/views/dashboard.py:96
+#: pretalx/orga/views/cfp.py:702
+#, fuzzy
+#| msgid "This page has ceased to be."
+msgid "This cfp was already started."
+msgstr "هذه الصفحة لم تعد موجودة."
+
+#: pretalx/orga/views/cfp.py:712
+#, fuzzy
+#| msgid "This page is no more."
+msgid "This cfp is now start."
+msgstr "لم تعد الصفحة متاحة."
+
+#: pretalx/orga/views/cfp.py:715
+#, fuzzy
+#| msgid "This page has ceased to be."
+msgid "This cfp was already end."
+msgstr "هذه الصفحة لم تعد موجودة."
+
+#: pretalx/orga/views/cfp.py:725
+#, fuzzy
+#| msgid "This page is no more."
+msgid "This cfp is now end."
+msgstr "لم تعد الصفحة متاحة."
+
+#: pretalx/orga/views/dashboard.py:97
 msgid "until the CfP ends"
 msgstr "حتى يتم انهاء CfP"
 
-#: pretalx/orga/views/dashboard.py:124
+#: pretalx/orga/views/dashboard.py:99
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfP is end"
+msgstr "ال CfP مفتوح"
+
+#: pretalx/orga/views/dashboard.py:104
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfP is not open"
+msgstr "ال CfP مفتوح"
+
+#: pretalx/orga/views/dashboard.py:113
+#, fuzzy
+#| msgid "until the CfP ends"
+msgid "until the CfT ends"
+msgstr "حتى يتم انهاء CfP"
+
+#: pretalx/orga/views/dashboard.py:115
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfT is end"
+msgstr "ال CfP مفتوح"
+
+#: pretalx/orga/views/dashboard.py:117
+#, fuzzy
+#| msgid "Go to CfP"
+msgid "Go to CfT"
+msgstr "الذهاب الى دعوة المشاركة"
+
+#: pretalx/orga/views/dashboard.py:120
+#, fuzzy
+#| msgid "CfP is open"
+msgid "CfT is not open"
+msgstr "ال CfP مفتوح"
+
+#: pretalx/orga/views/dashboard.py:143
 msgid "Active reviewers"
 msgstr ""
 
-#: pretalx/orga/views/dashboard.py:155
+#: pretalx/orga/views/dashboard.py:175
 msgid "day until event start"
 msgid_plural "days until event start"
 msgstr[0] "يوم متبقي حتى بداية الحدث"
@@ -6170,7 +6238,7 @@ msgstr[3] "الأيام المتبقية حتى بداية الحدث"
 msgstr[4] "الأيام المتبقية حتى بداية الحدث"
 msgstr[5] "الأيام المتبقية حتى بداية الحدث"
 
-#: pretalx/orga/views/dashboard.py:165
+#: pretalx/orga/views/dashboard.py:185
 msgid "day since event end"
 msgid_plural "days since event end"
 msgstr[0] ""
@@ -6180,21 +6248,21 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: pretalx/orga/views/dashboard.py:173
+#: pretalx/orga/views/dashboard.py:193
 #, python-brace-format
 msgid "Day {number}"
 msgstr ""
 
-#: pretalx/orga/views/dashboard.py:174
+#: pretalx/orga/views/dashboard.py:194
 #, python-brace-format
 msgid "of {total_days} days"
 msgstr ""
 
-#: pretalx/orga/views/dashboard.py:184
+#: pretalx/orga/views/dashboard.py:204
 msgid "current schedule"
 msgstr ""
 
-#: pretalx/orga/views/dashboard.py:210
+#: pretalx/orga/views/dashboard.py:230
 msgid "session"
 msgid_plural "sessions"
 msgstr[0] ""
@@ -6204,7 +6272,7 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: pretalx/orga/views/dashboard.py:223
+#: pretalx/orga/views/dashboard.py:243
 msgid "unconfirmed session"
 msgid_plural "unconfirmed sessions"
 msgstr[0] ""
@@ -6214,7 +6282,7 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: pretalx/orga/views/dashboard.py:236
+#: pretalx/orga/views/dashboard.py:256
 msgid "speaker"
 msgid_plural "speakers"
 msgstr[0] ""
@@ -6224,7 +6292,7 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: pretalx/orga/views/dashboard.py:244
+#: pretalx/orga/views/dashboard.py:264
 msgid "sent email"
 msgid_plural "sent emails"
 msgstr[0] ""
@@ -6331,12 +6399,12 @@ msgstr ""
 msgid "Did you really mean to make your event take place in the past?"
 msgstr ""
 
-#: pretalx/orga/views/event.py:706
+#: pretalx/orga/views/event.py:712
 #, python-brace-format
 msgid "{event.name} 主辦團隊"
 msgstr ""
 
-#: pretalx/orga/views/event.py:789
+#: pretalx/orga/views/event.py:795
 msgid "The widget settings have been saved."
 msgstr ""
 
@@ -7070,25 +7138,21 @@ msgstr ""
 "عدد المرات التي يمكن فيها استخدام رمز الدخول هذا لتقديم الطلب (المقترح). "
 "اتركه فارغا لاستخدامه بلا حدود."
 
-#: pretalx/submission/models/cfp.py:24
+#: pretalx/submission/models/cfp.py:25 pretalx/submission/models/cft.py:19
 msgid "headline"
 msgstr "العناوين الرئيسية"
 
-#: pretalx/submission/models/cfp.py:29
+#: pretalx/submission/models/cfp.py:30 pretalx/submission/models/cft.py:24
 msgid "text"
 msgstr "نص"
 
-#: pretalx/submission/models/cfp.py:36
-msgid "Default session type"
-msgstr "نوع الجلسة بشكل افتراضي"
-
-#: pretalx/submission/models/cfp.py:41
+#: pretalx/submission/models/cfp.py:36 pretalx/submission/models/cft.py:30
 #: pretalx/submission/models/question.py:125
 #: pretalx/submission/models/type.py:39
 msgid "deadline"
 msgstr "الموعد النهائي"
 
-#: pretalx/submission/models/cfp.py:43
+#: pretalx/submission/models/cfp.py:38 pretalx/submission/models/cft.py:32
 msgid "Please put in the last date you want to accept proposals from users."
 msgstr ""
 "يرجى تحديد الموعد التاريخ النعائي الذي تفضله لقبول الطلبات (المقترحات) من "
@@ -7464,6 +7528,26 @@ msgstr "{name} (عدد الساعات {duration} )"
 #, python-brace-format
 msgid "{name} ({duration} minutes)"
 msgstr "{name} ({duration} دقيقة)"
+
+#~ msgid ""
+#~ "The default deadline for your Call for Papers. You can assign additional "
+#~ "deadlines to individual session types, which will take precedence over "
+#~ "this deadline."
+#~ msgstr ""
+#~ "الموعد النهائي الافتراضي للحصول على أوراق. يمكنك تعيين مواعيد نهائية "
+#~ "إضافية للجلسات الفردية ، والتي ستكون لها الأسبقية على هذا الموعد النهائي."
+
+#~ msgid ""
+#~ "What's your timeline like? You can later add session types with different "
+#~ "deadlines (e.g. if you accept workshop proposals later than your talk "
+#~ "proposals)."
+#~ msgstr ""
+#~ "ما هو الجدول الزمني الخاص بك مثل؟ يمكنك لاحقًا إضافة أنواع الجلسات بمواعيد "
+#~ "نهائية مختلفة (على سبيل المثال ، إذا قبلت مقترحات ورشة العمل ومن ثم "
+#~ "مقترحات المحادثة)."
+
+#~ msgid "Default session type"
+#~ msgstr "نوع الجلسة بشكل افتراضي"
 
 #~ msgid ""
 #~ "Apply permissions to all events by this organiser (including newly "

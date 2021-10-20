@@ -37,6 +37,33 @@
     </fieldset>
 
         {% if request.organiser %}
+            <fieldset>
+                <legend>{% translate "Event" %}</legend>
+                <table class="table table-hover table-sm table-responsive-md table-flip">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Event" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>
+                            <a href="{{ request.organiser.event.orga_urls.base }}">
+                                {{ request.organiser.event.name }}
+                            </a>
+                        </td></tr>
+                    </tbody>
+                </table>
+                {% if not request.organiser.event %}
+                    <div class="submit-group">
+                        <span></span>
+                        <span>
+                            <a href="{{ request.organiser.orga_urls.new_event }}" class="btn btn-info">
+                                <i class="fa fa-plus"></i> {% translate "New event" %}
+                            </a>
+                        </span>
+                    </div>
+                {% endif %}
+            </fieldset>
 
             <fieldset>
                 <legend>{% translate "Teams" %}</legend>
