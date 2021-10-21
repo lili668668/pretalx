@@ -224,6 +224,22 @@
                             </div>
                             <div class="nav-fold">
                                 <span class="has-children">
+                                    <a class="nav-link nav-link-inner" href="{{ request.event.cft.urls.text }}">
+                                        <i class="fa fa-users"></i>
+                                        <span class="sidebar-text">{% translate "CfT" %}</span>
+                                    </a>
+                                    <a class="arrow nav-link" data-toggle="collapse" href="#collapseCfT" aria-controls="collapseCfT">
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                </span>
+                                <div class="collapse in{% if "cft." in url_name %} show{% endif %}" aria-expand="true" id="collapseCfT">
+                                    <a href="{{ request.event.cft.urls.tracks }}" class="nav-link nav-link-second-level{% if "cft.track" in url_name %} active{% endif %}">
+                                        <span>{% translate "Tracks" %}</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="nav-fold">
+                                <span class="has-children">
                                     <a class="nav-link nav-link-inner" href="{{ request.event.cfp.urls.text }}">
                                         <i class="fa fa-bullhorn"></i>
                                         <span class="sidebar-text">{% translate "CfP" %}</span>
@@ -242,11 +258,6 @@
                                     <a href="{{ request.event.cfp.urls.questions }}" class="nav-link nav-link-second-level{% if "cfp.question" in url_name %} active{% endif %}">
                                         <span>{% translate "Questions" %}</span>
                                     </a>
-                                    {% if request.event.settings.use_tracks %}
-                                        <a href="{{ request.event.cfp.urls.tracks }}" class="nav-link nav-link-second-level{% if "cfp.track" in url_name %} active{% endif %}">
-                                            <span>{% translate "Tracks" %}</span>
-                                        </a>
-                                    {% endif %}
                                     <a href="{{ request.event.cfp.urls.types }}" class="nav-link nav-link-second-level{% if "cfp.type" in url_name %} active{% endif %}">
                                         <span>{% translate "Session types" %}</span>
                                     </a>

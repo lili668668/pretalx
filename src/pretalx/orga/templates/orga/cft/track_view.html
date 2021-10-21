@@ -1,15 +1,8 @@
-{% extends "orga/cfp/base.html" %}
+{% extends "orga/cft/base.html" %}
 {% load i18n %}
 
-{% block cfp_content %}
+{% block cft_content %}
     <h2>{% translate "Tracks" %}</h2>
-    <div class="alert alert-info">
-        {% blocktranslate trimmed %}
-            Tracks are used to sort your sessions into categories. You can use the
-            CfP settings to determine if speakers can select the track for their session
-            themselves. Track colors are helpful to help attendees navigate your schedule.
-        {% endblocktranslate %}
-    </div>
     <table class="table table-sm table-hover table-responsive-md table-flip">
         <thead>
             <tr>
@@ -54,7 +47,7 @@
         </tbody>
     </table>
     <div class="submit-group"><span></span>
-        <a class="btn btn-info" href="{{ request.event.cfp.urls.new_track }}">
+        <a class="btn btn-info" href="{{ request.event.cft.urls.new_track }}">
             <i class="fa fa-plus"></i>
             {% translate "New track" %}
         </a>

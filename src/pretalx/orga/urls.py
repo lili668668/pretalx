@@ -124,6 +124,29 @@ urlpatterns = [
                             path("history/", event.EventHistory.as_view(), name="event.history"),
                             path("api/users", person.UserList.as_view(), name="event.user_list"),
                             path("cft/toggle/", cft.CfTToggle.as_view(), name="cft.toggle"),
+                            path("cft/tracks/", cft.TrackList.as_view(), name="cft.tracks.view"),
+                            path(
+                                "cft/tracks/new",
+                                cft.TrackDetail.as_view(),
+                                name="cft.track.create",
+                            ),
+                            path(
+                                "cft/tracks/<int:pk>/",
+                                include(
+                                    [
+                                        path(
+                                            "",
+                                            cft.TrackDetail.as_view(),
+                                            name="cft.track.view",
+                                        ),
+                                        path(
+                                            "delete",
+                                            cft.TrackDelete.as_view(),
+                                            name="cft.track.delete",
+                                        ),
+                                    ]
+                                ),
+                            ),
                             path(
                                 "cfp/",
                                 RedirectView.as_view(pattern_name="orga:cfp.text.view"),
@@ -212,29 +235,6 @@ urlpatterns = [
                                             "default",
                                             cfp.SubmissionTypeDefault.as_view(),
                                             name="cfp.type.default",
-                                        ),
-                                    ]
-                                ),
-                            ),
-                            path("cfp/tracks/", cfp.TrackList.as_view(), name="cfp.tracks.view"),
-                            path(
-                                "cfp/tracks/new",
-                                cfp.TrackDetail.as_view(),
-                                name="cfp.track.create",
-                            ),
-                            path(
-                                "cfp/tracks/<int:pk>/",
-                                include(
-                                    [
-                                        path(
-                                            "",
-                                            cfp.TrackDetail.as_view(),
-                                            name="cfp.track.view",
-                                        ),
-                                        path(
-                                            "delete",
-                                            cfp.TrackDelete.as_view(),
-                                            name="cfp.track.delete",
                                         ),
                                     ]
                                 ),
