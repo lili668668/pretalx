@@ -7,6 +7,7 @@ from pretalx.orga.views import cards
 from .views import (
     admin,
     auth,
+    cft,
     cfp,
     dashboard,
     event,
@@ -122,6 +123,7 @@ urlpatterns = [
                             path("live", event.EventLive.as_view(), name="event.live"),
                             path("history/", event.EventHistory.as_view(), name="event.history"),
                             path("api/users", person.UserList.as_view(), name="event.user_list"),
+                            path("cft/toggle/", cft.CfTToggle.as_view(), name="cft.toggle"),
                             path(
                                 "cfp/",
                                 RedirectView.as_view(pattern_name="orga:cfp.text.view"),

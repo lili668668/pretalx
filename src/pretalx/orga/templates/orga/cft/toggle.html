@@ -1,0 +1,26 @@
+{% extends "orga/base.html" %}
+{% load compress %}
+{% load i18n %}
+{% load static %}
+
+{% block scripts %}
+    {{ current_configuration|json_script:"currentConfiguration" }}
+    {{ all_fields|json_script:"allFields" }}
+    {{ event_configuration|json_script:"eventConfiguration" }}
+{% endblock %}
+
+{% block content %}
+    <h1>{% translate "CfT status" %}</h1>
+    <div class="submit-group">
+        <span></span>
+        <form method="post">
+            {% csrf_token %}
+            {% if request.event.cft.is_start %}
+                <button class="btn btn-lg btn-danger" type="submit" name="action" value="deactivate">{% translate "Go Close" %}</button>
+            {% else %}
+                <button class="btn btn-lg btn-success" type="submit" name="action" value="activate">{% translate "Go Start" %}</button>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
+

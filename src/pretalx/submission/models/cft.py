@@ -38,6 +38,7 @@ class CfT(LogMixin, models.Model):
     class urls(EventUrls):
         base = "{self.event.orga_urls.cft}"
         editor = "{base}flow/"
+        toggle = "{base}toggle/"
         questions = "{base}questions/"
         new_question = "{questions}new"
         remind_questions = "{questions}remind"
@@ -48,7 +49,7 @@ class CfT(LogMixin, models.Model):
         new_track = "{tracks}new"
         access_codes = "{base}access-codes/"
         new_access_code = "{access_codes}new"
-        public = "{self.event.urls.base}cfp"
+        public = "{self.event.urls.base}cft"
         submit = "{self.event.urls.base}submit/"
 
     def __str__(self) -> str:

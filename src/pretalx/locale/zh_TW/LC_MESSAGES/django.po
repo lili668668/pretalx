@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-20 14:04+0000\n"
+"POT-Creation-Date: 2021-10-21 00:19+0000\n"
 "PO-Revision-Date: 2020-01-29 12:01+0000\n"
 "Last-Translator: Franklin Weng <franklin@goodhorse.idv.tw>\n"
 "Language-Team: none\n"
@@ -582,7 +582,7 @@ msgid "withdrawn"
 msgstr "已退回"
 
 #: pretalx/cfp/templates/cfp/event/index.html:32
-#: pretalx/orga/views/dashboard.py:101
+#: pretalx/orga/views/dashboard.py:102
 msgid "Go to CfP"
 msgstr "前往「徵求議程投稿」頁面"
 
@@ -1200,242 +1200,258 @@ msgid "The CfP has been modified."
 msgstr "徵求議程投稿頁面已變更。"
 
 #: pretalx/common/log_display.py:10
+msgid "The CfP has been open"
+msgstr "徵求議程投稿頁面已公開。"
+
+#: pretalx/common/log_display.py:11
+msgid "The CfP has been close"
+msgstr "徵求議程投稿頁面已關閉。"
+
+#: pretalx/common/log_display.py:12
+msgid "The CfT has been open"
+msgstr "徵求議程軌頁面已公開。"
+
+#: pretalx/common/log_display.py:13
+msgid "The CfT has been close"
+msgstr "徵求議程軌頁面已關閉。"
+
+#: pretalx/common/log_display.py:14
 msgid "The event has been added."
 msgstr "已加入此活動。"
 
-#: pretalx/common/log_display.py:11
+#: pretalx/common/log_display.py:15
 msgid "The event was modified."
 msgstr "已變更此活動。"
 
-#: pretalx/common/log_display.py:12
+#: pretalx/common/log_display.py:16
 msgid "The event was made public."
 msgstr "已公開此活動。"
 
-#: pretalx/common/log_display.py:13
+#: pretalx/common/log_display.py:17
 msgid "The event was deactivated."
 msgstr "已停止此活動。"
 
-#: pretalx/common/log_display.py:14
+#: pretalx/common/log_display.py:18
 msgid "A plugin was enabled."
 msgstr "已啟用一個外掛程式。"
 
-#: pretalx/common/log_display.py:15
+#: pretalx/common/log_display.py:19
 msgid "A plugin was disabled."
 msgstr "已停用一個外掛程式。"
 
-#: pretalx/common/log_display.py:16 pretalx/common/log_display.py:24
+#: pretalx/common/log_display.py:20 pretalx/common/log_display.py:28
 msgid "The invitation to the event orga was accepted."
 msgstr "成為活動組織的邀請已被接受。"
 
-#: pretalx/common/log_display.py:17 pretalx/common/log_display.py:27
+#: pretalx/common/log_display.py:21 pretalx/common/log_display.py:31
 msgid "An invitation to the event orga was retracted."
 msgstr "成為活動組織的邀請已被收回。"
 
-#: pretalx/common/log_display.py:18 pretalx/common/log_display.py:30
+#: pretalx/common/log_display.py:22 pretalx/common/log_display.py:34
 msgid "An invitation to the event orga was sent."
 msgstr "成為活動組織的邀請已傳送。"
 
-#: pretalx/common/log_display.py:20 pretalx/common/log_display.py:33
+#: pretalx/common/log_display.py:24 pretalx/common/log_display.py:37
 msgid "The invitation to the review team was retracted."
 msgstr "成為檢閱團隊成員的邀請已被收回。"
 
-#: pretalx/common/log_display.py:22 pretalx/common/log_display.py:36
+#: pretalx/common/log_display.py:26 pretalx/common/log_display.py:40
 msgid "The invitation to the review team was sent."
 msgstr "成為檢閱團隊成員的邀請已傳送。"
 
-#: pretalx/common/log_display.py:38 pretalx/common/log_display.py:42
+#: pretalx/common/log_display.py:42 pretalx/common/log_display.py:46
 msgid "An email was modified."
 msgstr "已變更一封電子郵件。"
 
-#: pretalx/common/log_display.py:39
+#: pretalx/common/log_display.py:43
 msgid "A pending email was deleted."
 msgstr "已刪除一封暫停處理的電子郵件。"
 
-#: pretalx/common/log_display.py:40
+#: pretalx/common/log_display.py:44
 msgid "All pending emails were deleted."
 msgstr "已刪除所有暫停處理的電子郵件。"
 
-#: pretalx/common/log_display.py:41
+#: pretalx/common/log_display.py:45
 msgid "An email was sent."
 msgstr "已送出一封電子郵件。"
 
-#: pretalx/common/log_display.py:43
+#: pretalx/common/log_display.py:47
 msgid "A mail template was added."
 msgstr "已加入一個郵件範本。"
 
-#: pretalx/common/log_display.py:44
+#: pretalx/common/log_display.py:48
 msgid "A mail template was deleted."
 msgstr "已刪除一個郵件範本。"
 
-#: pretalx/common/log_display.py:45
+#: pretalx/common/log_display.py:49
 msgid "A mail template was modified."
 msgstr "已變更一個郵件範本。"
 
-#: pretalx/common/log_display.py:46
+#: pretalx/common/log_display.py:50
 msgid "A question was added."
 msgstr "已加入一個問題。"
 
-#: pretalx/common/log_display.py:47
+#: pretalx/common/log_display.py:51
 msgid "A question was deleted."
 msgstr "已刪除一個問題。"
 
-#: pretalx/common/log_display.py:48
+#: pretalx/common/log_display.py:52
 msgid "A question was modified."
 msgstr "已變更一個問題。"
 
-#: pretalx/common/log_display.py:49
+#: pretalx/common/log_display.py:53
 msgid "A question option was added."
 msgstr "已加入一個問題選項。"
 
-#: pretalx/common/log_display.py:50
+#: pretalx/common/log_display.py:54
 msgid "A question option was deleted."
 msgstr "已刪除一個問題選項。"
 
-#: pretalx/common/log_display.py:51
+#: pretalx/common/log_display.py:55
 msgid "A question option was modified."
 msgstr "已變更一個問題選項。"
 
-#: pretalx/common/log_display.py:52
+#: pretalx/common/log_display.py:56
 msgid "A new room was added."
 msgstr "已加入一間新的會議室。"
 
-#: pretalx/common/log_display.py:53
+#: pretalx/common/log_display.py:57
 msgid "A new schedule version was released."
 msgstr "已釋出新版本的議程表。"
 
-#: pretalx/common/log_display.py:54
+#: pretalx/common/log_display.py:58
 msgid "The proposal was accepted."
 msgstr "此議程投稿已被接受。"
 
-#: pretalx/common/log_display.py:55
+#: pretalx/common/log_display.py:59
 msgid "The proposal was cancelled."
 msgstr "此議程投稿已被取消。"
 
-#: pretalx/common/log_display.py:56 pretalx/common/log_display.py:57
+#: pretalx/common/log_display.py:60 pretalx/common/log_display.py:61
 msgid "The proposal was confirmed."
 msgstr "此議程投稿已被確認。"
 
-#: pretalx/common/log_display.py:58
+#: pretalx/common/log_display.py:62
 msgid "The proposal was added."
 msgstr "此議程投稿已被新增。"
 
-#: pretalx/common/log_display.py:59
+#: pretalx/common/log_display.py:63
 msgid "The proposal was deleted."
 msgstr "此議程投稿已被刪除。"
 
-#: pretalx/common/log_display.py:60
+#: pretalx/common/log_display.py:64
 msgid "The proposal was rejected."
 msgstr "此議程投稿已被拒絕。"
 
-#: pretalx/common/log_display.py:61
+#: pretalx/common/log_display.py:65
 msgid "A proposal resource was added."
 msgstr "已新增一份議程投稿資源。"
 
-#: pretalx/common/log_display.py:62
+#: pretalx/common/log_display.py:66
 msgid "A proposal resource was deleted."
 msgstr "已刪除一份議程投稿資源。"
 
-#: pretalx/common/log_display.py:63
+#: pretalx/common/log_display.py:67
 msgid "A proposal resource was modified."
 msgstr "已變更一份議程投稿資源。"
 
-#: pretalx/common/log_display.py:64
+#: pretalx/common/log_display.py:68
 msgid "A speaker was added to the proposal."
 msgstr "已新增一名講者到此議程投稿。"
 
-#: pretalx/common/log_display.py:65
+#: pretalx/common/log_display.py:69
 msgid "A speaker was invited to the proposal."
 msgstr "已邀請一名講者到此議程投稿。"
 
-#: pretalx/common/log_display.py:66
+#: pretalx/common/log_display.py:70
 msgid "A speaker was removed from the proposal."
 msgstr "已從此議程投稿移除一名講者。"
 
-#: pretalx/common/log_display.py:67
+#: pretalx/common/log_display.py:71
 msgid "The proposal was unconfirmed."
 msgstr "此議程投稿尚未確認。"
 
-#: pretalx/common/log_display.py:68
+#: pretalx/common/log_display.py:72
 msgid "The proposal was modified."
 msgstr "此議程投稿已變更。"
 
-#: pretalx/common/log_display.py:69
+#: pretalx/common/log_display.py:73
 msgid "The proposal was withdrawn."
 msgstr "此議程投稿已被退回。"
 
-#: pretalx/common/log_display.py:70 pretalx/common/log_display.py:71
+#: pretalx/common/log_display.py:74 pretalx/common/log_display.py:75
 msgid "A proposal answer was modified."
 msgstr "有一個投稿的回答已被變更。"
 
-#: pretalx/common/log_display.py:72 pretalx/common/log_display.py:73
+#: pretalx/common/log_display.py:76 pretalx/common/log_display.py:77
 msgid "A proposal answer was added."
 msgstr "有一個投稿的回答已被新增。"
 
-#: pretalx/common/log_display.py:74
+#: pretalx/common/log_display.py:78
 msgid "A session type was added."
 msgstr "已新增一個提交型態。"
 
-#: pretalx/common/log_display.py:75
+#: pretalx/common/log_display.py:79
 msgid "A session type was deleted."
 msgstr "已刪除一個提交型態。"
 
-#: pretalx/common/log_display.py:76
+#: pretalx/common/log_display.py:80
 msgid "The session type was made default."
 msgstr "此提交型態被設為預設值。"
 
-#: pretalx/common/log_display.py:77
+#: pretalx/common/log_display.py:81
 msgid "A session type was modified."
 msgstr "已變更一個提交型態。"
 
-#: pretalx/common/log_display.py:78
+#: pretalx/common/log_display.py:82
 msgid "An access code was added."
 msgstr "已加入一個存取代碼。"
 
-#: pretalx/common/log_display.py:79
+#: pretalx/common/log_display.py:83
 msgid "An access code was sent."
 msgstr "已傳送一個存取代碼。"
 
-#: pretalx/common/log_display.py:80
+#: pretalx/common/log_display.py:84
 msgid "An access code was modified."
 msgstr "已變更一個存取代碼。"
 
-#: pretalx/common/log_display.py:81
+#: pretalx/common/log_display.py:85
 msgid "An access code was deleted."
 msgstr "已刪除一個存取代碼。"
 
-#: pretalx/common/log_display.py:82
+#: pretalx/common/log_display.py:86
 msgid "A track was added."
 msgstr "已加入一個議程軌。"
 
-#: pretalx/common/log_display.py:83
+#: pretalx/common/log_display.py:87
 msgid "A track was deleted."
 msgstr "已刪除一個議程軌。"
 
-#: pretalx/common/log_display.py:84
+#: pretalx/common/log_display.py:88
 msgid "A track was modified."
 msgstr "已變更一個議程軌。"
 
-#: pretalx/common/log_display.py:85
+#: pretalx/common/log_display.py:89
 msgid "A speaker has been marked as arrived."
 msgstr "已將一名講者標記為已到達。"
 
-#: pretalx/common/log_display.py:86
+#: pretalx/common/log_display.py:90
 msgid "A speaker has been marked as not arrived."
 msgstr "已將一名講者標記為未到達。"
 
-#: pretalx/common/log_display.py:87
+#: pretalx/common/log_display.py:91
 msgid "The API token was reset."
 msgstr "API 令牌已重置。"
 
-#: pretalx/common/log_display.py:88
+#: pretalx/common/log_display.py:92
 msgid "The password was reset."
 msgstr "密碼已重置。"
 
-#: pretalx/common/log_display.py:89
+#: pretalx/common/log_display.py:93
 msgid "The password was modified."
 msgstr "密碼已變更。"
 
-#: pretalx/common/log_display.py:90
+#: pretalx/common/log_display.py:94
 msgid "The profile was modified."
 msgstr "個人資料已變更。"
 
@@ -4354,12 +4370,14 @@ msgid "CfP status"
 msgstr "徵稿狀態"
 
 #: pretalx/orga/templates/orga/cfp/toggle.html:19
+#: pretalx/orga/templates/orga/cft/toggle.html:19
 msgid "Go Close"
-msgstr "結束徵稿"
+msgstr "結束"
 
 #: pretalx/orga/templates/orga/cfp/toggle.html:21
+#: pretalx/orga/templates/orga/cft/toggle.html:21
 msgid "Go Start"
-msgstr "開始徵稿"
+msgstr "開始"
 
 #: pretalx/orga/templates/orga/cfp/track_delete.html:5
 msgid "Do you really want to delete this track?"
@@ -4385,6 +4403,10 @@ msgstr ""
 #: pretalx/submission/models/tag.py:24 pretalx/submission/models/track.py:33
 msgid "Color"
 msgstr "顏色"
+
+#: pretalx/orga/templates/orga/cft/toggle.html:13
+msgid "CfT status"
+msgstr "徵軌狀態"
 
 #: pretalx/orga/templates/orga/event/dashboard.html:10
 msgid ""
@@ -4526,7 +4548,7 @@ msgstr "正在進行的活動"
 #: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
-#: pretalx/orga/views/dashboard.py:213
+#: pretalx/orga/views/dashboard.py:216
 #, fuzzy
 #| msgid "proposal"
 #| msgid_plural "submissions"
@@ -4937,7 +4959,7 @@ msgstr "您的分數"
 #: pretalx/orga/templates/orga/review/dashboard.html:113
 #: pretalx/orga/templates/orga/submission/base.html:73
 #: pretalx/orga/templates/orga/submission/content.html:52
-#: pretalx/orga/views/dashboard.py:139
+#: pretalx/orga/views/dashboard.py:142
 msgid "Reviews"
 msgstr "檢閱"
 
@@ -5619,7 +5641,7 @@ msgid "Add a new note"
 msgstr ""
 
 #: pretalx/orga/templates/orga/speaker/list.html:10
-#: pretalx/orga/views/dashboard.py:221
+#: pretalx/orga/views/dashboard.py:224
 msgid "submitter"
 msgid_plural "submitters"
 msgstr[0] "名提交者"
@@ -6124,71 +6146,83 @@ msgstr "徵稿已經結束。"
 msgid "This cfp is now end."
 msgstr "徵稿結束。"
 
+#: pretalx/orga/views/cft.py:36
+msgid "This cft was already started."
+msgstr "徵軌已開始。"
+
+#: pretalx/orga/views/cft.py:46
+msgid "This cft is now start."
+msgstr "徵軌開始。"
+
+#: pretalx/orga/views/cft.py:49
+msgid "This cft was already end."
+msgstr "徵軌已經結束。"
+
+#: pretalx/orga/views/cft.py:59
+msgid "This cft is now end."
+msgstr "徵軌結束。"
+
 #: pretalx/orga/views/dashboard.py:97
 msgid "until the CfP ends"
 msgstr "後徵稿結束"
 
-#: pretalx/orga/views/dashboard.py:99
+#: pretalx/orga/views/dashboard.py:100
 #, fuzzy
 #| msgid "CfP is open"
 msgid "CfP is end"
 msgstr "議程投稿階段已開始"
 
-#: pretalx/orga/views/dashboard.py:104
+#: pretalx/orga/views/dashboard.py:105
 msgid "CfP is not open"
 msgstr "議程投稿階未開始"
 
-#: pretalx/orga/views/dashboard.py:113
-#, fuzzy
-#| msgid "until the CfP ends"
-msgid "until the CfT ends"
-msgstr "後徵稿結束"
-
 #: pretalx/orga/views/dashboard.py:115
+msgid "until the CfT ends"
+msgstr "後徵軌結束"
+
+#: pretalx/orga/views/dashboard.py:118
 #, fuzzy
 #| msgid "CfP is open"
 msgid "CfT is end"
 msgstr "議程投稿階段已開始"
 
-#: pretalx/orga/views/dashboard.py:117
-#, fuzzy
-#| msgid "Go to CfP"
-msgid "Go to CfT"
-msgstr "前往「徵求議程投稿」頁面"
-
 #: pretalx/orga/views/dashboard.py:120
+msgid "Go to CfT"
+msgstr "前往「徵求議程軌」頁面"
+
+#: pretalx/orga/views/dashboard.py:123
 msgid "CfT is not open"
 msgstr "徵軌未開始"
 
-#: pretalx/orga/views/dashboard.py:143
+#: pretalx/orga/views/dashboard.py:146
 msgid "Active reviewers"
 msgstr ""
 
-#: pretalx/orga/views/dashboard.py:175
+#: pretalx/orga/views/dashboard.py:178
 msgid "day until event start"
 msgid_plural "days until event start"
 msgstr[0] "天後活動開始"
 
-#: pretalx/orga/views/dashboard.py:185
+#: pretalx/orga/views/dashboard.py:188
 msgid "day since event end"
 msgid_plural "days since event end"
 msgstr[0] ""
 
-#: pretalx/orga/views/dashboard.py:193
+#: pretalx/orga/views/dashboard.py:196
 #, python-brace-format
 msgid "Day {number}"
 msgstr "第 {number} 天"
 
-#: pretalx/orga/views/dashboard.py:194
+#: pretalx/orga/views/dashboard.py:197
 #, python-brace-format
 msgid "of {total_days} days"
 msgstr "，共 {total_days} 天"
 
-#: pretalx/orga/views/dashboard.py:204
+#: pretalx/orga/views/dashboard.py:207
 msgid "current schedule"
 msgstr "目前的議程表"
 
-#: pretalx/orga/views/dashboard.py:230
+#: pretalx/orga/views/dashboard.py:233
 #, fuzzy
 #| msgid "session"
 #| msgid_plural "talks"
@@ -6196,7 +6230,7 @@ msgid "session"
 msgid_plural "sessions"
 msgstr[0] "個議程"
 
-#: pretalx/orga/views/dashboard.py:243
+#: pretalx/orga/views/dashboard.py:246
 #, fuzzy
 #| msgid "unconfirmed session"
 #| msgid_plural "unconfirmed talks"
@@ -6204,12 +6238,12 @@ msgid "unconfirmed session"
 msgid_plural "unconfirmed sessions"
 msgstr[0] "個未確認的議程"
 
-#: pretalx/orga/views/dashboard.py:256
+#: pretalx/orga/views/dashboard.py:259
 msgid "speaker"
 msgid_plural "speakers"
 msgstr[0] "名講者"
 
-#: pretalx/orga/views/dashboard.py:264
+#: pretalx/orga/views/dashboard.py:267
 msgid "sent email"
 msgid_plural "sent emails"
 msgstr[0] "份已傳送的電子郵件"

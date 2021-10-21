@@ -7,6 +7,10 @@ from pretalx.event.models.event import Event
 
 LOG_NAMES = {
     "pretalx.cfp.update": _("The CfP has been modified."),
+    "pretalx.cfp.activate": _("The CfP has been open"),
+    "pretalx.cfp.deactivate": _("The CfP has been close"),
+    "pretalx.cft.activate": _("The CfT has been open"),
+    "pretalx.cft.deactivate": _("The CfT has been close"),
     "pretalx.event.create": _("The event has been added."),
     "pretalx.event.update": _("The event was modified."),
     "pretalx.event.activate": _("The event was made public."),

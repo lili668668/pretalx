@@ -109,16 +109,18 @@ class EventDashboardView(EventPermissionRequired, TemplateView):
         result = []
         deadline = self.request.event.cft.deadline
         if self.request.event.cft.is_open:
-            small = ''
             if deadline and _now <= deadline:
-                small = timeuntil(deadline) + _("until the CfT ends")
+                result.append(
+                    {"url": self.request.event.cft.urls.toggle, "large": timeuntil(deadline),
+                     "small": _("until the CfT ends")})
             elif _now > deadline:
-                small = _("CfT is end")
+                result.append(
+                    {"url": self.request.event.cft.urls.toggle, "large": _("CfT is end")})
             result.append(
-                {"url": self.request.event.cft.urls.public, "large": _("Go to CfT"), "small": small}
+                {"url": self.request.event.cft.urls.public, "large": _("Go to CfT")}
             )
         else:
-            result.append({"large": _("CfT is not open")})
+            result.append({"url": self.request.event.cft.urls.toggle, "large": _("CfT is not open")})
         return result
 
     def get_review_tiles(self):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-20 14:04+0000\n"
+"POT-Creation-Date: 2021-10-21 00:19+0000\n"
 "PO-Revision-Date: 2021-09-12 19:50+0000\n"
 "Last-Translator: laurent fernandez <laurent@ushova.io>\n"
 "Language-Team: none\n"
@@ -600,7 +600,7 @@ msgid "withdrawn"
 msgstr "retirado"
 
 #: pretalx/cfp/templates/cfp/event/index.html:32
-#: pretalx/orga/views/dashboard.py:101
+#: pretalx/orga/views/dashboard.py:102
 msgid "Go to CfP"
 msgstr "Ir a CfP"
 
@@ -1246,242 +1246,266 @@ msgid "The CfP has been modified."
 msgstr "La CfP ha sido modificada."
 
 #: pretalx/common/log_display.py:10
+#, fuzzy
+#| msgid "The CfP has been modified."
+msgid "The CfP has been open"
+msgstr "La CfP ha sido modificada."
+
+#: pretalx/common/log_display.py:11
+#, fuzzy
+#| msgid "The CfP has been modified."
+msgid "The CfP has been close"
+msgstr "La CfP ha sido modificada."
+
+#: pretalx/common/log_display.py:12
+#, fuzzy
+#| msgid "The CfP has been modified."
+msgid "The CfT has been open"
+msgstr "La CfP ha sido modificada."
+
+#: pretalx/common/log_display.py:13
+#, fuzzy
+#| msgid "The CfP has been modified."
+msgid "The CfT has been close"
+msgstr "La CfP ha sido modificada."
+
+#: pretalx/common/log_display.py:14
 msgid "The event has been added."
 msgstr "El evento ha sido agregado."
 
-#: pretalx/common/log_display.py:11
+#: pretalx/common/log_display.py:15
 msgid "The event was modified."
 msgstr "El evento fue modificado."
 
-#: pretalx/common/log_display.py:12
+#: pretalx/common/log_display.py:16
 msgid "The event was made public."
 msgstr "El evento se hizo público."
 
-#: pretalx/common/log_display.py:13
+#: pretalx/common/log_display.py:17
 msgid "The event was deactivated."
 msgstr "El evento fue cancelado."
 
-#: pretalx/common/log_display.py:14
+#: pretalx/common/log_display.py:18
 msgid "A plugin was enabled."
 msgstr "Se a habilitado un complemento."
 
-#: pretalx/common/log_display.py:15
+#: pretalx/common/log_display.py:19
 msgid "A plugin was disabled."
 msgstr "Se a deshabilitado un complemento."
 
-#: pretalx/common/log_display.py:16 pretalx/common/log_display.py:24
+#: pretalx/common/log_display.py:20 pretalx/common/log_display.py:28
 msgid "The invitation to the event orga was accepted."
 msgstr "Se aceptó la invitación al evento orga."
 
-#: pretalx/common/log_display.py:17 pretalx/common/log_display.py:27
+#: pretalx/common/log_display.py:21 pretalx/common/log_display.py:31
 msgid "An invitation to the event orga was retracted."
 msgstr "Se retiró una invitación al evento orga."
 
-#: pretalx/common/log_display.py:18 pretalx/common/log_display.py:30
+#: pretalx/common/log_display.py:22 pretalx/common/log_display.py:34
 msgid "An invitation to the event orga was sent."
 msgstr "Se envió una invitación al evento orga."
 
-#: pretalx/common/log_display.py:20 pretalx/common/log_display.py:33
+#: pretalx/common/log_display.py:24 pretalx/common/log_display.py:37
 msgid "The invitation to the review team was retracted."
 msgstr "Se retiró la invitación al equipo de revisión."
 
-#: pretalx/common/log_display.py:22 pretalx/common/log_display.py:36
+#: pretalx/common/log_display.py:26 pretalx/common/log_display.py:40
 msgid "The invitation to the review team was sent."
 msgstr "Se envió la invitación al equipo de revisión."
 
-#: pretalx/common/log_display.py:38 pretalx/common/log_display.py:42
+#: pretalx/common/log_display.py:42 pretalx/common/log_display.py:46
 msgid "An email was modified."
 msgstr "Se modificó un correo electrónico."
 
-#: pretalx/common/log_display.py:39
+#: pretalx/common/log_display.py:43
 msgid "A pending email was deleted."
 msgstr "Se eliminó un correo electrónico pendiente."
 
-#: pretalx/common/log_display.py:40
+#: pretalx/common/log_display.py:44
 msgid "All pending emails were deleted."
 msgstr "Se eliminaron todos los correos electrónicos pendientes."
 
-#: pretalx/common/log_display.py:41
+#: pretalx/common/log_display.py:45
 msgid "An email was sent."
 msgstr "Se envió un correo electrónico."
 
-#: pretalx/common/log_display.py:43
+#: pretalx/common/log_display.py:47
 msgid "A mail template was added."
 msgstr "Se agregó una plantilla de correo."
 
-#: pretalx/common/log_display.py:44
+#: pretalx/common/log_display.py:48
 msgid "A mail template was deleted."
 msgstr "Se eliminó una plantilla de correo."
 
-#: pretalx/common/log_display.py:45
+#: pretalx/common/log_display.py:49
 msgid "A mail template was modified."
 msgstr "Se modificó una plantilla de correo."
 
-#: pretalx/common/log_display.py:46
+#: pretalx/common/log_display.py:50
 msgid "A question was added."
 msgstr "Se agregó una pregunta."
 
-#: pretalx/common/log_display.py:47
+#: pretalx/common/log_display.py:51
 msgid "A question was deleted."
 msgstr "Se eliminó una pregunta."
 
-#: pretalx/common/log_display.py:48
+#: pretalx/common/log_display.py:52
 msgid "A question was modified."
 msgstr "Se modificó una pregunta."
 
-#: pretalx/common/log_display.py:49
+#: pretalx/common/log_display.py:53
 msgid "A question option was added."
 msgstr "Se agregó una opción de pregunta."
 
-#: pretalx/common/log_display.py:50
+#: pretalx/common/log_display.py:54
 msgid "A question option was deleted."
 msgstr "Se eliminó una opción de pregunta."
 
-#: pretalx/common/log_display.py:51
+#: pretalx/common/log_display.py:55
 msgid "A question option was modified."
 msgstr "Se modificó una opción de pregunta."
 
-#: pretalx/common/log_display.py:52
+#: pretalx/common/log_display.py:56
 msgid "A new room was added."
 msgstr "Se agregó una nueva habitación."
 
-#: pretalx/common/log_display.py:53
+#: pretalx/common/log_display.py:57
 msgid "A new schedule version was released."
 msgstr "Se lanzó una nueva versión de programación."
 
-#: pretalx/common/log_display.py:54
+#: pretalx/common/log_display.py:58
 msgid "The proposal was accepted."
 msgstr "La propuesta fue aceptada."
 
-#: pretalx/common/log_display.py:55
+#: pretalx/common/log_display.py:59
 msgid "The proposal was cancelled."
 msgstr "La propuesta fue cancelada."
 
-#: pretalx/common/log_display.py:56 pretalx/common/log_display.py:57
+#: pretalx/common/log_display.py:60 pretalx/common/log_display.py:61
 msgid "The proposal was confirmed."
 msgstr "La propuesta fue confirmada."
 
-#: pretalx/common/log_display.py:58
+#: pretalx/common/log_display.py:62
 msgid "The proposal was added."
 msgstr "Se agregó la propuesta."
 
-#: pretalx/common/log_display.py:59
+#: pretalx/common/log_display.py:63
 msgid "The proposal was deleted."
 msgstr "La propuesta fue eliminada."
 
-#: pretalx/common/log_display.py:60
+#: pretalx/common/log_display.py:64
 msgid "The proposal was rejected."
 msgstr "La propuesta fue rechazada."
 
-#: pretalx/common/log_display.py:61
+#: pretalx/common/log_display.py:65
 msgid "A proposal resource was added."
 msgstr "Se agregó un recurso de propuesta."
 
-#: pretalx/common/log_display.py:62
+#: pretalx/common/log_display.py:66
 msgid "A proposal resource was deleted."
 msgstr "Se eliminó un recurso de propuesta."
 
-#: pretalx/common/log_display.py:63
+#: pretalx/common/log_display.py:67
 msgid "A proposal resource was modified."
 msgstr "Se modificó un recurso de propuesta."
 
-#: pretalx/common/log_display.py:64
+#: pretalx/common/log_display.py:68
 msgid "A speaker was added to the proposal."
 msgstr "Se agregó un ponente a la propuesta."
 
-#: pretalx/common/log_display.py:65
+#: pretalx/common/log_display.py:69
 msgid "A speaker was invited to the proposal."
 msgstr "Se invitó a un ponente a la propuesta."
 
-#: pretalx/common/log_display.py:66
+#: pretalx/common/log_display.py:70
 msgid "A speaker was removed from the proposal."
 msgstr "Un ponente fue eliminado de la propuesta."
 
-#: pretalx/common/log_display.py:67
+#: pretalx/common/log_display.py:71
 msgid "The proposal was unconfirmed."
 msgstr "La propuesta no fue confirmada."
 
-#: pretalx/common/log_display.py:68
+#: pretalx/common/log_display.py:72
 msgid "The proposal was modified."
 msgstr "La propuesta fue modificada."
 
-#: pretalx/common/log_display.py:69
+#: pretalx/common/log_display.py:73
 msgid "The proposal was withdrawn."
 msgstr "La propuesta fue retirada."
 
-#: pretalx/common/log_display.py:70 pretalx/common/log_display.py:71
+#: pretalx/common/log_display.py:74 pretalx/common/log_display.py:75
 msgid "A proposal answer was modified."
 msgstr "Se modificó una propuesta de respuesta."
 
-#: pretalx/common/log_display.py:72 pretalx/common/log_display.py:73
+#: pretalx/common/log_display.py:76 pretalx/common/log_display.py:77
 msgid "A proposal answer was added."
 msgstr "Se agregó una propuesta de respuesta."
 
-#: pretalx/common/log_display.py:74
+#: pretalx/common/log_display.py:78
 msgid "A session type was added."
 msgstr "Se agregó un tipo de sesión."
 
-#: pretalx/common/log_display.py:75
+#: pretalx/common/log_display.py:79
 msgid "A session type was deleted."
 msgstr "Se eliminó un tipo de sesión."
 
-#: pretalx/common/log_display.py:76
+#: pretalx/common/log_display.py:80
 msgid "The session type was made default."
 msgstr "El tipo de sesión se estableció por defecto."
 
-#: pretalx/common/log_display.py:77
+#: pretalx/common/log_display.py:81
 msgid "A session type was modified."
 msgstr "Se modificó un tipo de sesión."
 
-#: pretalx/common/log_display.py:78
+#: pretalx/common/log_display.py:82
 msgid "An access code was added."
 msgstr "Se agregó un código de acceso."
 
-#: pretalx/common/log_display.py:79
+#: pretalx/common/log_display.py:83
 msgid "An access code was sent."
 msgstr "Se envió un código de acceso."
 
-#: pretalx/common/log_display.py:80
+#: pretalx/common/log_display.py:84
 msgid "An access code was modified."
 msgstr "Se modificó un código de acceso."
 
-#: pretalx/common/log_display.py:81
+#: pretalx/common/log_display.py:85
 msgid "An access code was deleted."
 msgstr "Se eliminó un código de acceso."
 
-#: pretalx/common/log_display.py:82
+#: pretalx/common/log_display.py:86
 msgid "A track was added."
 msgstr "Se agregó el seguimiento."
 
-#: pretalx/common/log_display.py:83
+#: pretalx/common/log_display.py:87
 msgid "A track was deleted."
 msgstr "Se eliminó un seguimiento."
 
-#: pretalx/common/log_display.py:84
+#: pretalx/common/log_display.py:88
 msgid "A track was modified."
 msgstr "Se modificó un seguimiento."
 
-#: pretalx/common/log_display.py:85
+#: pretalx/common/log_display.py:89
 msgid "A speaker has been marked as arrived."
 msgstr "Se ha marcado un ponente como llegado."
 
-#: pretalx/common/log_display.py:86
+#: pretalx/common/log_display.py:90
 msgid "A speaker has been marked as not arrived."
 msgstr "Se ha marcado un ponente como no llegado."
 
-#: pretalx/common/log_display.py:87
+#: pretalx/common/log_display.py:91
 msgid "The API token was reset."
 msgstr "Se restableció el token de API."
 
-#: pretalx/common/log_display.py:88
+#: pretalx/common/log_display.py:92
 msgid "The password was reset."
 msgstr "Se restableció la contraseña."
 
-#: pretalx/common/log_display.py:89
+#: pretalx/common/log_display.py:93
 msgid "The password was modified."
 msgstr "Se modificó la contraseña."
 
-#: pretalx/common/log_display.py:90
+#: pretalx/common/log_display.py:94
 msgid "The profile was modified."
 msgstr "El perfil fue modificado."
 
@@ -4413,12 +4437,14 @@ msgid "CfP status"
 msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/toggle.html:19
+#: pretalx/orga/templates/orga/cft/toggle.html:19
 #, fuzzy
 #| msgid "Close"
 msgid "Go Close"
 msgstr "Cerrar"
 
 #: pretalx/orga/templates/orga/cfp/toggle.html:21
+#: pretalx/orga/templates/orga/cft/toggle.html:21
 #, fuzzy
 #| msgid "Start"
 msgid "Go Start"
@@ -4450,6 +4476,10 @@ msgstr ""
 #: pretalx/submission/models/tag.py:24 pretalx/submission/models/track.py:33
 msgid "Color"
 msgstr "Color"
+
+#: pretalx/orga/templates/orga/cft/toggle.html:13
+msgid "CfT status"
+msgstr ""
 
 #: pretalx/orga/templates/orga/event/dashboard.html:10
 msgid ""
@@ -4600,7 +4630,7 @@ msgstr "Tus próximos eventos"
 #: pretalx/orga/templates/orga/event_list.html:56
 #: pretalx/orga/templates/orga/speaker/form.html:21
 #: pretalx/orga/templates/orga/submission/list.html:22
-#: pretalx/orga/views/dashboard.py:213
+#: pretalx/orga/views/dashboard.py:216
 msgid "proposal"
 msgid_plural "proposals"
 msgstr[0] "propuesta"
@@ -5026,7 +5056,7 @@ msgstr "Tu puntuación"
 #: pretalx/orga/templates/orga/review/dashboard.html:113
 #: pretalx/orga/templates/orga/submission/base.html:73
 #: pretalx/orga/templates/orga/submission/content.html:52
-#: pretalx/orga/views/dashboard.py:139
+#: pretalx/orga/views/dashboard.py:142
 msgid "Reviews"
 msgstr "Reseñas"
 
@@ -5755,7 +5785,7 @@ msgid "Add a new note"
 msgstr "Agregar una nueva nota"
 
 #: pretalx/orga/templates/orga/speaker/list.html:10
-#: pretalx/orga/views/dashboard.py:221
+#: pretalx/orga/views/dashboard.py:224
 msgid "submitter"
 msgid_plural "submitters"
 msgstr[0] "remitente"
@@ -6267,95 +6297,119 @@ msgstr "Este evento ya estaba oculto."
 msgid "This cfp is now end."
 msgstr "Esta página ya no existe."
 
+#: pretalx/orga/views/cft.py:36
+#, fuzzy
+#| msgid "This event was already live."
+msgid "This cft was already started."
+msgstr "Este evento ya estaba en vivo."
+
+#: pretalx/orga/views/cft.py:46
+#, fuzzy
+#| msgid "This page is no more."
+msgid "This cft is now start."
+msgstr "Esta página ya no existe."
+
+#: pretalx/orga/views/cft.py:49
+#, fuzzy
+#| msgid "This event was already hidden."
+msgid "This cft was already end."
+msgstr "Este evento ya estaba oculto."
+
+#: pretalx/orga/views/cft.py:59
+#, fuzzy
+#| msgid "This page is no more."
+msgid "This cft is now end."
+msgstr "Esta página ya no existe."
+
 #: pretalx/orga/views/dashboard.py:97
 msgid "until the CfP ends"
 msgstr "hasta que finalice la convocatoria de propuestas"
 
-#: pretalx/orga/views/dashboard.py:99
+#: pretalx/orga/views/dashboard.py:100
 #, fuzzy
 #| msgid "CfP is open"
 msgid "CfP is end"
 msgstr "CfP está abierto"
 
-#: pretalx/orga/views/dashboard.py:104
+#: pretalx/orga/views/dashboard.py:105
 #, fuzzy
 #| msgid "CfP is open"
 msgid "CfP is not open"
 msgstr "CfP está abierto"
 
-#: pretalx/orga/views/dashboard.py:113
+#: pretalx/orga/views/dashboard.py:115
 #, fuzzy
 #| msgid "until the CfP ends"
 msgid "until the CfT ends"
 msgstr "hasta que finalice la convocatoria de propuestas"
 
-#: pretalx/orga/views/dashboard.py:115
+#: pretalx/orga/views/dashboard.py:118
 #, fuzzy
 #| msgid "CfP is open"
 msgid "CfT is end"
 msgstr "CfP está abierto"
 
-#: pretalx/orga/views/dashboard.py:117
+#: pretalx/orga/views/dashboard.py:120
 #, fuzzy
 #| msgid "Go to CfP"
 msgid "Go to CfT"
 msgstr "Ir a CfP"
 
-#: pretalx/orga/views/dashboard.py:120
+#: pretalx/orga/views/dashboard.py:123
 #, fuzzy
 #| msgid "CfP is open"
 msgid "CfT is not open"
 msgstr "CfP está abierto"
 
-#: pretalx/orga/views/dashboard.py:143
+#: pretalx/orga/views/dashboard.py:146
 msgid "Active reviewers"
 msgstr "Revisadores activos"
 
-#: pretalx/orga/views/dashboard.py:175
+#: pretalx/orga/views/dashboard.py:178
 msgid "day until event start"
 msgid_plural "days until event start"
 msgstr[0] "día hasta el inicio del evento"
 msgstr[1] "días hasta el inicio del evento"
 
-#: pretalx/orga/views/dashboard.py:185
+#: pretalx/orga/views/dashboard.py:188
 msgid "day since event end"
 msgid_plural "days since event end"
 msgstr[0] "día hasta el fin del evento"
 msgstr[1] "días hasta el fin del evento"
 
-#: pretalx/orga/views/dashboard.py:193
+#: pretalx/orga/views/dashboard.py:196
 #, python-brace-format
 msgid "Day {number}"
 msgstr "Día {number}"
 
-#: pretalx/orga/views/dashboard.py:194
+#: pretalx/orga/views/dashboard.py:197
 #, python-brace-format
 msgid "of {total_days} days"
 msgstr "de {total_days} días"
 
-#: pretalx/orga/views/dashboard.py:204
+#: pretalx/orga/views/dashboard.py:207
 msgid "current schedule"
 msgstr "agenda actual"
 
-#: pretalx/orga/views/dashboard.py:230
+#: pretalx/orga/views/dashboard.py:233
 msgid "session"
 msgid_plural "sessions"
 msgstr[0] "sesión"
 msgstr[1] "sesiones"
 
-#: pretalx/orga/views/dashboard.py:243
+#: pretalx/orga/views/dashboard.py:246
 msgid "unconfirmed session"
 msgid_plural "unconfirmed sessions"
 msgstr[0] "sesión no confirmada"
 msgstr[1] "sesiones no confirmadas"
 
-#: pretalx/orga/views/dashboard.py:256
+#: pretalx/orga/views/dashboard.py:259
 msgid "speaker"
 msgid_plural "speakers"
 msgstr[0] "orador/a"
 msgstr[1] "oradores/as"
 
-#: pretalx/orga/views/dashboard.py:264
+#: pretalx/orga/views/dashboard.py:267
 msgid "sent email"
 msgid_plural "sent emails"
 msgstr[0] "correo electrónico enviado"
