@@ -4,18 +4,18 @@ from django.utils.translation import gettext_lazy as _
 from django_scopes.forms import SafeModelChoiceField
 
 from pretalx.cfp.forms.cft import CfTFormMixin
-from pretalx.common.mixins.forms import PublicContent, I18nContent
+from pretalx.common.mixins.forms import PublicContent, I18nContent, I18nHelpText
 from pretalx.submission.models import Question, Track, SubmissionStates, Submission
 from i18nfield.forms import I18nModelForm
 
 
-class InfoTrackForm(CfTFormMixin, PublicContent, I18nContent, forms.ModelForm, I18nModelForm):
+class InfoTrackForm(CfTFormMixin, PublicContent, I18nContent, forms.ModelForm, I18nHelpText, I18nModelForm):
     def __init__(self, event, **kwargs):
         self.event = event
         self.readonly = kwargs.pop("readonly", False)
         initial = kwargs.pop("initial", {}) or {}
 
-        super().__init__(initial=initial, **kwargs)
+        super().__init__(initial=initial, locales=event.locale_array, **kwargs)
 
         self.fields['notes'].help_text = _("Tell us your request.")
 

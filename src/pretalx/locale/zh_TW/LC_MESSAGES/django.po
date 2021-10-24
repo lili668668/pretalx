@@ -614,10 +614,8 @@ msgstr "已退回"
 
 #: pretalx/cfp/templates/cfp/event/index.html:29
 #: pretalx/orga/views/dashboard.py:120
-#, fuzzy
-#| msgid "Go to CfP"
 msgid "Go to CfT"
-msgstr "前往「徵求議程投稿」頁面"
+msgstr "前往「徵求議程軌」頁面"
 
 #: pretalx/cfp/templates/cfp/event/index.html:34
 #: pretalx/orga/views/dashboard.py:102
