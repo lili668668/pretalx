@@ -1,0 +1,46 @@
+{% extends "cfp/event/base.html" %}
+{% load i18n %}
+{% load orga_edit_link %}
+{% load rich_text %}
+{% load rules %}
+
+{% block content %}
+    {% with cft=request.event.cft %}
+        {% has_perm 'orga.edit_cft' request.user request.event as can_edit_cft %}
+        <div class="d-flex">
+            <h1>{{ cft.headline|default:"" }}</h1>
+            {% if can_edit_cft %}{% orga_edit_link request.event.cft.urls.text %}{% endif %}
+        </div>
+        {{ cft.text|rich_text }}
+        {% if request.event.settings.cft_show_deadline and request.event.cft.deadline %}
+            <p>
+                <strong>
+                    {% if cft.is_open %}
+                        {% blocktranslate with deadline=cft.deadline|date:"SHORT_DATETIME_FORMAT" timezone=request.timezone until_string=cft.deadline|timeuntil trimmed %}
+                            You can enter proposals until {{ deadline }} ({{ timezone }}), {{ until_string }} from now.
+                        {% endblocktranslate %}
+                    {% else %}
+                        {% blocktranslate with deadline=cft.deadline|date:"SHORT_DATETIME_FORMAT" timezone=request.timezone trimmed %}
+                            This Call for Papers closed on {{ deadline }} ({{ timezone }}).
+                        {% endblocktranslate %}
+                    {% endif %}
+                </strong>
+            </p>
+        {% endif %}
+        <div class="row mb-4 url-links">
+            {% if has_submissions or request.user.is_anonymous %}
+                <a class="btn btn-info btn-lg btn-block" href="{{ request.event.urls.user_submissions }}">
+                    {% translate "Edit or view your participates" %}
+                </a>
+            {% endif %}
+            <a class="btn btn-success btn-lg btn-block {% if not cft.is_open %}disabled{% endif %}"
+                href="{{ request.event.urls.join }}{{ submit_qs }}">
+                {% if cft.is_open %}
+                    {% translate "Submit a participate" %}
+                {% else %}
+                    {% translate "Participates are closed" %}
+                {% endif %}
+            </a>
+        </div>
+    {% endwith %}
+{% endblock %}

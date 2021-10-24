@@ -38,9 +38,28 @@ class PublicContent:
         for field_name in self.Meta.public_fields:
             field = self.fields.get(field_name)
             if field:
-                field.original_help_text = getattr(field, "original_help_text", "")
-                field.added_help_text = getattr(field, "added_help_text", "") + str(
+                field.original_help_text = getattr(field, "help_text", "")
+                field.added_help_text = str(
                     phrases.base.public_content
+                )
+                field.help_text = field.original_help_text + " " + field.added_help_text
+
+
+class I18nContent:
+
+    i18n_fields = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        event = getattr(self, "event", None)
+        if event and not event.settings.show_schedule:
+            return
+        for field_name in self.Meta.i18n_fields:
+            field = self.fields.get(field_name)
+            if field:
+                field.original_help_text = getattr(field, "help_text", "")
+                field.added_help_text = str(
+                    phrases.base.i18n_content
                 )
                 field.help_text = field.original_help_text + " " + field.added_help_text
 

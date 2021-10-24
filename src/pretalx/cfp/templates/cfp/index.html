@@ -19,6 +19,17 @@
     {% else %}
         <p>{% translate "No events are currently ongoing." %}</p>
     {% endif %}
+    {% if cft_events %}
+        <h2>{% translate "CfT events" %}</h2>
+        <ul>
+            {% for event in cft_events %}
+                <li><a href="{{ event.urls.base }}">
+                    {{ event.name }}
+                    ({{ event.get_date_range_display }})
+                </a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     {% if future_events %}
         <h2>{% translate "Upcoming events" %}</h2>
         <ul>

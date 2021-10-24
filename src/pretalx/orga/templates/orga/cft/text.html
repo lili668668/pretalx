@@ -1,0 +1,33 @@
+{% extends "orga/cfp/base.html" %}
+{% load bootstrap4 %}
+{% load compress %}
+{% load i18n %}
+{% load static %}
+
+{% block scripts %}
+    {% compress js %}
+        <script defer src="{% static "vendored/moment-with-locales.js" %}"></script>
+        <script defer src="{% static "vendored/moment-timezone-with-data-2012-2022.js" %}"></script>
+        <script defer src="{% static "vendored/datetimepicker/bootstrap-datetimepicker.js" %}"></script>
+        <script defer src="{% static "orga/js/datetimepicker.js" %}"></script>
+        <script defer src="{% static "orga/js/cfp.js" %}"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block cfp_content %}
+    <div class="flex-container">
+        <div class="flex-content">
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form_errors form %}
+                <fieldset>
+                    <legend id="text">{% translate "Text and deadline" %}</legend>
+                    {% bootstrap_field form.headline layout='event' %}
+                    {% bootstrap_field form.text layout='event' %}
+                    {% bootstrap_field form.deadline layout='event' %}
+                </fieldset>
+                {% include "orga/submit_row.html" %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -255,6 +255,7 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         logo = "{self.logo.url}"
         reset = "{base}reset"
         submit = "{base}submit/"
+        join = "{base}join/"
         user = "{base}me/"
         user_delete = "{base}me/delete"
         user_submissions = "{user}submissions/"
@@ -562,7 +563,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
 
         protected_settings = ["custom_domain", "display_header_data"]
         self._delete_mail_templates()
-        self.submission_types.exclude(pk=self.cfp.default_type_id).delete()
         for template in self.template_names:
             new_template = getattr(other_event, template)
             new_template.pk = None
@@ -570,17 +570,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             new_template.save()
             setattr(self, template, new_template)
         submission_type_map = {}
-        for submission_type in other_event.submission_types.all():
-            submission_type_map[submission_type.pk] = submission_type
-            is_default = submission_type == other_event.cfp.default_type
-            submission_type.pk = None
-            submission_type.event = self
-            submission_type.save()
-            if is_default:
-                old_default = self.cfp.default_type
-                self.cfp.default_type = submission_type
-                self.cfp.save()
-                old_default.delete()
         track_map = {}
         for track in other_event.tracks.all():
             track_map[track.pk] = track
@@ -834,6 +823,12 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         from pretalx.cfp.flow import CfPFlow
 
         return CfPFlow(self)
+
+    @cached_property
+    def cft_flow(self):
+        from pretalx.cfp.cft_flow import CfTFlow
+
+        return CfTFlow(self)
 
     def get_date_range_display(self) -> str:
         """Returns the localised, prettily formatted date range for this event.

@@ -31,6 +31,13 @@ class Availability(LogMixin, models.Model):
         null=True,
         blank=True,
     )
+    track = models.ForeignKey(
+        to="submission.Track",
+        related_name="availabilities",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
     room = models.ForeignKey(
         to="schedule.Room",
         related_name="availabilities",
@@ -45,9 +52,10 @@ class Availability(LogMixin, models.Model):
 
     def __str__(self) -> str:
         person = self.person.user.get_display_name() if self.person else None
+        track = getattr(self.track, "slug", None)
         room = getattr(self.room, "name", None)
         event = getattr(getattr(self, "event", None), "slug", None)
-        return f"Availability(event={event}, person={person}, room={room})"
+        return f"Availability(event={event}, track={track}, person={person}, room={room})"
 
     def __hash__(self):
         return hash((self.person, self.room, self.start, self.end))
@@ -55,13 +63,13 @@ class Availability(LogMixin, models.Model):
     def __eq__(self, other: "Availability") -> bool:
         """Comparisons like ``availability1 == availability2``.
 
-        Checks if ``event``, ``person``, ``room``, ``start`` and ``end``
+        Checks if ``event``, ``person``, ``track``, ``room``, ``start`` and ``end``
         are the same.
         """
         return all(
             [
                 getattr(self, attribute, None) == getattr(other, attribute, None)
-                for attribute in ["person", "room", "start", "end"]
+                for attribute in ["person", "room", "track",  "start", "end"]
             ]
         )
 

@@ -14,6 +14,7 @@ from django.views.generic import DetailView, ListView, TemplateView, UpdateView,
 from pretalx.orga.forms import TrackForm
 from pretalx.common.views import CreateOrUpdateView
 from django_context_decorator import context
+from pretalx.orga.forms import CfTForm
 
 from pretalx.common.forms import I18nFormSet
 from pretalx.common.mixins.views import (
@@ -124,3 +125,27 @@ class TrackDelete(PermissionRequired, DetailView):
                 _("This track is in use in a proposal and cannot be deleted."),
             )
         return redirect(self.request.event.cfp.urls.tracks)
+
+class CfTTextDetail(PermissionRequired, ActionFromUrl, UpdateView):
+    form_class = CfTForm
+    model = CfT
+    template_name = "orga/cft/text.html"
+    permission_required = "orga.edit_cft"
+    write_permission_required = "orga.edit_cft"
+
+    def get_object(self):
+        return self.request.event.cft
+
+    def get_success_url(self) -> str:
+        return self.object.urls.text
+
+    @transaction.atomic
+    def form_valid(self, form):
+        messages.success(self.request, "The CfT update has been saved.")
+        form.instance.event = self.request.event
+        result = super().form_valid(form)
+        if form.has_changed():
+            form.instance.log_action(
+                "pretalx.cft.update", person=self.request.user, orga=True
+            )
+        return result

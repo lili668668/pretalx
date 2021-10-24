@@ -111,7 +111,7 @@
                             {% else %}
                                 <a
                                     class="nav-link" target="_blank" rel="noopener"
-                                    href="{% if go_to_target == 'schedule' %}{{ request.event.urls.schedule }}{% else %}{{ request.event.cfp.urls.public }}{% endif %}"
+                                    href="{{ request.event.urls.base }}"
                                 >
                                     <i class="fa fa-eye"></i>
                                 </a>
@@ -233,6 +233,9 @@
                                     </a>
                                 </span>
                                 <div class="collapse in{% if "cft." in url_name %} show{% endif %}" aria-expand="true" id="collapseCfT">
+                                    <a href="{{ request.event.cft.urls.text }}" class="nav-link nav-link-second-level{% if "cft.text" in url_name %} active{% endif %}">
+                                        <span>{% translate "Edit CfT Form" %}</span>
+                                    </a>
                                     <a href="{{ request.event.cft.urls.tracks }}" class="nav-link nav-link-second-level{% if "cft.track" in url_name %} active{% endif %}">
                                         <span>{% translate "Tracks" %}</span>
                                     </a>

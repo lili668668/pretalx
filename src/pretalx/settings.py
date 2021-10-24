@@ -352,64 +352,32 @@ LANGUAGES_INFORMATION = {
     "en": {
         "name": _("English"),
         "natural_name": "English",
-        "official": True,
-        "percentage": 100,
-    },
-    "de": {
-        "name": _("German"),
-        "natural_name": "Deutsch",
-        "official": True,
-        "percentage": 100,
-    },
-    "de-formal": {
-        "name": _("German (formal)"),
-        "natural_name": "Deutsch",
-        "official": True,
-        "percentage": 100,
-        "public_code": "de",
-    },
-    "ar": {
-        "name": _("Arabic"),
-        "natural_name": "اَلْعَرَبِيَّةُ",
         "official": False,
-        "percentage": 91,
+        "percentage": 100,
     },
     "zh-tw": {
         "name": _("Traditional Chinese (Taiwan)"),
-        "natural_name": "漢語",
-        "official": False,
-        "percentage": 66,
-        "public_code": "zh",
+        "natural_name": "繁體中文",
+        "official": True,
+        "percentage": 90,
+        "public_code": "zh-TW",
     },
-    "fr": {
-        "name": _("French"),
-        "natural_name": "Français",
+    "zh-cn": {
+        "name": _("Simplified Chinese"),
+        "natural_name": "简体中文",
         "official": False,
-        "percentage": 96,
+        "percentage": 0,
+        "public_code": "zh-CN",
     },
     "ja-JP": {
         "name": _("Japanese"),
         "natural_name": "日本語",
         "official": False,
-        "percentage": 87,
+        "percentage": 60,
         "public_code": "jp",
-    },
-    "es": {
-        "name": _("Spanish"),
-        "natural_name": "Español",
-        "official": False,
-        "percentage": 100,
-    },
-    "pt-BR": {
-        "name": _("Brasilian Portuguese"),
-        "natural_name": "Português brasileiro",
-        "official": False,
-        "percentage": 100,
-        "public_code": "pt",
     },
 }
 LANGUAGES_RTL = {
-    "ar",
 }
 
 for section in config.sections():

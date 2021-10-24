@@ -147,6 +147,7 @@ urlpatterns = [
                                     ]
                                 ),
                             ),
+                            path("cft/text", cft.CfTTextDetail.as_view(), name="cft.text.view"),
                             path(
                                 "cfp/",
                                 RedirectView.as_view(pattern_name="orga:cfp.text.view"),

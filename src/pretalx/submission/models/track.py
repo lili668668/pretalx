@@ -7,26 +7,47 @@ from i18nfield.fields import I18nCharField, I18nTextField
 
 from pretalx.common.mixins.models import LogMixin
 from pretalx.common.urls import EventUrls
+from pretalx.common.utils import path_with_hash
+
+
+def logo_path(instance, filename):
+    return f"community_logo/{path_with_hash(filename)}"
 
 
 class Track(LogMixin, models.Model):
-    """A track groups :class:`~pretalx.submission.models.submission.Submission`
-    objects within an :class:`~pretalx.event.models.event.Event`, e.g. by
-    topic.
-
-    :param color: The track colour, in the format #012345.
-    """
 
     event = models.ForeignKey(
         to="event.Event", on_delete=models.PROTECT, related_name="tracks"
     )
     name = I18nCharField(
         max_length=200,
-        verbose_name=_("Name"),
+        verbose_name=_("Topic Name"),
     )
     description = I18nTextField(
-        verbose_name=_("Description"),
+        verbose_name=_("Topic Description"),
+        help_text=_("Make sure to mention how is it related to 𝐅𝐋𝐎𝐒𝐒.")
+    )
+    community_name = I18nCharField(
+        max_length=200,
+        verbose_name=_("Community Name"),
+    )
+    community_description = I18nTextField(
+        verbose_name=_("Community Description"),
+    )
+    community_logo = models.ImageField(
+        null=True,
         blank=True,
+        verbose_name=_("Community Logo"),
+        upload_to=logo_path,
+    )
+    room_name = models.CharField(
+        max_length=200,
+        verbose_name=_("Room Name"),
+        blank=True
+    )
+    notes = models.TextField(
+        verbose_name=_("Notes"),
+        null=True,
     )
     color = models.CharField(
         max_length=7,

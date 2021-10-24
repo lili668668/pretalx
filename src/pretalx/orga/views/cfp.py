@@ -463,8 +463,6 @@ class SubmissionTypeDefault(PermissionRequired, View):
     def dispatch(self, request, *args, **kwargs):
         super().dispatch(request, *args, **kwargs)
         submission_type = self.get_object()
-        self.request.event.cfp.default_type = submission_type
-        self.request.event.cfp.save(update_fields=["default_type"])
         submission_type.log_action(
             "pretalx.submission_type.make_default", person=self.request.user, orga=True
         )
@@ -489,13 +487,6 @@ class SubmissionTypeDelete(PermissionRequired, DetailView):
                 request,
                 _(
                     "You cannot delete the only session type. Try creating another one first!"
-                ),
-            )
-        elif request.event.cfp.default_type == submission_type:
-            messages.error(
-                request,
-                _(
-                    "You cannot delete the default session type. Make another type default first!"
                 ),
             )
         else:

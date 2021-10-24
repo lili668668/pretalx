@@ -904,6 +904,11 @@ input[lang=zh-tw], textarea[lang=zh-tw], .checkbox > input[lang=zh-tw] + label {
   background-image: url(static("vendored/flags/tw.png"));
 }
 
+div[lang=cn], input[lang=cn], textarea[lang=cn], .checkbox > input[lang=cn] + label,
+input[lang=zh-cn], textarea[lang=zh-cn], .checkbox > input[lang=zh-cn] + label {
+  background-image: url(static("vendored/flags/cn.png"));
+}
+
 div[lang=t], input[lang=tz], textarea[lang=tz] {
   background-image: url(static("vendored/flags/tz.png"));
 }

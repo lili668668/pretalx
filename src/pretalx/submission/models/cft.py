@@ -27,16 +27,14 @@ class CfT(LogMixin, models.Model):
     deadline = models.DateTimeField(
         null=True,
         blank=True,
-        verbose_name=_("deadline"),
-        help_text=_(
-            "Please put in the last date you want to accept proposals from users."
-        ),
+        verbose_name=_("cft_deadline"),
     )
 
     objects = ScopedManager(event="event")
 
     class urls(EventUrls):
         base = "{self.event.orga_urls.cft}"
+        public = "{self.event.urls.base}cft"
         editor = "{base}flow/"
         toggle = "{base}toggle/"
         questions = "{base}questions/"
@@ -47,9 +45,7 @@ class CfT(LogMixin, models.Model):
         new_type = "{types}new"
         tracks = "{base}tracks/"
         new_track = "{tracks}new"
-        access_codes = "{base}access-codes/"
         new_access_code = "{access_codes}new"
-        public = "{self.event.urls.base}cft"
         submit = "{self.event.urls.base}submit/"
 
     def __str__(self) -> str:

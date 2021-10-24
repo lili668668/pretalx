@@ -87,3 +87,4 @@ class BasePhrases(Phrases, app="base"):
         link_end="</a>",
     )
     public_content = _("This content will be shown publicly.")
+    i18n_content = _("You can choose any language you like to fill.")

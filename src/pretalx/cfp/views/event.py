@@ -65,6 +65,10 @@ class EventCfP(EventStartpage):
         return self.request.event.submissions.filter(is_featured=True).exists()
 
 
+class EventCfT(EventStartpage):
+    template_name = "cfp/event/cft.html"
+
+
 class GeneralView(TemplateView):
     template_name = "cfp/index.html"
 
@@ -94,4 +98,5 @@ class GeneralView(TemplateView):
         )
         result["past_events"] = self.filter_events(qs.filter(date_to__lt=_now))
         result["future_events"] = self.filter_events(qs.filter(date_from__gt=_now))
+        result["cft_events"] = self.filter_events(qs.filter(cft__is_start=True, cft__deadline__gte=_now))
         return result

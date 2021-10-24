@@ -33,10 +33,7 @@ class CfP(LogMixin, models.Model):
     deadline = models.DateTimeField(
         null=True,
         blank=True,
-        verbose_name=_("deadline"),
-        help_text=_(
-            "Please put in the last date you want to accept proposals from users."
-        ),
+        verbose_name=_("cfp_deadline"),
     )
 
     objects = ScopedManager(event="event")

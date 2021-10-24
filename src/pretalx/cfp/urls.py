@@ -21,11 +21,18 @@ urlpatterns = [
                     name="event.recover",
                 ),
                 path("cfp", event.EventCfP.as_view(), name="event.start"),
+                path("cft", event.EventCfT.as_view(), name="event.cft"),
                 path("submit/", wizard.SubmitStartView.as_view(), name="event.submit"),
                 path(
                     "submit/<tmpid>/<step>/",
                     wizard.SubmitWizard.as_view(),
                     name="event.submit",
+                ),
+                path("join/", wizard.JoinStartView.as_view(), name="event.join"),
+                path(
+                    "join/<tmpid>/<step>/",
+                    wizard.JoinWizard.as_view(),
+                    name="event.join",
                 ),
                 path(
                     "invitation/<code>/<invitation>",
