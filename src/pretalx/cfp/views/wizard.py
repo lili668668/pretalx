@@ -10,6 +10,7 @@ from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
+from pretalx.event.models import Team
 
 from pretalx.cfp.views.event import EventPageMixin
 from pretalx.common.exceptions import SendMailException
@@ -171,6 +172,19 @@ class JoinWizard(EventPageMixin, View):
         for step in valid_steps:
             if not step.identifier == "user":
                 step.done(request)
+
+        infoStepForm = request.event.cft_flow.steps_dict["info"].get_form(from_storage=True)
+        if infoStepForm.is_valid():
+            t = Team.objects.create(
+                organiser=request.event.organiser,
+                name=_(f"{infoStepForm.cleaned_data['name']} Track"),
+                can_change_teams=True,
+                can_change_organiser_settings=False,
+                can_change_event_settings=False,
+                can_change_submissions=True,
+                is_reviewer=True
+            )
+            t.members.add(self.request.user)
 
         # try:
         #     request.event.ack_template.to_mail(

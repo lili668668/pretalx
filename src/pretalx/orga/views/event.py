@@ -138,8 +138,8 @@ class EventLive(EventSettingsPermission, TemplateView):
         suggestions = []
         # TODO: move to signal
         if (
-            not self.request.event.cfp.text
-            or len(str(self.request.event.cfp.text)) < 50
+                not self.request.event.cfp.text
+                or len(str(self.request.event.cfp.text)) < 50
         ):
             warnings.append(
                 {
@@ -148,8 +148,8 @@ class EventLive(EventSettingsPermission, TemplateView):
                 }
             )
         if (
-            not self.request.event.landing_page_text
-            or len(str(self.request.event.landing_page_text)) < 50
+                not self.request.event.landing_page_text
+                or len(str(self.request.event.landing_page_text)) < 50
         ):
             warnings.append(
                 {
@@ -159,9 +159,9 @@ class EventLive(EventSettingsPermission, TemplateView):
             )
         # TODO: test that mails can be sent
         if (
-            self.request.event.settings.use_tracks
-            and self.request.event.settings.cfp_request_track
-            and self.request.event.tracks.count() < 2
+                self.request.event.settings.use_tracks
+                and self.request.event.settings.cfp_request_track
+                and self.request.event.tracks.count() < 2
         ):
             suggestions.append(
                 {
@@ -606,14 +606,16 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
     condition_dict = {"copy": condition_copy}
 
     def get_template_names(self):
-        if hasattr(self.request.organiser, "event"): return f"orga/event/wizard/forbidden.html"
-        else: return f"orga/event/wizard/{self.steps.current}.html"
+        if hasattr(self.request.organiser, "event"):
+            return f"orga/event/wizard/forbidden.html"
+        else:
+            return f"orga/event/wizard/{self.steps.current}.html"
 
     @context
     def has_organiser(self):
         return (
-            self.request.user.teams.exists()
-            or self.request.user.is_administrator
+                self.request.user.teams.exists()
+                or self.request.user.is_administrator
         )
 
     @context
@@ -632,9 +634,9 @@ class EventWizard(PermissionRequired, SensibleBackWizardMixin, SessionWizardView
             fdata = self.get_cleaned_data_for_step("basics")
             year = now().year % 100
             if (
-                fdata
-                and not str(year) in fdata["slug"]
-                and not str(year + 1) in fdata["slug"]
+                    fdata
+                    and not str(year) in fdata["slug"]
+                    and not str(year + 1) in fdata["slug"]
             ):
                 messages.warning(
                     self.request,
@@ -755,13 +757,13 @@ def event_list(request):
         page = int(request.GET.get("page", "1"))
     qs = (
         request.user.get_events_with_any_permission()
-        .filter(
+            .filter(
             Q(name__icontains=query)
             | Q(slug__icontains=query)
             | Q(organiser__name__icontains=query)
             | Q(organiser__slug__icontains=query)
         )
-        .order_by("-date_from")
+            .order_by("-date_from")
     )
 
     total = qs.count()
@@ -778,7 +780,7 @@ def event_list(request):
                 "date_range": event.get_date_range_display(),
                 "url": event.orga_urls.base,
             }
-            for event in qs.select_related("organiser")[offset : offset + pagesize]
+            for event in qs.select_related("organiser")[offset: offset + pagesize]
         ],
         "pagination": {"more": total >= (offset + pagesize)},
     }

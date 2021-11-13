@@ -255,15 +255,6 @@ class TrackForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
         super().__init__(*args, **kwargs)
         self.fields["color"].widget.attrs["class"] = "colorpickerfield"
 
-    def clean_name(self):
-        name = self.cleaned_data["name"]
-        qs = self.event.tracks.all()
-        if self.instance and self.instance.pk:
-            qs = qs.exclude(pk=self.instance.pk)
-        if any(str(s.name) == str(name) for s in qs):
-            raise forms.ValidationError(_("You already have a track by this name!"))
-        return name
-
     class Meta:
         model = Track
         fields = ("name", "description", "color", "requires_access_code")

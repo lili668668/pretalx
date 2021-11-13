@@ -1129,7 +1129,7 @@ msgstr "目前沒有舉行任何活動。"
 
 #: pretalx/cfp/templates/cfp/index.html:23
 msgid "CfT events"
-msgstr "徵稿中"
+msgstr "徵軌中"
 
 #: pretalx/cfp/templates/cfp/index.html:34
 msgid "Upcoming events"
@@ -7104,10 +7104,8 @@ msgid "Tell us your request."
 msgstr "如果有其他問題、需求、附加檔案，請備註於此。"
 
 #: pretalx/submission/forms/track.py:32
-#, fuzzy
-#| msgid "The track has been saved."
 msgid "This track name has existed!"
-msgstr "此議程軌已被儲存。"
+msgstr "議程軌名稱已存在。"
 
 #: pretalx/submission/models/access_code.py:19
 msgid "Access code"
@@ -7489,12 +7487,12 @@ msgid "blocked"
 msgstr ""
 
 #: pretalx/submission/models/track.py:58
-msgid "Topic Name"
-msgstr "議題名稱"
+msgid "Track Name"
+msgstr "議程軌名稱"
 
 #: pretalx/submission/models/track.py:61
-msgid "Topic Description"
-msgstr "該議題簡介"
+msgid "Track Description"
+msgstr "該議程軌簡介"
 
 #: pretalx/submission/models/track.py:62
 msgid "Make sure to mention how is it related to 𝐅𝐋𝐎𝐒𝐒."
@@ -7513,10 +7511,8 @@ msgid "Community Logo"
 msgstr "社群 Logo"
 
 #: pretalx/submission/models/track.py:94
-#, fuzzy
-#| msgid "Track title"
 msgid "Track state"
-msgstr "議題名稱"
+msgstr "議程軌狀態"
 
 #: pretalx/submission/models/track.py:106
 msgid ""

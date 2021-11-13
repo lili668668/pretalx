@@ -59,7 +59,7 @@ class TeamDetail(PermissionRequired, TeamMixin, CreateOrUpdateView):
     @cached_property
     def invite_form(self):
         is_bound = (
-            self.request.method == "POST" and self.request.POST.get("form") == "invite"
+                self.request.method == "POST" and self.request.POST.get("form") == "invite"
         )
         return TeamInviteForm(self.request.POST if is_bound else None)
 
@@ -224,8 +224,10 @@ class OrganiserDetail(PermissionRequired, CreateOrUpdateView):
 
     def get_success_url(self):
         messages.success(self.request, _("Saved!"))
-        if self.get_object() is None: return self.get_form().instance.orga_urls.new_event
-        else: return self.request.path
+        if self.get_object() is None:
+            return self.get_form().instance.orga_urls.new_event
+        else:
+            return self.request.path
 
 
 class OrganiserDelete(PermissionRequired, DeleteView):

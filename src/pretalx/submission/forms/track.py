@@ -23,15 +23,6 @@ class InfoTrackForm(CfTFormMixin, PublicContent, I18nContent, forms.ModelForm, I
             for f in self.fields.values():
                 f.disabled = True
 
-    def clean_name(self):
-        name = self.cleaned_data["name"]
-        qs = self.event.tracks.all()
-        if self.instance and self.instance.pk:
-            qs = qs.exclude(pk=self.instance.pk)
-        if any(str(s.name) == str(name) for s in qs):
-            raise forms.ValidationError(_("This track name has existed!"))
-        return name
-
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)
 

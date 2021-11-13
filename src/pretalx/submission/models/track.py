@@ -55,10 +55,10 @@ class Track(LogMixin, models.Model):
     )
     name = I18nCharField(
         max_length=200,
-        verbose_name=_("Topic Name"),
+        verbose_name=_("Track Name"),
     )
     description = I18nTextField(
-        verbose_name=_("Topic Description"),
+        verbose_name=_("Track Description"),
         help_text=_("Make sure to mention how is it related to 𝐅𝐋𝐎𝐒𝐒."),
     )
     community_name = I18nCharField(
@@ -111,7 +111,7 @@ class Track(LogMixin, models.Model):
     objects = ScopedManager(event="event")
 
     class urls(EventUrls):
-        base = edit = "{self.event.cfp.urls.tracks}{self.pk}/"
+        base = edit = "{self.event.cft.urls.tracks}{self.pk}/"
         delete = "{base}delete"
         prefilled_cfp = "{self.event.cfp.urls.public}?track={self.slug}"
 
