@@ -218,5 +218,5 @@ class JoinWizard(EventPageMixin, View):
         #     messages.warning(request, phrases.cfp.submission_email_fail)
 
         return redirect(
-            reverse("cfp:event.user.submissions", kwargs={"event": request.event.slug})
+            reverse("orga:event.dashboard", kwargs={"organiser": request.event.organiser.slug, "event": request.event.slug})
         )

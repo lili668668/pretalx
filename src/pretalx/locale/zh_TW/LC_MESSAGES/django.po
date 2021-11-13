@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-13 12:45+0000\n"
+"POT-Creation-Date: 2021-11-13 12:54+0000\n"
 "PO-Revision-Date: 2020-01-29 12:01+0000\n"
 "Last-Translator: Franklin Weng <franklin@goodhorse.idv.tw>\n"
 "Language-Team: none\n"
@@ -1992,7 +1992,8 @@ msgstr "主辦團隊成員"
 msgid "powered by <a %(a_attr)s>pretalx</a>"
 msgstr "Powered by <a %(a_attr)s>pretalx</a>"
 
-#: pretalx/common/templates/common/powered_by.html:36
+#: pretalx/common/templates/common/powered_by.html:37
+#, python-format
 msgid "<a %(b_attr)s>Events list</a>"
 msgstr "<a %(b_attr)s>活動列表</a>"
 
