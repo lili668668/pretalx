@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='contact',
             name='phone',
-            field=models.CharField(default='2021-11-11 19:24:00', max_length=10),
+            field=models.CharField(default='', max_length=10),
             preserve_default=False,
         ),
     ]
