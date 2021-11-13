@@ -49,3 +49,6 @@ class CfPPhrases(Phrases, app="cfp"):
     submission_email_fail = _(
         "We are experiencing difficulties when sending mails, but your session was submitted successfully!"
     )
+
+    track_closed = _("This event currently does not accept new participates, sorry!")
+    track_success = _("Your track has been submitted successfully!")

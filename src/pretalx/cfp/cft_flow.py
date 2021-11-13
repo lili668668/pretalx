@@ -22,11 +22,11 @@ from django.views.generic.base import TemplateResponseMixin
 from i18nfield.strings import LazyI18nString
 from i18nfield.utils import I18nJSONEncoder
 
-from pretalx.cfp.signals import cfp_steps
+from pretalx.cfp.signals import  cft_steps
 from pretalx.common.exceptions import SendMailException
 from pretalx.common.phrases import phrases
 from pretalx.common.utils import language
-from pretalx.person.forms import SpeakerProfileForm, UserForm
+from pretalx.person.forms import UserForm, PrincipalContactForm
 from pretalx.person.models import User
 from pretalx.submission.forms import QuestionsForm
 from pretalx.submission.forms import InfoTrackForm
@@ -123,7 +123,7 @@ class BaseCfTStep:
     def get_step_url(self, request):
         kwargs = request.resolver_match.kwargs
         kwargs["step"] = self.identifier
-        url = reverse("cfp:event.submit", kwargs=kwargs)
+        url = reverse("cfp:event.join", kwargs=kwargs)
         if request.GET:
             url += f"?{request.GET.urlencode()}"
         return url
@@ -139,7 +139,7 @@ class BaseCfTStep:
 
 
 class TemplateFlowStep(TemplateResponseMixin, BaseCfTStep):
-    template_name = "cfp/event/track_step.html"
+    template_name = "cft/track_step.html"
 
     def get_context_data(self, **kwargs):
         kwargs.setdefault("step", self)
@@ -173,15 +173,16 @@ class FormFlowStep(TemplateFlowStep):
     form_class = None
     file_storage = FileSystemStorage(str(Path(settings.MEDIA_ROOT) / "cft_uploads"))
 
+    def get_form_data(self):
+        return self.cft_session.get("data", {}).get(self.identifier, {})
+
     def get_form_initial(self):
-        initial_data = self.cft_session.get("initial", {}).get(self.identifier, {})
-        previous_data = self.cft_session.get("data", {}).get(self.identifier, {})
-        return copy.deepcopy({**initial_data, **previous_data})
+        return self.cft_session.get("initial", {}).get(self.identifier, {})
 
     def get_form(self, from_storage=False):
         if self.request.method == "GET" or from_storage:
             return self.form_class(
-                data=self.get_form_initial() if from_storage else None,
+                data=self.get_form_data() if from_storage else None,
                 initial=self.get_form_initial(),
                 files=self.get_files(),
                 **self.get_form_kwargs(),
@@ -210,13 +211,22 @@ class FormFlowStep(TemplateFlowStep):
             )
             messages.error(self.request, error_message)
             return self.get(request)
-        self.set_data(form.cleaned_data)
+        self.set_data(form.data)
+        self.set_initial(form.cleaned_data)
         self.set_files(form.files)
         next_url = self.get_next_url(request)
         return redirect(next_url) if next_url else None
 
     def set_data(self, data):
+        self.cft_session["data"][self.identifier] = data
+
+    def set_initial(self, data):
         def serialize_value(value):
+            if getattr(value, 'localize', None):
+                pack = {}
+                for code, _ in settings.LANGUAGES:
+                    pack[code] = value.localize(code)
+                return pack
             if getattr(value, "file", None):
                 return None
             if getattr(value, "pk", None):
@@ -227,7 +237,7 @@ class FormFlowStep(TemplateFlowStep):
                 return value.serialize()
             return str(value)
 
-        self.cft_session["data"][self.identifier] = json.loads(
+        self.cft_session["initial"][self.identifier] = json.loads(
             json.dumps(data, default=serialize_value)
         )
 
@@ -316,19 +326,17 @@ class InfoStep(GenericFlowStep, FormFlowStep):
         form = self.get_form(from_storage=True)
         form.instance.event = self.event
         form.save()
-        submission = form.instance
-        submission.speakers.add(request.user)
-        submission.log_action("pretalx.submission.create", person=request.user)
-        messages.success(request, phrases.cfp.submission_success)
-
-        request.submission = submission
+        track = form.instance
+        track.log_action("pretalx.track.create", person=request.user)
+        messages.success(request, phrases.cfp.track_success)
+        request.track = track
 
 
 class QuestionsStep(GenericFlowStep, FormFlowStep):
     identifier = "questions"
     icon = "question-circle-o"
     form_class = QuestionsForm
-    template_name = "cfp/event/submission_questions.html"
+    template_name = "cft/cft_questions.html"
     priority = 25
 
     @property
@@ -383,7 +391,7 @@ class UserStep(GenericFlowStep, FormFlowStep):
     identifier = "user"
     icon = "user-circle-o"
     form_class = UserForm
-    template_name = "cfp/event/submission_user.html"
+    template_name = "cft/cft_user.html"
     priority = 49
 
     @property
@@ -422,25 +430,24 @@ class UserStep(GenericFlowStep, FormFlowStep):
         )
 
 
-class ProfileStep(GenericFlowStep, FormFlowStep):
-    identifier = "profile"
+class ContactStep(GenericFlowStep, FormFlowStep):
+    identifier = "contact"
     icon = "address-card-o"
-    form_class = SpeakerProfileForm
-    template_name = "cfp/event/submission_profile.html"
+    form_class = PrincipalContactForm
     priority = 75
 
     @property
     def label(self):
-        return _("Profile")
+        return _("Contact")
 
     @property
     def _title(self):
-        return _("Tell us something about yourself!")
+        return _("Contact")
 
     @property
     def _text(self):
         return _(
-            "This information will be publicly displayed next to your session - you can always edit for as long as proposals are still open."
+            "We need to contact you to announcement something. Please tell us a way to contact you."
         )
 
     def get_form_kwargs(self):
@@ -477,23 +484,23 @@ DEFAULT_STEPS = (
     InfoStep,
     QuestionsStep,
     UserStep,
-    ProfileStep,
+    ContactStep,
 )
 
 
 class CfTFlow:
-    """An event's CfTFlow contains the list of CfP steps.
+    """An event's CfTFlow contains the list of CfT steps.
 
     The ``event`` attribute contains the related event and is the only one required
     for instantiation.
     The ``steps`` attribute contains a (linked) list of BaseCfTStep instances.
     The ``steps_dict`` attribute contains an OrderedDict of the same steps.
     The ``config`` attribute contains the additional user configuration, primarily
-    from the CfP editor.
+    from the CfT editor.
 
     When instantiated with a request during submission time, it will only show
     the forms relevant to the current request. When instantiated without a
-    request, for the CfP editor, it will contain all steps.
+    request, for the CfT editor, it will contain all steps.
     """
 
     event = None
@@ -504,7 +511,7 @@ class CfTFlow:
         self.config = self.get_config(data)
 
         steps = [step(event=event) for step in DEFAULT_STEPS]
-        for __, response in cfp_steps.send_robust(self.event):
+        for __, response in cft_steps.send_robust(self.event):
             for step_class in response:
                 steps.append(step_class(event=event))
         steps = sorted(steps, key=lambda step: step.priority)

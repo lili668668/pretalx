@@ -20,6 +20,17 @@ As with all plugin signals, the ``sender`` keyword argument will contain the eve
 Additionally, the signal will be called with the ``request`` it is processing.
 """
 
+cft_steps = EventPluginSignal()
+"""
+This signal allows you to add CfT steps of your own. This signal will expect a
+list of ``pretalx.cfp.cft_flow.BaseCfTStep`` objects. The integration of CfT steps
+in the CfT workflow is currently considered **unstable** and may change without
+notice between versions.
+
+As with all plugin signals, the ``sender`` keyword argument will contain the event.
+Additionally, the signal will be called with the ``request`` it is processing.
+"""
+
 html_above_submission_list = EventPluginSignal()
 """
 This signal is sent out to display additional information on the personal user

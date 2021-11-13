@@ -1,3 +1,5 @@
+import logging
+
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
@@ -9,8 +11,10 @@ from django_scopes.forms import SafeModelChoiceField, SafeModelMultipleChoiceFie
 from i18nfield.forms import I18nModelForm
 
 from pretalx.cfp.forms.cfp import CfPFormMixin
+from pretalx.cfp.forms.cft import CfTFormMixin
 from pretalx.common.forms.fields import (
     ImageField,
+    CharField,
     PasswordConfirmationField,
     PasswordField,
     SizeFileField,
@@ -23,7 +27,7 @@ from pretalx.common.mixins.forms import (
     RequestRequire,
 )
 from pretalx.common.phrases import phrases
-from pretalx.person.models import SpeakerInformation, SpeakerProfile, User
+from pretalx.person.models import SpeakerInformation, SpeakerProfile, User, Contact
 from pretalx.schedule.forms import AvailabilitiesFormMixin
 from pretalx.submission.models import Question
 
@@ -92,9 +96,9 @@ class UserForm(CfPFormMixin, forms.Form):
         if data.get("login_email") and data.get("login_password"):
             self._clean_login(data)
         elif (
-            data.get("register_email")
-            and data.get("register_password")
-            and data.get("register_name")
+                data.get("register_email")
+                and data.get("register_password")
+                and data.get("register_name")
         ):
             self._clean_register(data)
         else:
@@ -120,6 +124,82 @@ class UserForm(CfPFormMixin, forms.Form):
         )
         data["user_id"] = user.pk
         return user.pk
+
+
+class PrincipalContactForm(
+    CfTFormMixin,
+    ReadOnlyFlag,
+    PublicContent,
+    forms.ModelForm,
+):
+    USER_FIELDS = ["name", "email"]
+    FIRST_TIME_EXCLUDE = ["email"]
+
+    def __init__(self, *args, name=None, **kwargs):
+        self.user = kwargs.pop("user", None)
+        self.event = kwargs.pop("event", None)
+        self.with_email = kwargs.pop("with_email", True)
+        self.essential_only = kwargs.pop("essential_only", False)
+        if self.user:
+            kwargs["instance"] = self.user.event_contact(self.event)
+        else:
+            kwargs["instance"] = Contact()
+        super().__init__(*args, **kwargs)
+        read_only = kwargs.get("read_only", False)
+        initial = kwargs.get("initial", dict())
+        initial["name"] = name
+
+        if self.user:
+            initial.update(
+                {field: getattr(self.user, field) for field in self.user_fields}
+            )
+        fields = self.fields
+        self.fields = {}
+        for field in self.user_fields:
+            field_class = (
+                    self.Meta.field_classes.get(field)
+                    or User._meta.get_field(field).formfield
+            )
+            self.fields[field] = field_class(
+                initial=initial.get(field), disabled=read_only
+            )
+            self._update_cft_help_text(field)
+        self.fields = {**self.fields, **fields}
+
+    @cached_property
+    def user_fields(self):
+        if self.user and not self.essential_only:
+            return [f for f in self.USER_FIELDS if f != "email" or self.with_email]
+        return [
+            f
+            for f in self.USER_FIELDS
+            if f not in self.FIRST_TIME_EXCLUDE and (f != "email" or self.with_email)
+        ]
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        qs = User.objects.all()
+        if self.user:
+            qs = qs.exclude(pk=self.user.pk)
+        if qs.filter(email__iexact=email):
+            raise ValidationError(_("Please choose a different email address."))
+        return email
+
+    def save(self, **kwargs):
+        for user_attribute in self.user_fields:
+            value = self.cleaned_data.get(user_attribute)
+            setattr(self.user, user_attribute, value)
+            self.user.save(update_fields=[user_attribute])
+
+        self.instance.event = self.event
+        self.instance.user = self.user
+        super().save(**kwargs)
+
+    class Meta:
+        model = Contact
+        fields = ["phone"]
+        field_classes = {}
+        public_fields = ["name"]
 
 
 class SpeakerProfileForm(
@@ -153,8 +233,8 @@ class SpeakerProfileForm(
             )
         for field in self.user_fields:
             field_class = (
-                self.Meta.field_classes.get(field)
-                or User._meta.get_field(field).formfield
+                    self.Meta.field_classes.get(field)
+                    or User._meta.get_field(field).formfield
             )
             self.fields[field] = field_class(
                 initial=initial.get(field), disabled=read_only
@@ -192,9 +272,9 @@ class SpeakerProfileForm(
         data = super().clean()
         if self.event.settings.cfp_require_avatar:
             if (
-                not data.get("avatar")
-                and not data.get("get_gravatar")
-                and not (self.user and self.user.has_avatar)
+                    not data.get("avatar")
+                    and not data.get("get_gravatar")
+                    and not (self.user and self.user.has_avatar)
             ):
                 raise ValidationError(
                     _(

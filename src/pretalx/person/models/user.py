@@ -160,6 +160,16 @@ class User(PermissionsMixin, GenerateCode, FileCleanupMixin, AbstractBaseUser):
             profile.save()
         return profile
 
+    def event_contact(self, event):
+        from pretalx.person.models.contact import Contact
+        contact = self.contacts.select_related("event").filter(event=event).first()
+        if contact:
+            return contact
+        contact = Contact(event=event, user=self)
+        if self.pk:
+            contact.save()
+        return contact
+
     def log_action(
         self, action: str, data: dict = None, person=None, orga: bool = False
     ):
@@ -220,6 +230,7 @@ class User(PermissionsMixin, GenerateCode, FileCleanupMixin, AbstractBaseUser):
         self.set_unusable_password()
         self.save()
         self.profiles.all().update(biography="")
+        self.contacts.all().update(phone="")
         for answer in Answer.objects.filter(
             person=self, question__contains_personal_data=True
         ):

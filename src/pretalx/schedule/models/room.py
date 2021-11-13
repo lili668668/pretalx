@@ -17,7 +17,7 @@ class Room(LogMixin, models.Model):
     event = models.ForeignKey(
         to="event.Event", on_delete=models.PROTECT, related_name="rooms"
     )
-    name = I18nCharField(max_length=100, verbose_name=_("Name"))
+    name = models.CharField(max_length=100, verbose_name=_("Name"))
     description = I18nCharField(
         max_length=1000,
         null=True,
