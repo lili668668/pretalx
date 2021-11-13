@@ -33,4 +33,8 @@
     {% blocktranslate trimmed %}
         powered by <a {{ a_attr }}>pretalx</a>
     {% endblocktranslate %}
+    &middot;
+    {% blocktranslate trimmed with 'href="/" rel="noopener"' as b_attr %}
+        <a {{ b_attr }}>Events list</a>
+    {% endblocktranslate %}
 {% endwith %}

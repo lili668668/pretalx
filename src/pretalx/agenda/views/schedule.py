@@ -201,10 +201,7 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
     def get_object(self):
         if self.version == "wip":
             return self.request.event.wip_schedule
-        schedule = super().get_object()
-        if not schedule:
-            raise Http404()
-        return schedule
+        return super().get_object()
 
     @context
     def exporters(self):
