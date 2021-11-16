@@ -257,7 +257,7 @@ class TrackForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
 
     class Meta:
         model = Track
-        fields = ("name", "description", "color", "requires_access_code")
+        fields = ("name", "description", "requires_access_code")
 
 
 class SubmitterAccessCodeForm(forms.ModelForm):

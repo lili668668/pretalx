@@ -11,6 +11,10 @@ class SubmissionError(Exception):
     pass
 
 
+class TrackError(Exception):
+    pass
+
+
 class PretalxExceptionReporter(ExceptionReporter):
     def get_traceback_text(self):
         traceback_text = super().get_traceback_text()

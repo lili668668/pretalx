@@ -15,6 +15,9 @@ from pretalx.orga.forms import TrackForm
 from pretalx.common.views import CreateOrUpdateView
 from django_context_decorator import context
 from pretalx.orga.forms import CfTForm
+from django.utils.http import url_has_allowed_host_and_scheme
+from pretalx.submission.models.track import TrackStates
+from pretalx.common.exceptions import TrackError
 
 from pretalx.common.forms import I18nFormSet
 from pretalx.common.mixins.views import (
@@ -103,28 +106,63 @@ class TrackDetail(PermissionRequired, ActionFromUrl, CreateOrUpdateView):
         return result
 
 
-class TrackDelete(PermissionRequired, DetailView):
-    permission_required = "orga.remove_track"
-    template_name = "orga/cfp/track_delete.html"
+class TrackStateChange(PermissionRequired, TemplateView):
+    permission_required = "orga.change_track_state"
+    template_name = "orga/cft/state_change.html"
+    TARGETS = {
+        "submitted": TrackStates.SUBMITTED,
+        "accepted": TrackStates.ACCEPTED,
+        "rejected": TrackStates.REJECTED,
+        "canceled": TrackStates.CANCELED,
+        "blocked": TrackStates.BLOCKED
+    }
 
-    def get_object(self):
-        return get_object_or_404(self.request.event.tracks, pk=self.kwargs.get("pk"))
+    @cached_property
+    def object(self):
+        return get_object_or_404(Track.objects.filter(id=self.kwargs.get("pk")))
 
+    def get_permission_object(self):
+        return self.object
+
+    @context
+    def track(self):
+        return self.object
+
+    @cached_property
+    def _target(self) -> str:
+        return self.TARGETS[self.request.resolver_match.url_name.split(".")[-1]]
+
+    @context
+    def target(self):
+        return self._target
+
+    def do(self, force=False):
+        method = getattr(self.object, TrackStates.method_names[self._target])
+        method(person=self.request.user, force=force)
+
+    @transaction.atomic
     def post(self, request, *args, **kwargs):
-        track = self.get_object()
-
-        try:
-            track.delete()
-            request.event.log_action(
-                "pretalx.track.delete", person=self.request.user, orga=True
-            )
-            messages.success(request, _("The track has been deleted."))
-        except ProtectedError:  # TODO: show which/how many submissions are concerned
-            messages.error(
+        if self._target == self.object.state:
+            messages.info(
                 request,
-                _("This track is in use in a proposal and cannot be deleted."),
+                _(
+                    "Somebody else was faster than you: this proposal was already in the state you wanted to change it to."
+                ),
             )
-        return redirect(self.request.event.cfp.urls.tracks)
+        else:
+            try:
+                self.do()
+            except TrackError:
+                self.do(force=True)
+        url = self.request.GET.get("next")
+        if url and url_has_allowed_host_and_scheme(url, allowed_hosts=None):
+            return redirect(url)
+        return redirect(self.object.orga_urls.base)
+
+    @context
+    def next(self):
+        return self.request.GET.get("next")
+
 
 class CfTTextDetail(PermissionRequired, ActionFromUrl, UpdateView):
     form_class = CfTForm

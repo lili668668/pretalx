@@ -8,7 +8,7 @@
             <tr>
                 <th>{% translate "Track" %}</th>
                 <th>{% translate "Proposals" %}</th>
-                <th>{% translate "Color" %}</th>
+                <th>{% translate "State" %}</th>
                 <th></th>
             </tr>
         </thead>
@@ -26,7 +26,9 @@
                     <td class="pl-4">
                         {{ track.submissions.all.count }}
                     </td>
-                    <td><div class="color-square" style="background: {{ track.color }}"></div></td>
+                    <td>
+                        {% include "orga/cft/track_state_dropdown.html" with track=track %}
+                    </td>
                     <td class="action-column">
                         <a href="{{ track.urls.prefilled_cfp.full }}"
                             title="{% translate 'Go to pre-filled CfP form' %}"

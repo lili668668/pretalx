@@ -1,7 +1,7 @@
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import pgettext, gettext_lazy as _
 from django_scopes import ScopedManager
 from i18nfield.fields import I18nCharField, I18nTextField
 
@@ -9,6 +9,8 @@ from pretalx.common.choices import Choices
 from pretalx.common.mixins.models import LogMixin
 from pretalx.common.urls import EventUrls
 from pretalx.common.utils import path_with_hash
+from pretalx.common.exceptions import TrackError
+from pretalx.cfp.signals import track_state_change
 
 
 class TrackStates(Choices):
@@ -36,11 +38,11 @@ class TrackStates(Choices):
     }
 
     method_names = {
-        SUBMITTED: "make_submitted",
-        REJECTED: "reject",
-        ACCEPTED: "accept",
-        CANCELED: "cancel",
-        BLOCKED: "block",
+        SUBMITTED: "to_submitted",
+        REJECTED: "to_rejected",
+        ACCEPTED: "to_accepted",
+        CANCELED: "to_canceled",
+        BLOCKED: "to_blocked",
     }
 
 
@@ -49,7 +51,6 @@ def logo_path(instance, filename):
 
 
 class Track(LogMixin, models.Model):
-
     event = models.ForeignKey(
         to="event.Event", on_delete=models.PROTECT, related_name="tracks"
     )
@@ -93,13 +94,6 @@ class Track(LogMixin, models.Model):
         default=TrackStates.SUBMITTED,
         verbose_name=_("Track state"),
     )
-    color = models.CharField(
-        max_length=7,
-        verbose_name=_("Color"),
-        validators=[
-            RegexValidator(r"#([0-9A-Fa-f]{3}){1,2}"),
-        ],
-    )
     requires_access_code = models.BooleanField(
         verbose_name=_("Requires access code"),
         help_text=_(
@@ -114,6 +108,68 @@ class Track(LogMixin, models.Model):
         base = edit = "{self.event.cft.urls.tracks}{self.pk}/"
         delete = "{base}delete"
         prefilled_cfp = "{self.event.cfp.urls.public}?track={self.slug}"
+        change_to_submitted = "{base}to-submitted"
+        change_to_accepted = "{base}to-accepted"
+        change_to_rejected = "{base}to-rejected"
+        change_to_canceled = "{base}to-canceled"
+        change_to_blocked = "{base}to-blocked"
+
+    def _set_state(self, new_state, force=False, person=None):
+        """Check if the new state is valid for this Submission (based on
+        SubmissionStates.valid_next_states).
+
+        If yes, set it and save the object. if no, raise a
+        SubmissionError with a helpful message.
+        """
+        valid_next_states = TrackStates.valid_next_states.get(self.state, [])
+
+        if self.state == new_state:
+            return
+        if force or new_state in valid_next_states:
+            old_state = self.state
+            self.state = new_state
+            self.save(update_fields=["state"])
+            track_state_change.send_robust(
+                self.event, submission=self, old_state=old_state, user=person
+            )
+        else:
+            source_states = (
+                src
+                for src, dsts in TrackStates.valid_next_states.items()
+                if new_state in dsts
+            )
+
+            # build an error message mentioning all states, which are valid source states for the desired new state.
+            trans_or = pgettext(
+                'used in talk confirm/accept/reject/...-errors, like "... must be accepted OR foo OR bar ..."',
+                " or ",
+            )
+            state_names = dict(TrackStates.get_choices())
+            source_states = trans_or.join(
+                str(state_names[state]) for state in source_states
+            )
+            raise TrackError(
+                _(
+                    "Proposal must be {src_states} not {state} to be {new_state}."
+                ).format(
+                    src_states=source_states, state=self.state, new_state=new_state
+                )
+            )
+
+    def to_submitted(self, person=None, force: bool = False):
+        self._set_state(TrackStates.SUBMITTED, person, force)
+
+    def to_accepted(self, person=None, force: bool = False):
+        self._set_state(TrackStates.ACCEPTED, person, force)
+
+    def to_rejected(self, person=None, force: bool = False):
+        self._set_state(TrackStates.REJECTED, person, force)
+
+    def to_canceled(self, person=None, force: bool = False):
+        self._set_state(TrackStates.CANCELED, person, force)
+
+    def to_blocked(self, person=None, force: bool = False):
+        self._set_state(TrackStates.BLOCKED, person, force)
 
     def __str__(self) -> str:
         return str(self.name)

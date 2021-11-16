@@ -246,7 +246,6 @@ def serialize_slot(slot, warnings=None):
             "submission_type": str(slot.submission.submission_type.name),
             "track": {
                 "name": str(slot.submission.track.name),
-                "color": slot.submission.track.color,
             }
             if slot.submission.track
             else None,

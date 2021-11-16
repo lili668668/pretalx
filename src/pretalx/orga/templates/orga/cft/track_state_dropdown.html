@@ -1,0 +1,44 @@
+{% load i18n %}
+<details class="dropdown submission-state-dropdown">
+    <summary class="btn btn-sm submission-state-{{ track.state }}">
+        {% include "orga/cft/fragment_track_state.html" with state=track.state %}
+        <i class="fa fa-caret-down"></i>
+    </summary>
+    <ul class="dropdown-content dropdown-content-s submission-dropdown-menu">
+        {% if track.state != 'submitted' %}
+            <li><a
+                class="dropdown-item submission-state-submitted"
+                href="{{ track.urls.change_to_submitted }}?next={{ request.path|urlencode }}%3F{{ request.META.QUERY_STRING|urlencode }}">
+                {% include "orga/cft/fragment_track_state.html" with state='submitted' %}
+            </a></li>
+        {% endif %}
+        {% if track.state != 'accepted' %}
+            <li><a
+                class="dropdown-item submission-state-accepted"
+                href="{{ track.urls.change_to_accepted }}?next={{ request.path|urlencode }}%3F{{ request.META.QUERY_STRING|urlencode }}">
+                {% include "orga/cft/fragment_track_state.html" with state='accepted' %}
+            </a></li>
+        {% endif %}
+        {% if track.state != 'rejected' %}
+            <li><a
+                class="dropdown-item submission-state-rejected"
+                href="{{ track.urls.change_to_rejected }}?next={{ request.path|urlencode }}%3F{{ request.META.QUERY_STRING|urlencode }}">
+                {% include "orga/cft/fragment_track_state.html" with state='rejected' %}
+            </a></li>
+        {% endif %}
+        {% if track.state != 'canceled' %}
+            <li><a
+                class="dropdown-item submission-state-canceled"
+                href="{{ track.urls.change_to_canceled }}?next={{ request.path|urlencode }}%3F{{ request.META.QUERY_STRING|urlencode }}">
+                {% include "orga/cft/fragment_track_state.html" with state='canceled' %}
+            </a></li>
+        {% endif %}
+        {% if track.state != 'blocked' %}
+            <li><a
+                class="dropdown-item submission-state-blocked"
+                href="{{ track.urls.change_to_blocked }}?next={{ request.path|urlencode }}%3F{{ request.META.QUERY_STRING|urlencode }}">
+                {% include "orga/cft/fragment_track_state.html" with state='blocked' %}
+            </a></li>
+        {% endif %}
+    </ul>
+</details>

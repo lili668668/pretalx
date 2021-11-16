@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if state == 'submitted' %}
+    <i class="fa fa-inbox"></i> <span class="state-fragment">{% translate "submitted" %}</span>
+{% elif state == 'rejected' %}
+    <i class="fa fa-ban"></i> <span class="state-fragment">{% translate "not accepted" %}</span>
+{% elif state == 'accepted' %}
+    <i class="fa fa-check-circle"></i> <span class="state-fragment">{% translate "accepted" %}</span>
+{% elif state == 'canceled' %}
+    <i class="fa fa-times-circle"></i> <span class="state-fragment">{% translate "canceled" %}</span>
+{% elif state == 'blocked' %}
+    <i class="fa fa-times-circle"></i> <span class="state-fragment">{% translate "blocked" %}</span>
+{% endif %}

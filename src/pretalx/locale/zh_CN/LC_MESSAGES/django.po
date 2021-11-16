@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-13 12:54+0000\n"
+"POT-Creation-Date: 2021-11-15 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -560,16 +560,19 @@ msgid "Participates are closed"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/fragment_state.html:3
+#: pretalx/orga/templates/orga/cft/fragment_track_state.html:3
 #: pretalx/submission/models/submission.py:46
 #: pretalx/submission/models/track.py:22
 msgid "submitted"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/fragment_state.html:5
+#: pretalx/orga/templates/orga/cft/fragment_track_state.html:5
 msgid "not accepted"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/fragment_state.html:7
+#: pretalx/orga/templates/orga/cft/fragment_track_state.html:7
 #: pretalx/submission/models/submission.py:47
 #: pretalx/submission/models/track.py:23
 msgid "accepted"
@@ -581,6 +584,7 @@ msgid "confirmed"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/fragment_state.html:11
+#: pretalx/orga/templates/orga/cft/fragment_track_state.html:9
 #: pretalx/submission/models/submission.py:50
 #: pretalx/submission/models/track.py:24
 msgid "canceled"
@@ -1001,6 +1005,7 @@ msgid "Title"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:30
+#: pretalx/orga/templates/orga/cft/track_view.html:11
 #: pretalx/orga/templates/orga/review/dashboard.html:120
 #: pretalx/orga/templates/orga/submission/list.html:79
 msgid "State"
@@ -3927,12 +3932,12 @@ msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/submission_type_view.html:27
 #: pretalx/orga/templates/orga/cft/track_view.html:20
-#: pretalx/submission/models/track.py:104 pretalx/submission/models/type.py:45
+#: pretalx/submission/models/track.py:97 pretalx/submission/models/type.py:45
 msgid "Requires access code"
 msgstr ""
 
 #: pretalx/orga/templates/orga/cfp/submission_type_view.html:39
-#: pretalx/orga/templates/orga/cft/track_view.html:32
+#: pretalx/orga/templates/orga/cft/track_view.html:34
 msgid "Go to pre-filled CfP form"
 msgstr ""
 
@@ -4049,6 +4054,11 @@ msgstr ""
 msgid "Go Start"
 msgstr ""
 
+#: pretalx/orga/templates/orga/cft/fragment_track_state.html:11
+#: pretalx/submission/models/track.py:26
+msgid "blocked"
+msgstr ""
+
 #: pretalx/orga/templates/orga/cft/toggle.html:13
 msgid "CfT status"
 msgstr ""
@@ -4058,14 +4068,8 @@ msgid "Do you really want to delete this track?"
 msgstr ""
 
 #: pretalx/orga/templates/orga/cft/track_form.html:24
-#: pretalx/orga/templates/orga/cft/track_view.html:52
+#: pretalx/orga/templates/orga/cft/track_view.html:54
 msgid "New track"
-msgstr ""
-
-#: pretalx/orga/templates/orga/cft/track_view.html:11
-#: pretalx/orga/templates/orga/submission/tag_list.html:12
-#: pretalx/submission/models/tag.py:24 pretalx/submission/models/track.py:98
-msgid "Color"
 msgstr ""
 
 #: pretalx/orga/templates/orga/event/dashboard.html:10
@@ -5517,6 +5521,11 @@ msgstr ""
 msgid "New tag"
 msgstr ""
 
+#: pretalx/orga/templates/orga/submission/tag_list.html:12
+#: pretalx/submission/models/tag.py:24
+msgid "Color"
+msgstr ""
+
 #: pretalx/orga/templates/orga/update.html:7
 msgid "Update check results"
 msgstr ""
@@ -6026,7 +6035,7 @@ msgid ""
 "The password reset email could not be sent, so the password was not reset."
 msgstr ""
 
-#: pretalx/orga/views/organiser.py:226 pretalx/orga/views/schedule.py:494
+#: pretalx/orga/views/organiser.py:226 pretalx/orga/views/schedule.py:493
 msgid "Saved!"
 msgstr ""
 
@@ -6105,27 +6114,27 @@ msgstr ""
 msgid "You can only regenerate mails after the first schedule was released."
 msgstr ""
 
-#: pretalx/orga/views/schedule.py:404
+#: pretalx/orga/views/schedule.py:403
 msgid "The session has been scheduled."
 msgstr ""
 
-#: pretalx/orga/views/schedule.py:449
+#: pretalx/orga/views/schedule.py:448
 msgid "Room deleted. Hopefully nobody was still in there …"
 msgstr ""
 
-#: pretalx/orga/views/schedule.py:455
+#: pretalx/orga/views/schedule.py:454
 msgid "There is or was a session scheduled in this room. It cannot be deleted."
 msgstr ""
 
-#: pretalx/orga/views/schedule.py:510
+#: pretalx/orga/views/schedule.py:509
 msgid "The selected room does not exist."
 msgstr ""
 
-#: pretalx/orga/views/schedule.py:512
+#: pretalx/orga/views/schedule.py:511
 msgid "Sorry, you are not allowed to reorder rooms."
 msgstr ""
 
-#: pretalx/orga/views/schedule.py:526
+#: pretalx/orga/views/schedule.py:525
 msgid "The order of rooms has been updated."
 msgstr ""
 
@@ -6904,10 +6913,6 @@ msgid ""
 "visible publicly in a future release of pretalx."
 msgstr ""
 
-#: pretalx/submission/models/track.py:26
-msgid "blocked"
-msgstr ""
-
 #: pretalx/submission/models/track.py:58
 msgid "Track Name"
 msgstr ""
@@ -6936,7 +6941,7 @@ msgstr ""
 msgid "Track state"
 msgstr ""
 
-#: pretalx/submission/models/track.py:106
+#: pretalx/submission/models/track.py:99
 msgid ""
 "This track will only be shown to submitters with a matching access code."
 msgstr ""

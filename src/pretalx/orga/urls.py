@@ -140,9 +140,29 @@ urlpatterns = [
                                             name="cft.track.view",
                                         ),
                                         path(
-                                            "delete",
-                                            cft.TrackDelete.as_view(),
-                                            name="cft.track.delete",
+                                            "to-submitted",
+                                            cft.TrackStateChange.as_view(),
+                                            name="cft.track.submitted"
+                                        ),
+                                        path(
+                                            "to-rejected",
+                                            cft.TrackStateChange.as_view(),
+                                            name="cft.track.rejected"
+                                        ),
+                                        path(
+                                            "to-accepted",
+                                            cft.TrackStateChange.as_view(),
+                                            name="cft.track.accepted"
+                                        ),
+                                        path(
+                                            "to-canceled",
+                                            cft.TrackStateChange.as_view(),
+                                            name="cft.track.canceled"
+                                        ),
+                                        path(
+                                            "to-blocked",
+                                            cft.TrackStateChange.as_view(),
+                                            name="cft.track.blocked"
                                         ),
                                     ]
                                 ),

@@ -31,6 +31,8 @@ As with all plugin signals, the ``sender`` keyword argument will contain the eve
 Additionally, the signal will be called with the ``request`` it is processing.
 """
 
+track_state_change = EventPluginSignal()
+
 html_above_submission_list = EventPluginSignal()
 """
 This signal is sent out to display additional information on the personal user
