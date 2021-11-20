@@ -25,6 +25,13 @@ class Contact(LogMixin, models.Model):
         null=True,
         blank=True,
     )
+    track = models.ForeignKey(
+        to="submission.Track",
+        related_name="contacts",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     event = models.ForeignKey(
         to="event.Event", related_name="+", on_delete=models.CASCADE
     )

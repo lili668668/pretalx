@@ -11,6 +11,7 @@ from pretalx.common.urls import EventUrls
 from pretalx.common.utils import path_with_hash
 from pretalx.common.exceptions import TrackError
 from pretalx.cfp.signals import track_state_change
+from pretalx.event.models import Team
 
 
 class TrackStates(Choices):
@@ -161,6 +162,17 @@ class Track(LogMixin, models.Model):
 
     def to_accepted(self, person=None, force: bool = False):
         self._set_state(TrackStates.ACCEPTED, person, force)
+        t = Team.objects.create(
+            organiser=self.event.organiser,
+            name=_(f"{self.name} Track"),
+            can_change_teams=True,
+            can_change_organiser_settings=False,
+            can_change_event_settings=False,
+            can_change_submissions=True,
+            is_reviewer=True
+        )
+        for contact in self.contacts.select_related('user').all():
+            t.members.add(contact.user)
 
     def to_rejected(self, person=None, force: bool = False):
         self._set_state(TrackStates.REJECTED, person, force)

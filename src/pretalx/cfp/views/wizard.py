@@ -173,19 +173,6 @@ class JoinWizard(EventPageMixin, View):
             if not step.identifier == "user":
                 step.done(request)
 
-        infoStepForm = request.event.cft_flow.steps_dict["info"].get_form(from_storage=True)
-        if infoStepForm.is_valid():
-            t = Team.objects.create(
-                organiser=request.event.organiser,
-                name=_(f"{infoStepForm.cleaned_data['name']} Track"),
-                can_change_teams=True,
-                can_change_organiser_settings=False,
-                can_change_event_settings=False,
-                can_change_submissions=True,
-                is_reviewer=True
-            )
-            t.members.add(self.request.user)
-
         # try:
         #     request.event.ack_template.to_mail(
         #         user=request.user,

@@ -138,6 +138,7 @@ class PrincipalContactForm(
     def __init__(self, *args, name=None, **kwargs):
         self.user = kwargs.pop("user", None)
         self.event = kwargs.pop("event", None)
+        self.track = kwargs.pop("track", None)
         self.with_email = kwargs.pop("with_email", True)
         self.essential_only = kwargs.pop("essential_only", False)
         if self.user:
@@ -193,6 +194,7 @@ class PrincipalContactForm(
 
         self.instance.event = self.event
         self.instance.user = self.user
+        self.instance.track = self.track
         super().save(**kwargs)
 
     class Meta:

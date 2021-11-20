@@ -476,6 +476,7 @@ class ContactStep(GenericFlowStep, FormFlowStep):
     def done(self, request):
         form = self.get_form(from_storage=True)
         form.is_valid()
+        form.track = request.track
         form.user = request.user
         form.save()
 
