@@ -253,11 +253,10 @@ class TrackForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
     def __init__(self, *args, event=None, **kwargs):
         self.event = event
         super().__init__(*args, **kwargs)
-        self.fields["color"].widget.attrs["class"] = "colorpickerfield"
 
     class Meta:
         model = Track
-        fields = ("name", "description", "requires_access_code")
+        fields = ("name", "description", "community_name", "community_description", "community_logo", "requires_access_code")
 
 
 class SubmitterAccessCodeForm(forms.ModelForm):

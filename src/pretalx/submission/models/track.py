@@ -107,7 +107,6 @@ class Track(LogMixin, models.Model):
 
     class urls(EventUrls):
         base = edit = "{self.event.cft.urls.tracks}{self.pk}/"
-        delete = "{base}delete"
         prefilled_cfp = "{self.event.cfp.urls.public}?track={self.slug}"
         change_to_submitted = "{base}to-submitted"
         change_to_accepted = "{base}to-accepted"

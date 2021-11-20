@@ -4,17 +4,6 @@
 {% load i18n %}
 {% load static %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{% static "vendored/colorpicker/css/bootstrap-colorpicker.min.css" %}"/>
-{% endblock %}
-
-{% block scripts %}
-    {% compress js %}
-        <script defer src="{% static "vendored/colorpicker/js/bootstrap-colorpicker.min.js" %}"></script>
-        <script defer src="{% static "orga/js/colorpicker.js" %}"></script>
-    {% endcompress %}
-{% endblock %}
-
 
 {% block cft_content %}
     <h2>
@@ -29,7 +18,9 @@
         {% bootstrap_form_errors form %}
         {% bootstrap_field form.name layout='event' %}
         {% bootstrap_field form.description layout='event' %}
-        {% bootstrap_field form.color layout='event' addon_before="<i></i>" addon_before_class="colorpicker-input-addon color-visible" %}
+        {% bootstrap_field form.community_name layout='event' %}
+        {% bootstrap_field form.community_description layout='event' %}
+        {% bootstrap_field form.community_logo layout='event' %}
         {% bootstrap_field form.requires_access_code layout='event' %}
         {% include "orga/submit_row.html" %}
     </form>
