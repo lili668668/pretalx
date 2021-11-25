@@ -221,6 +221,13 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         null=True,
         blank=True,
     )
+    ack_track_template = models.ForeignKey(
+        to="mail.MailTemplate",
+        on_delete=models.CASCADE,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
     landing_page_text = I18nTextField(
         verbose_name=_("Landing page text"),
         help_text=_(
@@ -454,10 +461,13 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             self.reject_template,
             self.update_template,
             self.question_template,
+            self.ack_track_template
         ]
 
     def build_initial_data(self):
         from pretalx.mail.default_templates import (
+            ACK_TRACK_TEXT,
+            TRACK_SUBJECT,
             ACCEPT_TEXT,
             ACK_TEXT,
             GENERIC_SUBJECT,
@@ -489,6 +499,9 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         )
         self.ack_template = self.ack_template or MailTemplate.objects.create(
             event=self, subject=GENERIC_SUBJECT, text=ACK_TEXT
+        )
+        self.ack_track_template = self.ack_track_template or MailTemplate.objects.create(
+            event=self, subject=TRACK_SUBJECT, text=ACK_TRACK_TEXT
         )
         self.reject_template = self.reject_template or MailTemplate.objects.create(
             event=self, subject=GENERIC_SUBJECT, text=REJECT_TEXT

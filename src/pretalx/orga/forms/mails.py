@@ -296,7 +296,6 @@ class WriteMailForm(MailTemplateBase):
                 ):  # This happens when there are template errors
                     mail = template.to_mail(
                         user=None,
-                        event=self.event,
                         locale=submission.get_email_locale(speaker.locale),
                         context_kwargs={"submission": submission, "user": speaker},
                         commit=False,

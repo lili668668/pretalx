@@ -115,7 +115,6 @@ class SubmitWizard(EventPageMixin, View):
                     text=request.event.settings.mail_text_new_submission,
                 ).to_mail(
                     user=request.event.email,
-                    event=request.event,
                     context_kwargs={
                         "user": request.user,
                         "submission": request.submission,
@@ -173,36 +172,18 @@ class JoinWizard(EventPageMixin, View):
             if not step.identifier == "user":
                 step.done(request)
 
-        # try:
-        #     request.event.ack_template.to_mail(
-        #         user=request.user,
-        #         event=request.event,
-        #         context_kwargs={"user": request.user, "submission": request.submission},
-        #         skip_queue=True,
-        #         locale=request.submission.get_email_locale(request.user.locale),
-        #         full_submission_content=True,
-        #     )
-        #     if request.event.settings.mail_on_new_submission:
-        #         MailTemplate(
-        #             event=request.event,
-        #             subject=str(_("New proposal: {title}")).format(
-        #                 title=request.submission.title
-        #             ),
-        #             text=request.event.settings.mail_text_new_submission,
-        #         ).to_mail(
-        #             user=request.event.email,
-        #             event=request.event,
-        #             context_kwargs={
-        #                 "user": request.user,
-        #                 "submission": request.submission,
-        #             },
-        #             context={"orga_url": request.submission.orga_urls.base.full()},
-        #             skip_queue=True,
-        #             locale=request.event.locale,
-        #         )
-        # except SendMailException as exception:
-        #     logging.getLogger("").warning(str(exception))
-        #     messages.warning(request, phrases.cfp.submission_email_fail)
+        try:
+            request.event.ack_track_template.to_mail(
+                user=request.user,
+                context={"track_name": request.track.name, "track_url": request.event.orga_urls.cft},
+                context_kwargs={"user": request.user},
+                skip_queue=True,
+                locale=request.user.locale,
+                full_submission_content=True,
+            )
+        except SendMailException as exception:
+            logging.getLogger("").warning(str(exception))
+            messages.warning(request, phrases.cfp.submission_email_fail)
 
         return redirect(
             reverse("orga:event.dashboard", kwargs={"organiser": request.event.organiser.slug, "event": request.event.slug})

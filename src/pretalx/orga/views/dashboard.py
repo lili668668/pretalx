@@ -91,7 +91,7 @@ class EventDashboardView(EventPermissionRequired, TemplateView):
     def get_cfp_tiles(self, _now):
         result = []
         deadline = self.request.event.cfp.deadline
-        if self.request.event.cfp.is_open:
+        if self.request.event.cfp.is_start:
             if deadline and _now <= deadline:
                 result.append(
                     {"url": self.request.event.cfp.urls.toggle, "large": timeuntil(deadline), "small": _("until the CfP ends")})
@@ -108,7 +108,7 @@ class EventDashboardView(EventPermissionRequired, TemplateView):
     def get_cft_tiles(self, _now):
         result = []
         deadline = self.request.event.cft.deadline
-        if self.request.event.cft.is_open:
+        if self.request.event.cft.is_start:
             if deadline and _now <= deadline:
                 result.append(
                     {"url": self.request.event.cft.urls.toggle, "large": timeuntil(deadline),

@@ -534,7 +534,6 @@ class Schedule(LogMixin, models.Model):
             mails.append(
                 self.event.update_template.to_mail(
                     user=speaker,
-                    event=self.event,
                     context_kwargs={"user": speaker},
                     context={"notifications": notifications},
                     commit=save,

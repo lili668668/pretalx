@@ -74,7 +74,6 @@ class MailTemplate(LogMixin, models.Model):
     def to_mail(
         self,
         user,
-        event,
         locale: str = None,
         context: dict = None,
         context_kwargs: dict = None,

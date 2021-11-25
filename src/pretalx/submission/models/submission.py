@@ -473,7 +473,6 @@ class Submission(LogMixin, GenerateCode, FileCleanupMixin, models.Model):
                 user=speaker,
                 locale=self.get_email_locale(speaker.locale),
                 context_kwargs={"submission": self, "user": speaker},
-                event=self.event,
             )
 
     send_state_mail.alters_data = True

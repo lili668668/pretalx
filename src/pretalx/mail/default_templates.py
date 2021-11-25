@@ -1,6 +1,22 @@
 from django.utils.translation import gettext_noop as _
 from i18nfield.strings import LazyI18nString
 
+TRACK_SUBJECT = LazyI18nString.from_gettext(_("Your track: {track_name}"))
+
+ACK_TRACK_TEXT = LazyI18nString.from_gettext(
+    _(
+        """Hi!
+        
+We have received your track "{track_name}" to {event_name}. We will notify you once we have had time to consider all
+tracks, but until then you can see and edit your track at
+{track_url}.
+
+Please do not hesitate to contact us if you have any questions!
+
+The {event_name} organisers"""
+    )
+)
+
 GENERIC_SUBJECT = LazyI18nString.from_gettext(_("Your proposal: {submission_title}"))
 
 ACK_TEXT = LazyI18nString.from_gettext(

@@ -401,7 +401,6 @@ class CfPQuestionRemind(EventPermissionRequired, TemplateView):
                 )
                 request.event.question_template.to_mail(
                     person,
-                    event=request.event,
                     context=data,
                     context_kwargs={"user": person},
                 )

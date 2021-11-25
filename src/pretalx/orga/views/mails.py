@@ -357,6 +357,7 @@ class TemplateList(EventPermissionRequired, TemplateView):
         result = super().get_context_data(**kwargs)
         accept = self.request.event.accept_template
         ack = self.request.event.ack_template
+        ack_track = self.request.ack_track_template
         reject = self.request.event.reject_template
         update = self.request.event.update_template
         remind = self.request.event.question_template
@@ -374,6 +375,9 @@ class TemplateList(EventPermissionRequired, TemplateView):
         )
         result["remind"] = MailTemplateForm(
             instance=remind, read_only=True, event=self.request.event
+        )
+        result["ack_track"] = MailTemplateForm(
+            instance=ack_track, read_only=True, event=self.request.event
         )
         pks = [
             template.pk if template else None
