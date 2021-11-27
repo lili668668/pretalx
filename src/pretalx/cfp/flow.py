@@ -309,14 +309,13 @@ class InfoStep(GenericFlowStep, FormFlowStep):
 
     def get_form_initial(self):
         result = super().get_form_initial()
-        for field, model in ("track", Track):
-            request_value = self.request.GET.get(field)
-            if request_value:
-                with suppress(AttributeError, TypeError):
-                    pk = int(request_value.split("-")[0])
-                    obj = model.objects.filter(event=self.request.event, pk=pk).first()
-                    if obj:
-                        result[field] = obj
+        request_value = self.request.GET.get("track")
+        if request_value:
+            with suppress(AttributeError, TypeError):
+                pk = int(request_value.split("-")[0])
+                obj = Track.objects.filter(event=self.request.event, pk=pk).first()
+                if obj:
+                    result["track"] = obj
         return result
 
     def done(self, request):

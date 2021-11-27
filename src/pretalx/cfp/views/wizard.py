@@ -99,7 +99,6 @@ class SubmitWizard(EventPageMixin, View):
         try:
             request.event.ack_template.to_mail(
                 user=request.user,
-                event=request.event,
                 context_kwargs={"user": request.user, "submission": request.submission},
                 skip_queue=True,
                 locale=request.submission.get_email_locale(request.user.locale),
