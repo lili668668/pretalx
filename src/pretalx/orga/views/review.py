@@ -32,7 +32,6 @@ class ReviewDashboard(
     permission_required = "orga.view_review_dashboard"
     filter_fields = (
         "state",
-        "submission_type",
         "tags",
         "track",
     )
@@ -100,7 +99,7 @@ class ReviewDashboard(
 
         queryset = (
             queryset.annotate(user_score=Subquery(user_reviews))
-            .select_related("track", "submission_type")
+            .select_related("track")
             .prefetch_related("speakers", "reviews", "reviews__user", "reviews__scores")
         )
 
@@ -211,11 +210,6 @@ class ReviewDashboard(
         return Review.objects.filter(
             user=self.request.user, submission__event=self.request.event
         ).values_list("submission_id", flat=True)
-
-    @context
-    @cached_property
-    def show_submission_types(self):
-        return self.request.event.submission_types.all().count() > 1
 
     @context
     @cached_property

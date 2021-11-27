@@ -8,7 +8,6 @@ from .review import Review, ReviewPhase, ReviewScore, ReviewScoreCategory
 from .submission import Submission, SubmissionStates
 from .tag import Tag
 from .track import Track
-from .type import SubmissionType
 
 __all__ = [
     "Answer",
@@ -26,7 +25,6 @@ __all__ = [
     "ReviewScoreCategory",
     "Submission",
     "SubmissionStates",
-    "SubmissionType",
     "SubmitterAccessCode",
     "Tag",
     "Track",

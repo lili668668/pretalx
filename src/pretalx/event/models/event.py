@@ -582,7 +582,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             new_template.event = self
             new_template.save()
             setattr(self, template, new_template)
-        submission_type_map = {}
         track_map = {}
         for track in other_event.tracks.all():
             track_map[track.pk] = track
@@ -594,35 +593,27 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             question_map[question.pk] = question
             options = question.options.all()
             tracks = question.tracks.all().values_list("pk", flat=True)
-            types = question.submission_types.all().values_list("pk", flat=True)
             question.pk = None
             question.event = self
             question.save()
             question.tracks.set([])
-            question.submission_types.set([])
             for option in options:
                 option.pk = None
                 option.question = question
                 option.save()
             for track in tracks:
                 question.tracks.add(track_map.get(track))
-            for stype in types:
-                question.submission_types.add(submission_type_map.get(stype))
 
         information_map = {}
         for information in other_event.information.all():
             information_map[information.pk] = information
             tracks = information.limit_tracks.all().values_list("pk", flat=True)
-            types = information.limit_types.all().values_list("pk", flat=True)
             information.pk = None
             information.event = self
             information.save()
             information.limit_tracks.set([])
-            information.limit_types.set([])
             for track in tracks:
                 information.limit_tracks.add(track_map.get(track))
-            for stype in types:
-                question.limit_types.add(submission_type_map.get(stype))
 
         for s in other_event.settings._objects.all():
             if s.value.startswith("file://") or s.key in protected_settings:
@@ -636,7 +627,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             other=other_event.slug,
             question_map=question_map,
             track_map=track_map,
-            submission_type_map=submission_type_map,
             speaker_information_map=information_map,
         )
         self.build_initial_data()  # make sure we get a functioning event
@@ -799,7 +789,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
                 self.submissions.filter(
                     slots__in=self.current_schedule.talks.filter(is_visible=True)
                 )
-                .select_related("submission_type")
                 .prefetch_related("speakers")
             )
         return Submission.objects.none()
@@ -930,7 +919,6 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
             (Question.all_objects.filter(event=self), False),
             (Submission.all_objects.filter(event=self), True),
             (self.tracks.all(), False),
-            (self.submission_types.all(), False),
             (self.schedules.all(), False),
             (SpeakerProfile.objects.filter(event=self), False),
             (self.rooms.all(), False),

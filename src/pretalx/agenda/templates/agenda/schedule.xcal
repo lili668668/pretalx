@@ -22,7 +22,6 @@
             <description>{{ talk.submission.description|default_if_none:"" }}</description>
             <class>PUBLIC</class>
             <status>CONFIRMED</status>
-            <category>{{ talk.submission.submission_type.name }}</category>
             <url>{{ url }}{{ talk.submission.urls.public }}</url>
             <location>{{ room.name }}</location>
             {% for person in talk.submission.speakers.all %}

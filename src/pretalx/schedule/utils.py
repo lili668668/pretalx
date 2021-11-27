@@ -10,7 +10,6 @@ from pretalx.schedule.models import Room, TalkSlot
 from pretalx.submission.models import (
     Submission,
     SubmissionStates,
-    SubmissionType,
     Track,
 )
 
@@ -73,21 +72,10 @@ def _create_talk(*, talk, room, event):
     start = parse(date + " " + talk.find("start").text)
     hours, minutes = talk.find("duration").text.split(":")
     duration = dt.timedelta(hours=int(hours), minutes=int(minutes))
-    duration_in_minutes = duration.total_seconds() / 60
     try:
         end = parse(date + " " + talk.find("end").text)
     except AttributeError:
         end = start + duration
-    sub_type = SubmissionType.objects.filter(
-        event=event, name=talk.find("type").text, default_duration=duration_in_minutes
-    ).first()
-
-    if not sub_type:
-        sub_type = SubmissionType.objects.create(
-            name=talk.find("type").text or "default",
-            event=event,
-            default_duration=duration_in_minutes,
-        )
 
     track = Track.objects.filter(event=event, name=talk.find("track").text).first()
 
@@ -113,9 +101,8 @@ def _create_talk(*, talk, room, event):
             break
 
     sub, _ = Submission.objects.get_or_create(
-        event=event, code=code, defaults={"submission_type": sub_type}
+        event=event, code=code
     )
-    sub.submission_type = sub_type
     sub.track = track
     sub.title = talk.find("title").text
     sub.description = talk.find("description").text

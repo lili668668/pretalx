@@ -19,7 +19,7 @@ class FeaturedView(EventPermissionRequired, TemplateView):
     def talks(self):
         return (
             self.request.event.submissions.filter(is_featured=True)
-            .select_related("event", "submission_type")
+            .select_related("event")
             .prefetch_related("speakers")
             .order_by("title")
         )

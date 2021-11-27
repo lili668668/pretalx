@@ -649,19 +649,6 @@ def administrator_client(administrator, client):
 
 
 @pytest.fixture
-def submission_type(event):
-    with scope(event=event):
-        return SubmissionType.objects.create(
-            name="Workshop", event=event, default_duration=60
-        )
-
-
-@pytest.fixture
-def default_submission_type(event):
-    return event.cfp.default_type
-
-
-@pytest.fixture
 def speaker(event):
     with scopes_disabled():
         user = User.objects.create_user(
@@ -698,10 +685,9 @@ def other_speaker_client(client, other_speaker):
 
 
 @pytest.fixture
-def submission_data(event, submission_type):
+def submission_data(event):
     return {
         "title": "Lametta im Wandel der Zeiten",
-        "submission_type": submission_type,
         "description": "Früher war es nämlich mehr. Und wir mussten es bügeln.",
         "abstract": "Ich habe Quellen!",
         "notes": "Und mein Enkel braucht auch noch ein Geschenk.",
@@ -726,7 +712,6 @@ def other_submission(event, other_speaker):
         sub = Submission.objects.create(
             title="Albrecht Dürer. Sein Leben, seine Zeit",
             event=event,
-            submission_type=event.cfp.default_type,
             description="1 guter Talk",
             abstract="Verstehste?",
             notes="I like cookies A LOT",

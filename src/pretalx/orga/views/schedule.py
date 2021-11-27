@@ -243,7 +243,6 @@ def serialize_slot(slot, warnings=None):
             "speakers": [
                 {"name": speaker.name} for speaker in slot.submission.speakers.all()
             ],
-            "submission_type": str(slot.submission.submission_type.name),
             "track": {
                 "name": str(slot.submission.track.name),
             }
@@ -253,8 +252,7 @@ def serialize_slot(slot, warnings=None):
             "description": str(slot.submission.description),
             "abstract": str(slot.submission.abstract),
             "notes": slot.submission.notes,
-            "duration": slot.submission.duration
-            or slot.submission.submission_type.default_duration,
+            "duration": slot.submission.duration,
             "content_locale": slot.submission.content_locale,
             "do_not_record": slot.submission.do_not_record,
             "room": slot.room.pk if slot.room else None,
@@ -293,7 +291,6 @@ class TalkList(EventPermissionRequired, View):
                     "submission",
                     "submission__event",
                     "room",
-                    "submission__submission_type",
                     "submission__track",
                 )
                 .prefetch_related("submission__speakers")

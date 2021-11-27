@@ -33,11 +33,6 @@ class InfoForm(CfPFormMixin, RequestRequire, PublicContent, forms.ModelForm):
         self.access_code = kwargs.pop("access_code", None)
         instance = kwargs.get("instance")
         initial = kwargs.pop("initial", {}) or {}
-        if not instance or not instance.submission_type:
-            initial["submission_type"] = (
-                getattr(self.access_code, "submission_type", None)
-                or initial.get("submission_type")
-            )
         if not instance and self.access_code:
             initial["track"] = self.access_code.track
         if not instance or not instance.content_locale:
@@ -52,7 +47,6 @@ class InfoForm(CfPFormMixin, RequestRequire, PublicContent, forms.ModelForm):
             self.fields.pop("additional_speaker")
 
         self._set_track(instance=instance)
-        self._set_submission_types(instance=instance)
         self._set_locales()
         self._set_slot_count(instance=instance)
 
@@ -82,48 +76,6 @@ class InfoForm(CfPFormMixin, RequestRequire, PublicContent, forms.ModelForm):
             if len(self.fields["track"].queryset) == 1:
                 self.initial["track"] = self.fields["track"].queryset.first().pk
                 self.fields["track"].widget = forms.HiddenInput()
-
-    def _set_submission_types(self, instance=None):
-        _now = now()
-        if (
-            instance
-            and instance.pk
-            and (
-                instance.state != SubmissionStates.SUBMITTED
-                or not self.event.cfp.is_open
-            )
-        ):
-            self.fields[
-                "submission_type"
-            ].queryset = self.event.submission_types.filter(
-                pk=instance.submission_type_id
-            )
-            self.fields["submission_type"].disabled = True
-            return
-        access_code = self.access_code or getattr(instance, "access_code", None)
-        if access_code and not access_code.submission_type:
-            pks = set(self.event.submission_types.values_list("pk", flat=True))
-        elif access_code:
-            pks = {access_code.submission_type.pk}
-        else:
-            queryset = self.event.submission_types.filter(requires_access_code=False)
-            if (
-                not self.event.cfp.deadline or self.event.cfp.deadline >= _now
-            ):  # No global deadline or still open
-                types = queryset.exclude(deadline__lt=_now)
-            else:
-                types = queryset.filter(deadline__gte=_now)
-            pks = set(types.values_list("pk", flat=True))
-        if instance and instance.pk:
-            pks |= {instance.submission_type.pk}
-        self.fields["submission_type"].queryset = self.event.submission_types.filter(
-            pk__in=pks
-        )
-        if len(pks) == 1:
-            self.initial["submission_type"] = (
-                self.fields["submission_type"].queryset.first().pk
-            )
-            self.fields["submission_type"].widget = forms.HiddenInput()
 
     def _set_locales(self):
         if "content_locale" in self.fields:
@@ -161,7 +113,6 @@ class InfoForm(CfPFormMixin, RequestRequire, PublicContent, forms.ModelForm):
         model = Submission
         fields = [
             "title",
-            "submission_type",
             "track",
             "content_locale",
             "abstract",
@@ -191,7 +142,6 @@ class InfoForm(CfPFormMixin, RequestRequire, PublicContent, forms.ModelForm):
             "track": TrackSelectWidget,
         }
         field_classes = {
-            "submission_type": SafeModelChoiceField,
             "track": SafeModelChoiceField,
         }
 
@@ -201,9 +151,6 @@ class SubmissionFilterForm(forms.Form):
         choices=SubmissionStates.get_choices(),
         required=False,
         widget=forms.SelectMultiple(attrs={"class": "select2"}),
-    )
-    submission_type = forms.MultipleChoiceField(
-        required=False, widget=forms.SelectMultiple(attrs={"class": "select2"})
     )
     track = forms.MultipleChoiceField(
         required=False, widget=forms.SelectMultiple(attrs={"class": "select2"})
@@ -226,25 +173,7 @@ class SubmissionFilterForm(forms.Form):
             d["state"]: d["state__count"]
             for d in state_qs.order_by("state").values("state").annotate(Count("state"))
         }
-        sub_types = event.submission_types.all()
         tracks = limit_tracks or event.tracks.all()
-        if len(sub_types) > 1:
-            type_count = {
-                d["submission_type_id"]: d["submission_type_id__count"]
-                for d in qs.order_by("submission_type_id")
-                .values("submission_type_id")
-                .annotate(Count("submission_type_id"))
-            }
-            self.fields["submission_type"].choices = [
-                (
-                    sub_type.pk,
-                    f"{str(sub_type.name)} ({type_count.get(sub_type.pk, 0)})",
-                )
-                for sub_type in event.submission_types.all()
-            ]
-            self.fields["submission_type"].widget.attrs["title"] = _("Session types")
-        else:
-            self.fields.pop("submission_type", None)
         if len(tracks) > 1:
             track_count = {
                 d["track"]: d["track__count"]

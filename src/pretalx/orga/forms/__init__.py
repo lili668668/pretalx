@@ -1,4 +1,4 @@
-from .cfp import CfPForm, QuestionForm, SubmissionTypeForm, TrackForm
+from .cfp import CfPForm, QuestionForm, TrackForm
 from .cft import CfTForm
 from .event import EventForm, EventSettingsForm
 from .review import ReviewForm
@@ -13,6 +13,5 @@ __all__ = [
     "QuestionForm",
     "ReviewForm",
     "SubmissionForm",
-    "SubmissionTypeForm",
     "TrackForm",
 ]

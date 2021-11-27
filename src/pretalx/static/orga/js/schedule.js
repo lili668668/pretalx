@@ -255,11 +255,11 @@ Vue.component("modal", {
 
 Vue.component("talk", {
   template: `
-    <div class="talk-box" :class="[talk.state, {dragged: isDragged, warning: displayWarnings, break: isBreak}]" v-bind:style="style" @mousedown="onMouseDown"
+    <div class="talk-box" :class="[talk.state, {dragged: isDragged, warning: displayWarnings}]" v-bind:style="style" @mousedown="onMouseDown"
          :title="title" :data-original-title="title" data-toggle="tooltip">
       <span v-if="displayWarnings" class="warning-sign"><i class="fa fa-warning"></i></span>
       <span v-if="(!isDragged || !this.talk.start) && talk.title">{{ talk.title }}</span>
-      <span v-if="isBreak && !isDragged" class="description">{{ breakDescription }}</span>
+      <span v-if="!isDragged" class="description">{{ breakDescription }}</span>
       <span class="time" v-if="this.talk.start && this.isDragged && this.talk.id">
         <span>{{ humanStart }}</span>
       </span>
@@ -305,9 +305,6 @@ Vue.component("talk", {
       return this.talk.warnings
         ? this.talk.warnings.map(warning => warning.message).join("\n")
         : null
-    },
-    isBreak() {
-      return !this.talk.submission_type
     },
   },
   methods: {
@@ -516,13 +513,10 @@ var app = new Vue({
       return this.talks.filter(talk => {
         const speakers = talk.speakers || []
         const title = talk.title.toLowerCase()
-        const submissionType = talk.submission_type ? talk.submission_type.toLowerCase() : ""
         const track = talk.track ? talk.track.name.toLowerCase() : ""
         return searchTerms.some(term => {
           if (track && term.startsWith("track:")) {
             if (track.includes(term.substring(6))) return true
-          } else if (term.startsWith("type:")) {
-            if (submissionType.includes(term.substring(5))) return true
           } else {
             if (title.includes(term) || speakers.some(speaker => speaker.name.toLowerCase().includes(term))) {
               return true
@@ -634,7 +628,7 @@ var app = new Vue({
       if (dragController.draggedTalk && !dragController.modalTalk) {
         if (dragController.event) {
           // got dragged
-          if (!dragController.draggedTalk.submission_type && !dragController.draggedTalk.room) {
+          if (!dragController.draggedTalk.room) {
             api.deleteTalk(dragController.draggedTalk).then(response => {
               this.deleteTalk(dragController.draggedTalk)
             })

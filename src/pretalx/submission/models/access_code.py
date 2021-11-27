@@ -31,17 +31,6 @@ class SubmitterAccessCode(LogMixin, GenerateCode, models.Model):
         null=True,
         blank=True,
     )
-    submission_type = models.ForeignKey(
-        to="submission.SubmissionType",
-        on_delete=models.CASCADE,
-        verbose_name=_("Session Type"),
-        help_text=_(
-            "You can restrict the access code to a single session type, or leave it open for all session types."
-        ),
-        related_name="submitter_access_codes",
-        null=True,
-        blank=True,
-    )
     valid_until = models.DateTimeField(
         verbose_name=_("Valid until"),
         help_text=_(

@@ -108,7 +108,7 @@ const getPieData = (id) => {
 const drawPieChart = (data, scope, type) => {
   const id = scope + "-" + type
   const element = document.getElementById(id)
-  const typeMapping = {"track": "track", "type": "submission_type", "state": "state"}
+  const typeMapping = {"track": "track", "state": "state"}
   const options = {
     series: data.series,
     labels: data.labels,

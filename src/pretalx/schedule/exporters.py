@@ -44,7 +44,6 @@ class ScheduleData(BaseExporter):
             base_qs.select_related(
                 "submission",
                 "submission__event",
-                "submission__submission_type",
                 "submission__track",
                 "room",
             )
@@ -185,7 +184,6 @@ class FrabJsonExporter(ScheduleData):
                                     "track": str(talk.submission.track.name)
                                     if talk.submission.track
                                     else None,
-                                    "type": str(talk.submission.submission_type.name),
                                     "language": talk.submission.content_locale,
                                     "abstract": talk.submission.abstract,
                                     "description": talk.submission.description,

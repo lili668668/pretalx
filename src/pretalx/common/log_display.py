@@ -75,10 +75,6 @@ LOG_NAMES = {
     "pretalx.submission.answerupdate": _("A proposal answer was modified."),  # Legacy
     "pretalx.submission.answer.create": _("A proposal answer was added."),  # Legacy
     "pretalx.submission.answercreate": _("A proposal answer was added."),  # Legacy
-    "pretalx.submission_type.create": _("A session type was added."),
-    "pretalx.submission_type.delete": _("A session type was deleted."),
-    "pretalx.submission_type.make_default": _("The session type was made default."),
-    "pretalx.submission_type.update": _("A session type was modified."),
     "pretalx.access_code.create": _("An access code was added."),
     "pretalx.access_code.send": _("An access code was sent."),
     "pretalx.access_code.update": _("An access code was modified."),

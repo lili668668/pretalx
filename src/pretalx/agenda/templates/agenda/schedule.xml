@@ -29,7 +29,6 @@
                 <title>{{ talk.submission.title|xmlescape }}</title>
                 <subtitle></subtitle>
                 <track>{% if talk.submission.track %}{{ talk.submission.track.name }}{% endif %}</track>
-                <type>{{ talk.submission.submission_type.name|xmlescape }}</type>
                 <language>{{ talk.submission.content_locale }}</language>
                 <abstract>{{ talk.submission.abstract|xmlescape }}</abstract>
                 <description>{{ talk.submission.description|xmlescape }}</description>

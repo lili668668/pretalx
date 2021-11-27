@@ -171,13 +171,6 @@ class EventLive(EventSettingsPermission, TemplateView):
                     "url": self.request.event.cfp.urls.tracks,
                 }
             )
-        if not self.request.event.submission_types.count() > 1:
-            suggestions.append(
-                {
-                    "text": _("You have configured only one session type so far."),
-                    "url": self.request.event.cfp.urls.types,
-                }
-            )
         if not self.request.event.questions.exists():
             suggestions.append(
                 {

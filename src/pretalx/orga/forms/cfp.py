@@ -12,7 +12,6 @@ from pretalx.submission.models import (
     CfP,
     Question,
     QuestionVariant,
-    SubmissionType,
     SubmitterAccessCode,
     Track,
 )
@@ -155,10 +154,6 @@ class QuestionForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
             self.fields.pop("tracks")
         else:
             self.fields["tracks"].queryset = event.tracks.all()
-        if not event.submission_types.count():
-            self.fields.pop("submission_types")
-        else:
-            self.fields["submission_types"].queryset = event.submission_types.all()
         if (
             instance
             and instance.pk
@@ -195,7 +190,6 @@ class QuestionForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
             "is_public",
             "is_visible_to_reviewers",
             "tracks",
-            "submission_types",
             "contains_personal_data",
             "min_length",
             "max_length",
@@ -205,12 +199,10 @@ class QuestionForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
             "question_required": forms.RadioSelect(),
             "freeze_after": forms.DateTimeInput(attrs={"class": "datetimepickerfield"}),
             "tracks": forms.SelectMultiple(attrs={"class": "select2"}),
-            "submission_types": forms.SelectMultiple(attrs={"class": "select2"}),
         }
         field_classes = {
             "variant": SafeModelChoiceField,
             "tracks": SafeModelMultipleChoiceField,
-            "submission_types": SafeModelMultipleChoiceField,
         }
 
 
@@ -218,35 +210,6 @@ class AnswerOptionForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
     class Meta:
         model = AnswerOption
         fields = ["answer"]
-
-
-class SubmissionTypeForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
-    def __init__(self, *args, event=None, **kwargs):
-        self.event = event
-        super().__init__(*args, **kwargs)
-
-    def clean_name(self):
-        name = self.cleaned_data["name"]
-        qs = self.event.submission_types.all()
-        if self.instance and self.instance.pk:
-            qs = qs.exclude(pk=self.instance.pk)
-        if any(str(s.name) == str(name) for s in qs):
-            raise forms.ValidationError(
-                _("You already have a session type by this name!")
-            )
-        return name
-
-    def save(self, *args, **kwargs):
-        instance = super().save(*args, **kwargs)
-        if instance.pk and "duration" in self.changed_data:
-            instance.update_duration()
-
-    class Meta:
-        model = SubmissionType
-        fields = ("name", "default_duration", "deadline", "requires_access_code")
-        widgets = {
-            "deadline": forms.DateTimeInput(attrs={"class": "datetimepickerfield"})
-        }
 
 
 class TrackForm(ReadOnlyFlag, I18nHelpText, I18nModelForm):
@@ -268,9 +231,6 @@ class SubmitterAccessCodeForm(forms.ModelForm):
             initial["valid_until"] = event.cfp.deadline
         kwargs["initial"] = initial
         super().__init__(*args, **kwargs)
-        self.fields["submission_type"].queryset = SubmissionType.objects.filter(
-            event=self.event
-        )
         if event.settings.use_tracks:
             self.fields["track"].queryset = Track.objects.filter(event=self.event)
         else:
@@ -283,16 +243,13 @@ class SubmitterAccessCodeForm(forms.ModelForm):
             "valid_until",
             "maximum_uses",
             "track",
-            "submission_type",
         )
         field_classes = {
             "track": SafeModelChoiceField,
-            "submission_type": SafeModelChoiceField,
         }
         widgets = {
             "valid_until": forms.DateTimeInput(attrs={"class": "datetimepickerfield"}),
             "track": forms.Select(attrs={"class": "select2"}),
-            "submission_type": forms.Select(attrs={"class": "select2"}),
         }
 
 
@@ -381,16 +338,10 @@ class QuestionFilterForm(forms.Form):
         label=_("Recipients"),
     )
     track = SafeModelChoiceField(Track.objects.none(), required=False)
-    submission_type = SafeModelChoiceField(
-        SubmissionType.objects.none(), required=False
-    )
 
     def __init__(self, *args, event, **kwargs):
         self.event = event
         super().__init__(*args, **kwargs)
-        self.fields["submission_type"].queryset = SubmissionType.objects.filter(
-            event=event
-        )
         if not event.settings.use_tracks:
             self.fields.pop("track", None)
         elif "track" in self.fields:
@@ -399,7 +350,6 @@ class QuestionFilterForm(forms.Form):
     def get_submissions(self):
         role = self.cleaned_data["role"]
         track = self.cleaned_data.get("track")
-        submission_type = self.cleaned_data["submission_type"]
         talks = self.event.submissions.all()
         if role == "accepted":
             talks = talks.filter(Q(state="accepted") | Q(state="confirmed"))
@@ -407,8 +357,6 @@ class QuestionFilterForm(forms.Form):
             talks = talks.filter(state="confirmed")
         if track:
             talks = talks.filter(track=track)
-        if submission_type:
-            talks = talks.filter(submission_type=submission_type)
         return talks
 
     def get_question_information(self, question):

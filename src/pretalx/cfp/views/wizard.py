@@ -10,7 +10,6 @@ from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from pretalx.event.models import Team
 
 from pretalx.cfp.views.event import EventPageMixin
 from pretalx.common.exceptions import SendMailException

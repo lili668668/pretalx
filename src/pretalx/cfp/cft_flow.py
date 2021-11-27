@@ -1,8 +1,6 @@
 import copy
 import json
-import logging
 from collections import OrderedDict
-from contextlib import suppress
 from pathlib import Path
 
 from django.conf import settings
@@ -23,14 +21,13 @@ from i18nfield.strings import LazyI18nString
 from i18nfield.utils import I18nJSONEncoder
 
 from pretalx.cfp.signals import  cft_steps
-from pretalx.common.exceptions import SendMailException
 from pretalx.common.phrases import phrases
 from pretalx.common.utils import language
 from pretalx.person.forms import UserForm, PrincipalContactForm
 from pretalx.person.models import User
 from pretalx.submission.forms import QuestionsForm
 from pretalx.submission.forms import InfoTrackForm
-from pretalx.submission.models import QuestionTarget, SubmissionType, Track
+from pretalx.submission.models import QuestionTarget
 
 
 def i18n_string(data, locales):
@@ -362,10 +359,6 @@ class QuestionsStep(GenericFlowStep, FormFlowStep):
             Q(target=QuestionTarget.SUBMISSION)
             & (
                 (~Q(tracks__in=[info_data.get("track")]) & Q(tracks__isnull=False))
-                | (
-                    ~Q(submission_types__in=[info_data.get("submission_type")])
-                    & Q(submission_types__isnull=False)
-                )
             )
         ).exists()
 
@@ -374,7 +367,6 @@ class QuestionsStep(GenericFlowStep, FormFlowStep):
         info_data = self.cft_session.get("data", {}).get("info", {})
         result["target"] = ""
         result["track"] = info_data.get("track")
-        result["submission_type"] = info_data.get("submission_type")
         if not self.request.user.is_anonymous:
             result["speaker"] = self.request.user
         return result

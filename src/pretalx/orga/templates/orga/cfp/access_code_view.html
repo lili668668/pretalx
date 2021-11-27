@@ -46,9 +46,6 @@
                             {% else %}–{% endif %}
                         </td>{% endif %}
                         <td>
-                            {% if code.submission_type %}
-                                <a href="{{ code.submission_type.urls.base }}">{{ code.submission_type.name }}</a>
-                            {% else %}–{% endif %}
                         </td>
                         <td>
                             {{ code.redeemed|default:0 }} / {{ code.maximum_uses|default:'∞' }}

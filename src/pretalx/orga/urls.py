@@ -229,38 +229,6 @@ urlpatterns = [
                             ),
                             path("cfp/text", cfp.CfPTextDetail.as_view(), name="cfp.text.view"),
                             path(
-                                "cfp/types/",
-                                cfp.SubmissionTypeList.as_view(),
-                                name="cfp.types.view",
-                            ),
-                            path(
-                                "cfp/types/new",
-                                cfp.SubmissionTypeDetail.as_view(),
-                                name="cfp.types.create",
-                            ),
-                            path(
-                                "cfp/types/<int:pk>/",
-                                include(
-                                    [
-                                        path(
-                                            "",
-                                            cfp.SubmissionTypeDetail.as_view(),
-                                            name="cfp.type.view",
-                                        ),
-                                        path(
-                                            "delete",
-                                            cfp.SubmissionTypeDelete.as_view(),
-                                            name="cfp.type.delete",
-                                        ),
-                                        path(
-                                            "default",
-                                            cfp.SubmissionTypeDefault.as_view(),
-                                            name="cfp.type.default",
-                                        ),
-                                    ]
-                                ),
-                            ),
-                            path(
                                 "cfp/access-codes/",
                                 cfp.AccessCodeList.as_view(),
                                 name="cfp.access_code.view",

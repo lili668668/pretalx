@@ -46,9 +46,6 @@ class SubmissionFilterForm(forms.Form):
         required=False,
         widget=forms.SelectMultiple(attrs={"class": "select2"}),
     )
-    submission_type = forms.MultipleChoiceField(
-        required=False, widget=forms.SelectMultiple(attrs={"class": "select2"})
-    )
     track = forms.MultipleChoiceField(
         required=False, widget=forms.SelectMultiple(attrs={"class": "select2"})
     )
@@ -70,25 +67,7 @@ class SubmissionFilterForm(forms.Form):
             d["state"]: d["state__count"]
             for d in state_qs.order_by("state").values("state").annotate(Count("state"))
         }
-        sub_types = event.submission_types.all()
         tracks = limit_tracks or event.tracks.all()
-        if len(sub_types) > 1:
-            type_count = {
-                d["submission_type_id"]: d["submission_type_id__count"]
-                for d in qs.order_by("submission_type_id")
-                .values("submission_type_id")
-                .annotate(Count("submission_type_id"))
-            }
-            self.fields["submission_type"].choices = [
-                (
-                    sub_type.pk,
-                    f"{str(sub_type.name)} ({type_count.get(sub_type.pk, 0)})",
-                )
-                for sub_type in event.submission_types.all()
-            ]
-            self.fields["submission_type"].widget.attrs["title"] = _("Session types")
-        else:
-            self.fields.pop("submission_type", None)
         if len(tracks) > 1:
             track_count = {
                 d["track"]: d["track__count"]

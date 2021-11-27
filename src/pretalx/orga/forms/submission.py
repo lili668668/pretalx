@@ -8,7 +8,7 @@ from django_scopes.forms import SafeModelChoiceField, SafeModelMultipleChoiceFie
 
 from pretalx.common.forms.fields import ImageField
 from pretalx.common.mixins.forms import ReadOnlyFlag, RequestRequire
-from pretalx.submission.models import Submission, SubmissionStates, SubmissionType
+from pretalx.submission.models import Submission, SubmissionStates
 
 
 class SubmissionForm(ReadOnlyFlag, RequestRequire, forms.ModelForm):
@@ -47,10 +47,6 @@ class SubmissionForm(ReadOnlyFlag, RequestRequire, forms.ModelForm):
             kwargs["initial"] = initial
         kwargs["initial"].update(initial_slot)
         super().__init__(**kwargs)
-        if "submission_type" in self.fields:
-            self.fields["submission_type"].queryset = SubmissionType.objects.filter(
-                event=event
-            )
         if not self.event.tags.all().exists():
             self.fields.pop("tags", None)
         elif "tags" in self.fields:
@@ -176,7 +172,6 @@ class SubmissionForm(ReadOnlyFlag, RequestRequire, forms.ModelForm):
         model = Submission
         fields = [
             "title",
-            "submission_type",
             "track",
             "tags",
             "abstract",
@@ -193,10 +188,8 @@ class SubmissionForm(ReadOnlyFlag, RequestRequire, forms.ModelForm):
         widgets = {
             "tags": forms.SelectMultiple(attrs={"class": "select2"}),
             "track": forms.Select(attrs={"class": "select2"}),
-            "submission_type": forms.Select(attrs={"class": "select2"}),
         }
         field_classes = {
-            "submission_type": SafeModelChoiceField,
             "tags": SafeModelMultipleChoiceField,
             "track": SafeModelChoiceField,
             "image": ImageField,

@@ -40,7 +40,6 @@
     <div class="submit-group search-submit-group">
         <form class="search-form">
             {% bootstrap_form search_form %}
-            {% if show_submission_types and filter_form.submission_type %}{% bootstrap_field filter_form.submission_type %}{% endif %}
             {% bootstrap_field filter_form.state layout='inline' %}
             {% if filter_form.track %}{% bootstrap_field filter_form.track %}{% endif %}
             {% if filter_form.tags %}{% bootstrap_field filter_form.tags %}{% endif %}
@@ -115,9 +114,6 @@
                             {% endfor %}
                         </td>
                     {% endif %}
-                    <td>
-                        {{ submission.submission_type.name }}
-                    </td>
                     <td>
                         {% include "orga/submission/state_dropdown.html" with submission=submission %}
                     </td>

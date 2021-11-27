@@ -166,20 +166,6 @@ def base_placeholders(sender, **kwargs):
             _("The name(s) of all speakers in this proposal."),
         ),
         SimpleFunctionalMailTextPlaceholder(
-            "session_type",
-            ["submission"],
-            lambda submission: str(submission.submission_type.name),
-            "Workshop",
-            _("The proposal's session type"),
-        ),
-        SimpleFunctionalMailTextPlaceholder(
-            "submission_type",
-            ["submission"],
-            lambda submission: str(submission.submission_type.name),
-            "Workshop",
-            _("The proposal's session type"),
-        ),
-        SimpleFunctionalMailTextPlaceholder(
             "track_name",
             ["submission"],
             lambda submission: str(submission.track.name) if submission.track else "",

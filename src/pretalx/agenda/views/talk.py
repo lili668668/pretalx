@@ -40,7 +40,7 @@ class TalkView(PermissionRequired, TemplateView):
             return get_object_or_404(
                 self.request.event.submissions.prefetch_related(
                     "speakers", "slots", "answers", "resources"
-                ).select_related("submission_type"),
+                ),
                 code__iexact=self.kwargs["slug"],
             )
         raise Http404()

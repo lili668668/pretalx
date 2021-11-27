@@ -94,7 +94,6 @@ class Submission(LogMixin, GenerateCode, FileCleanupMixin, models.Model):
 
     A submission, which belongs to exactly one event, can have multiple
     speakers and a lot of other related data, such as a
-    :class:`~pretalx.submission.models.type.SubmissionType`, a
     :class:`~pretalx.submission.models.track.Track`, multiple
     :class:`~pretalx.submission.models.question.Answer` objects, and so on.
 
@@ -118,12 +117,6 @@ class Submission(LogMixin, GenerateCode, FileCleanupMixin, models.Model):
         to="event.Event", on_delete=models.PROTECT, related_name="submissions"
     )
     title = models.CharField(max_length=200, verbose_name=_("Title"))
-    submission_type = models.ForeignKey(  # Reasonable default must be set in form/view
-        to="submission.SubmissionType",
-        related_name="submissions",
-        on_delete=models.PROTECT,
-        verbose_name=_("Session type"),
-    )
     track = models.ForeignKey(
         to="submission.Track",
         related_name="submissions",
@@ -293,11 +286,8 @@ class Submission(LogMixin, GenerateCode, FileCleanupMixin, models.Model):
         """Returns this submission's duration in minutes.
 
         Falls back to the
-        :class:`~pretalx.submission.models.type.SubmissionType`'s default
         duration if none is set on the submission.
         """
-        if self.duration is None:
-            return self.submission_type.default_duration
         return self.duration
 
     def update_duration(self):

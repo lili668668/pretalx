@@ -29,7 +29,7 @@ from pretalx.common.utils import language
 from pretalx.person.forms import SpeakerProfileForm, UserForm
 from pretalx.person.models import User
 from pretalx.submission.forms import InfoForm, QuestionsForm
-from pretalx.submission.models import QuestionTarget, SubmissionType, Track
+from pretalx.submission.models import QuestionTarget, Track
 
 
 def i18n_string(data, locales):
@@ -309,7 +309,7 @@ class InfoStep(GenericFlowStep, FormFlowStep):
 
     def get_form_initial(self):
         result = super().get_form_initial()
-        for field, model in (("submission_type", SubmissionType), ("track", Track)):
+        for field, model in ("track", Track):
             request_value = self.request.GET.get(field)
             if request_value:
                 with suppress(AttributeError, TypeError):
@@ -383,10 +383,6 @@ class QuestionsStep(GenericFlowStep, FormFlowStep):
             Q(target=QuestionTarget.SUBMISSION)
             & (
                 (~Q(tracks__in=[info_data.get("track")]) & Q(tracks__isnull=False))
-                | (
-                    ~Q(submission_types__in=[info_data.get("submission_type")])
-                    & Q(submission_types__isnull=False)
-                )
             )
         ).exists()
 
@@ -395,7 +391,6 @@ class QuestionsStep(GenericFlowStep, FormFlowStep):
         info_data = self.cfp_session.get("data", {}).get("info", {})
         result["target"] = ""
         result["track"] = info_data.get("track")
-        result["submission_type"] = info_data.get("submission_type")
         if not self.request.user.is_anonymous:
             result["speaker"] = self.request.user
         return result

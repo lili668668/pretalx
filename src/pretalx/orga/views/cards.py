@@ -50,9 +50,6 @@ class SubmissionCard(Flowable):
 
         self.canv.rotate(90)
         self.canv.setFont("Helvetica", 16)
-        self.canv.drawString(
-            25 * mm, -12 * mm, str(self.submission.submission_type.name)
-        )
         self.canv.rotate(-90)
 
         qr_code = qr.QrCodeWidget(self.submission.orga_urls.quick_schedule.full())
@@ -104,7 +101,7 @@ class SubmissionCards(EventPermissionRequired, View):
 
     def get_queryset(self):
         return (
-            self.request.event.submissions.select_related("submission_type")
+            self.request.event.submissions
             .prefetch_related("speakers")
             .filter(
                 state__in=[

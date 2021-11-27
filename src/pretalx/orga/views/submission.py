@@ -152,7 +152,7 @@ class ReviewerSubmissionFilter:
         self._for_reviews = for_reviews
         queryset = (
             self.request.event.submissions.all()
-            .select_related("submission_type", "event", "track")
+            .select_related("event", "track")
             .prefetch_related("speakers")
         )
         if self.limit_tracks:
@@ -487,7 +487,7 @@ class SubmissionList(
     model = Submission
     context_object_name = "submissions"
     template_name = "orga/submission/list.html"
-    filter_fields = ("submission_type", "state", "track", "tags")
+    filter_fields = ("state", "track", "tags")
     sortable_fields = ("code", "title", "state", "is_featured")
     permission_required = "orga.view_submissions"
     paginate_by = 25
@@ -504,10 +504,6 @@ class SubmissionList(
         if self.request.user.has_perm("orga.view_speakers", self.request.event):
             default_filters.add("speakers__name__icontains")
         return default_filters
-
-    @context
-    def show_submission_types(self):
-        return self.request.event.submission_types.all().count() > 1
 
     @context
     def show_tracks(self):
@@ -654,16 +650,8 @@ class SubmissionStats(PermissionRequired, TemplateView):
         return self.request.event
 
     @context
-    def show_submission_types(self):
-        return self.request.event.submission_types.all().count() > 1
-
-    @context
     def id_mapping(self):
         data = {
-            "type": {
-                str(submission_type): submission_type.id
-                for submission_type in self.request.event.submission_types.all()
-            },
             "state": {
                 str(value): key
                 for key, value in SubmissionStates.display_values.items()
@@ -685,17 +673,7 @@ class SubmissionStats(PermissionRequired, TemplateView):
 
     @context
     def timeline_annotations(self):
-        deadlines = [
-            (
-                submission_type.deadline.astimezone(self.request.event.tz).strftime(
-                    "%Y-%m-%d"
-                ),
-                str(_("Deadline")) + f" ({submission_type.name})",
-            )
-            for submission_type in self.request.event.submission_types.filter(
-                deadline__isnull=False
-            )
-        ]
+        deadlines = []
         if self.request.event.cfp.deadline:
             deadlines.append(
                 (
@@ -768,23 +746,6 @@ class SubmissionStats(PermissionRequired, TemplateView):
         )
 
     @context
-    def submission_type_data(self):
-        counter = Counter(
-            str(submission.submission_type)
-            for submission in Submission.objects.filter(
-                event=self.request.event
-            ).select_related("submission_type")
-        )
-        return json.dumps(
-            sorted(
-                list(
-                    {"label": label, "value": value} for label, value in counter.items()
-                ),
-                key=itemgetter("label"),
-            )
-        )
-
-    @context
     def submission_track_data(self):
         if self.request.event.settings.use_tracks:
             counter = Counter(
@@ -834,23 +795,6 @@ class SubmissionStats(PermissionRequired, TemplateView):
             for submission in self.request.event.submissions.filter(
                 state__in=[SubmissionStates.ACCEPTED, SubmissionStates.CONFIRMED]
             )
-        )
-        return json.dumps(
-            sorted(
-                list(
-                    {"label": label, "value": value} for label, value in counter.items()
-                ),
-                key=itemgetter("label"),
-            )
-        )
-
-    @context
-    def talk_type_data(self):
-        counter = Counter(
-            str(submission.submission_type)
-            for submission in self.request.event.submissions.filter(
-                state__in=[SubmissionStates.ACCEPTED, SubmissionStates.CONFIRMED]
-            ).select_related("submission_type")
         )
         return json.dumps(
             sorted(

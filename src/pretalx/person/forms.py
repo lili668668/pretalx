@@ -385,7 +385,6 @@ class SpeakerInformationForm(I18nHelpText, I18nModelForm):
     def __init__(self, *args, event=None, **kwargs):
         self.event = event
         super().__init__(*args, **kwargs)
-        self.fields["limit_types"].queryset = event.submission_types.all()
         if not event.settings.use_tracks:
             self.fields.pop("limit_tracks")
         else:
@@ -401,18 +400,15 @@ class SpeakerInformationForm(I18nHelpText, I18nModelForm):
             "title",
             "text",
             "target_group",
-            "limit_types",
             "limit_tracks",
             "resource",
         )
         field_classes = {
             "limit_tracks": SafeModelMultipleChoiceField,
-            "limit_types": SafeModelMultipleChoiceField,
             "resource": SizeFileField,
         }
         widgets = {
             "limit_tracks": forms.CheckboxSelectMultiple,
-            "limit_types": forms.CheckboxSelectMultiple,
         }
 
 

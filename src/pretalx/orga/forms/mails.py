@@ -160,14 +160,6 @@ class WriteMailForm(MailTemplateBase):
         widget=forms.SelectMultiple(attrs={"class": "select2", "title": _("Tracks")}),
         help_text=_("Leave empty to include proposals from all tracks."),
     )
-    submission_types = forms.MultipleChoiceField(
-        label=_("All proposals of these types"),
-        required=False,
-        widget=forms.SelectMultiple(
-            attrs={"class": "select2", "title": _("Session types")}
-        ),
-        help_text=_("Leave empty to include proposals of all session types."),
-    )
     submissions = forms.MultipleChoiceField(
         required=False,
         label=_("Proposals"),
@@ -193,10 +185,6 @@ class WriteMailForm(MailTemplateBase):
             ]
         else:
             del self.fields["tracks"]
-        self.fields["submission_types"].choices = [
-            (submission_type.pk, submission_type.name)
-            for submission_type in event.submission_types.all()
-        ]
         if len(self.event.locales) > 1:
             self.fields["subject"].help_text = _(
                 "If you provide only one language, that language will be used for all emails. If you provide multiple languages, the best fit for each speaker will be used."
@@ -239,12 +227,8 @@ class WriteMailForm(MailTemplateBase):
         if tracks:
             submissions = submissions.filter(track__in=tracks)
 
-        submission_types = self.cleaned_data.get("submission_types")
-        if submission_types:
-            submissions = submissions.filter(submission_type__in=submission_types)
-
         submissions = submissions.select_related(
-            "track", "submission_type", "event"
+            "track", "event"
         ).prefetch_related("speakers")
 
         # Specifically filtered-for submissions need to come last, so they can't be excluded
@@ -252,11 +236,11 @@ class WriteMailForm(MailTemplateBase):
         if filter_submissions:
             filtered = any(
                 self.cleaned_data.get(key)
-                for key in ["recipients", "tracks", "submission_types"]
+                for key in ["recipients", "tracks"]
             )
             specific_submissions = (
                 self.event.submissions.filter(code__in=filter_submissions)
-                .select_related("track", "submission_type", "event")
+                .select_related("track", "event")
                 .prefetch_related("speakers")
             )
             if filtered:

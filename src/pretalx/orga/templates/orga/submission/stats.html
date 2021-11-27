@@ -36,17 +36,6 @@
             </div>
         {% endif %}
 
-        {% if submission_type_data and show_submission_types %}
-            <div class="card">
-                <div class="card-header submissions">{% translate "Proposals by session type" %}</div>
-                <div class="card-header talks d-none">{% translate "Sessions by session type" %}</div>
-                <div id="submission-type-data" class="d-none" data-states='{{ submission_type_data }}'></div>
-                <div id="talk-type-data" class="d-none" data-states='{{ talk_type_data }}'></div>
-                <div id="submission-type" class="pie card-body submissions"></div>
-                <div id="talk-type" class="pie card-body talks d-none"></div>
-            </div>
-        {% endif %}
-
         {% if submission_track_data and show_tracks %}
             <div class="card">
                 <div class="card-header submissions">{% translate "Proposals by track" %}</div>

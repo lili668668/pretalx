@@ -35,12 +35,6 @@ class SpeakerInformation(LogMixin, FileCleanupMixin, models.Model):
         blank=True,
         help_text=_("Leave empty to show this information to all tracks."),
     )
-    limit_types = models.ManyToManyField(
-        to="submission.SubmissionType",
-        verbose_name=_("Limit to proposal types"),
-        blank=True,
-        help_text=_("Leave empty to show this information for all proposal types."),
-    )
     title = I18nCharField(verbose_name=_("Subject"), max_length=200)
     text = I18nTextField(verbose_name=_("Text"), help_text=phrases.base.use_markdown)
     resource = models.FileField(

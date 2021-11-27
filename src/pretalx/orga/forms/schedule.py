@@ -55,7 +55,6 @@ class ScheduleExportForm(ExportForm):
         model_fields = [
             "title",
             "state",
-            "submission_type",
             "track",
             "created",
             "tags",
@@ -139,7 +138,7 @@ class ScheduleExportForm(ExportForm):
             queryset = queryset.filter(state__in=target)
         return (
             queryset.prefetch_related("tags")
-            .select_related("submission_type", "track")
+            .select_related("track")
             .order_by("code")
         )
 
@@ -175,9 +174,6 @@ class ScheduleExportForm(ExportForm):
 
     def _get_created_value(self, obj):
         return obj.created.isoformat() if obj.created else None
-
-    def _get_submission_type_value(self, obj):
-        return obj.submission_type.name if obj.submission_type else None
 
     def _get_track_value(self, obj):
         return obj.track.name if obj.track else None

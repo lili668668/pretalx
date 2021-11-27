@@ -22,7 +22,7 @@ from pretalx.common.mixins.views import (
 )
 from pretalx.common.utils import I18nStrJSONEncoder
 from pretalx.common.views import CreateOrUpdateView
-from pretalx.orga.forms import CfPForm, QuestionForm, SubmissionTypeForm
+from pretalx.orga.forms import CfPForm, QuestionForm
 from pretalx.orga.forms.cfp import (
     AccessCodeSendForm,
     AnswerOptionForm,
@@ -36,7 +36,6 @@ from pretalx.submission.models import (
     CfP,
     Question,
     QuestionTarget,
-    SubmissionType,
     SubmitterAccessCode,
 )
 
@@ -131,7 +130,6 @@ class CfPQuestionDetail(PermissionRequired, ActionFromUrl, CreateOrUpdateView):
             return
         role = self.request.GET.get("role") or ""
         track = self.request.GET.get("track") or ""
-        submission_type = self.request.GET.get("submission_type") or ""
         if self.question.target == "submission":
             url = self.request.event.orga_urls.submissions + "?"
             if role == "accepted":
@@ -140,8 +138,6 @@ class CfPQuestionDetail(PermissionRequired, ActionFromUrl, CreateOrUpdateView):
                 url = f"{url}state=confirmed&"
             if track:
                 url = f"{url}track={track}&"
-            if submission_type:
-                url = f"{url}submission_type={submission_type}&"
         else:
             url = self.request.event.orga_urls.speakers + "?"
         url = f"{url}&question={self.question.id}&"
@@ -405,106 +401,6 @@ class CfPQuestionRemind(EventPermissionRequired, TemplateView):
                     context_kwargs={"user": person},
                 )
         return redirect(request.event.orga_urls.outbox)
-
-
-class SubmissionTypeList(EventPermissionRequired, ListView):
-    template_name = "orga/cfp/submission_type_view.html"
-    context_object_name = "types"
-    permission_required = "orga.view_submission_type"
-
-    def get_queryset(self):
-        return self.request.event.submission_types.all()
-
-
-class SubmissionTypeDetail(PermissionRequired, ActionFromUrl, CreateOrUpdateView):
-    model = SubmissionType
-    form_class = SubmissionTypeForm
-    template_name = "orga/cfp/submission_type_form.html"
-    permission_required = "orga.edit_submission_type"
-    write_permission_required = "orga.edit_submission_type"
-
-    def get_success_url(self) -> str:
-        return self.request.event.cfp.urls.types
-
-    def get_object(self):
-        return self.request.event.submission_types.filter(
-            pk=self.kwargs.get("pk")
-        ).first()
-
-    def get_permission_object(self):
-        return self.get_object() or self.request.event
-
-    def get_form_kwargs(self):
-        result = super().get_form_kwargs()
-        result["event"] = self.request.event
-        return result
-
-    def form_valid(self, form):
-        messages.success(self.request, "The Submission Type has been saved.")
-        form.instance.event = self.request.event
-        result = super().form_valid(form)
-        if form.has_changed():
-            action = "pretalx.submission_type." + (
-                "update" if self.object else "create"
-            )
-            form.instance.log_action(action, person=self.request.user, orga=True)
-        return result
-
-
-class SubmissionTypeDefault(PermissionRequired, View):
-    permission_required = "orga.edit_submission_type"
-
-    def get_object(self):
-        return get_object_or_404(
-            self.request.event.submission_types, pk=self.kwargs.get("pk")
-        )
-
-    def dispatch(self, request, *args, **kwargs):
-        super().dispatch(request, *args, **kwargs)
-        submission_type = self.get_object()
-        submission_type.log_action(
-            "pretalx.submission_type.make_default", person=self.request.user, orga=True
-        )
-        messages.success(request, _("The Session Type has been made default."))
-        return redirect(self.request.event.cfp.urls.types)
-
-
-class SubmissionTypeDelete(PermissionRequired, DetailView):
-    permission_required = "orga.remove_submission_type"
-    template_name = "orga/cfp/submission_type_delete.html"
-
-    def get_object(self):
-        return get_object_or_404(
-            self.request.event.submission_types, pk=self.kwargs.get("pk")
-        )
-
-    def post(self, request, *args, **kwargs):
-        submission_type = self.get_object()
-
-        if request.event.submission_types.count() == 1:
-            messages.error(
-                request,
-                _(
-                    "You cannot delete the only session type. Try creating another one first!"
-                ),
-            )
-        else:
-            try:
-                submission_type.delete()
-                request.event.log_action(
-                    "pretalx.submission_type.delete",
-                    person=self.request.user,
-                    orga=True,
-                )
-                messages.success(request, _("The Session Type has been deleted."))
-            except ProtectedError:  # TODO: show which/how many submissions are concerned
-                messages.error(
-                    request,
-                    _(
-                        "This Session Type is in use in a proposal and cannot be deleted."
-                    ),
-                )
-        return redirect(self.request.event.cfp.urls.types)
 
 
 class AccessCodeList(EventPermissionRequired, ListView):

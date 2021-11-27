@@ -48,7 +48,6 @@ class SlotSerializer(I18nAwareModelSerializer):
 
 
 class SubmissionSerializer(I18nAwareModelSerializer):
-    submission_type = SlugRelatedField(slug_field="name", read_only=True)
     track = SlugRelatedField(slug_field="name", read_only=True)
     slot = SlotSerializer(
         TalkSlot.objects.none().filter(is_visible=True), read_only=True
@@ -96,7 +95,6 @@ class SubmissionSerializer(I18nAwareModelSerializer):
             "code",
             "speakers",
             "title",
-            "submission_type",
             "track",
             "state",
             "abstract",
