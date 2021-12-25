@@ -12,6 +12,7 @@ def is_event_visible(user, event):
 @rules.predicate
 def submission_deadline_open(submission):
     deadline = submission.event.cfp.deadline
+    print((not deadline) or now() <= deadline)
     return (not deadline) or now() <= deadline
 
 

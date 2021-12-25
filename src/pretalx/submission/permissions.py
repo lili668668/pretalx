@@ -1,7 +1,7 @@
 import rules
 from django.db.models import Q
 
-from pretalx.person.permissions import can_change_submissions, is_reviewer
+from pretalx.person.permissions import can_change_submissions, can_change_tracks, is_reviewer
 from pretalx.submission.models import SubmissionStates
 
 
@@ -15,6 +15,12 @@ def has_submissions(user, obj):
 def is_speaker(user, obj):
     obj = getattr(obj, "submission", obj)
     return obj and user in obj.speakers.all()
+
+
+@rules.predicate
+def is_principal(user, obj):
+    obj = getattr(obj, "track", obj)
+    return obj and user in obj.contacts.all()
 
 
 @rules.predicate
@@ -150,8 +156,15 @@ rules.add_perm(
     "submission.edit_submission", (can_be_edited & is_speaker) | can_change_submissions
 )
 rules.add_perm(
+    "submission.edit_track", is_principal | can_change_tracks
+)
+rules.add_perm(
     "submission.view_submission",
     is_speaker | can_change_submissions | has_reviewer_access,
+)
+rules.add_perm(
+    "submission.view_track",
+    is_principal | can_change_tracks,
 )
 rules.add_perm("submission.review_submission", has_reviewer_access & can_be_reviewed)
 rules.add_perm("submission.edit_review", can_be_reviewed & is_review_author)

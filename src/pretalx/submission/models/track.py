@@ -12,6 +12,7 @@ from pretalx.common.utils import path_with_hash
 from pretalx.common.exceptions import TrackError
 from pretalx.cfp.signals import track_state_change
 from pretalx.event.models import Team
+from django.utils.functional import cached_property
 
 
 class TrackStates(Choices):
@@ -113,6 +114,7 @@ class Track(LogMixin, models.Model):
         change_to_rejected = "{base}to-rejected"
         change_to_canceled = "{base}to-canceled"
         change_to_blocked = "{base}to-blocked"
+        user_base = "{self.event.urls.user_tracks}{self.id}/"
 
     def _set_state(self, new_state, force=False, person=None):
         """Check if the new state is valid for this Submission (based on
@@ -193,3 +195,8 @@ class Track(LogMixin, models.Model):
         optional) form of the track name.
         """
         return f"{self.id}-{slugify(self.name)}"
+
+    @cached_property
+    def display_contact_names(self):
+        """Helper method for a consistent speaker name display."""
+        return ", ".join(contact.user.name for contact in self.contacts.all())

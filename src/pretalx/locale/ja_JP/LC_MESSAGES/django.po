@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-27 02:03+0000\n"
+"POT-Creation-Date: 2021-12-25 13:32+0000\n"
 "PO-Revision-Date: 2020-09-28 02:42+0000\n"
 "Last-Translator: Satoshi IIDA <nyampire@gmail.com>\n"
 "Language-Team: \n"
@@ -317,31 +317,31 @@ msgid ""
 "Community Room."
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:341 pretalx/cfp/flow.py:365
+#: pretalx/cfp/cft_flow.py:341 pretalx/cfp/flow.py:364
 #: pretalx/orga/forms/cfp.py:398 pretalx/orga/templates/orga/base.html:262
 #: pretalx/orga/templates/orga/submission/content.html:135
 msgid "Questions"
 msgstr "質問"
 
-#: pretalx/cfp/cft_flow.py:345 pretalx/cfp/flow.py:369
+#: pretalx/cfp/cft_flow.py:345 pretalx/cfp/flow.py:368
 msgid "Tell us more!"
 msgstr "もっと教えて下さい！"
 
-#: pretalx/cfp/cft_flow.py:350 pretalx/cfp/flow.py:374
+#: pretalx/cfp/cft_flow.py:350 pretalx/cfp/flow.py:373
 msgid "Before we can save your proposal, we have some more questions for you."
 msgstr "投稿を保存する前に、いくつか質問があります。"
 
-#: pretalx/cfp/cft_flow.py:391 pretalx/cfp/flow.py:415
+#: pretalx/cfp/cft_flow.py:391 pretalx/cfp/flow.py:414
 msgid "Account"
 msgstr "アカウント"
 
-#: pretalx/cfp/cft_flow.py:396 pretalx/cfp/flow.py:420
+#: pretalx/cfp/cft_flow.py:396 pretalx/cfp/flow.py:419
 msgid "That's it about your proposal! We now just need a way to contact you."
 msgstr ""
 "あなたの提出物については以上です！私たちは今、あなたに連絡する方法を必要とし"
 "ています。"
 
-#: pretalx/cfp/cft_flow.py:402 pretalx/cfp/flow.py:426
+#: pretalx/cfp/cft_flow.py:402 pretalx/cfp/flow.py:425
 msgid ""
 "To create your proposal, you need an account on this page. This not only "
 "gives us a way to contact you, it also gives you the possibility to edit "
@@ -351,7 +351,7 @@ msgstr ""
 "絡を取ることができるだけでなく、投稿を編集したり、現在の状態を確認したりする"
 "ことができます。"
 
-#: pretalx/cfp/cft_flow.py:417 pretalx/cfp/flow.py:441
+#: pretalx/cfp/cft_flow.py:417 pretalx/cfp/flow.py:440
 msgid ""
 "There was an error when logging in. Please contact the organiser for further "
 "help."
@@ -389,22 +389,22 @@ msgstr ""
 "あなたの投稿でイベントに貢献したいと思っていただけて嬉しいです。さっそく始め"
 "てみましょう！それほど時間はかかりません。"
 
-#: pretalx/cfp/flow.py:333
+#: pretalx/cfp/flow.py:332
 msgid ""
 "Congratulations, you've submitted your proposal! You can continue to make "
 "changes to it up to the submission deadline, and you will be notified of any "
 "changes or questions."
 msgstr ""
 
-#: pretalx/cfp/flow.py:458
+#: pretalx/cfp/flow.py:457
 msgid "Profile"
 msgstr "プロフィール"
 
-#: pretalx/cfp/flow.py:462
+#: pretalx/cfp/flow.py:461
 msgid "Tell us something about yourself!"
 msgstr "あなたについて教えて下さい！"
 
-#: pretalx/cfp/flow.py:467
+#: pretalx/cfp/flow.py:466
 msgid ""
 "This information will be publicly displayed next to your session - you can "
 "always edit for as long as proposals are still open."
@@ -706,7 +706,7 @@ msgid "Abstract:"
 msgstr "概要: "
 
 #: pretalx/cfp/templates/cfp/event/invitation.html:30
-#: pretalx/event/models/event.py:549 pretalx/submission/models/question.py:369
+#: pretalx/event/models/event.py:550 pretalx/submission/models/question.py:369
 #: pretalx/submission/models/submission.py:652
 msgid "No"
 msgstr "いいえ"
@@ -861,6 +861,7 @@ msgstr ""
 #: pretalx/cfp/templates/cfp/event/user_profile.html:55
 #: pretalx/cfp/templates/cfp/event/user_profile.html:76
 #: pretalx/cfp/templates/cfp/event/user_submission_edit.html:139
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:51
 #: pretalx/common/phrases.py:44
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:53
 #: pretalx/orga/templates/orga/mails/outbox_form.html:109
@@ -1080,6 +1081,7 @@ msgstr ""
 "ください。"
 
 #: pretalx/cfp/templates/cfp/event/user_submission_invitation.html:31
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:69
 #: pretalx/common/phrases.py:45
 msgid "Cancel"
 msgstr "取り消し"
@@ -1106,10 +1108,12 @@ msgid "Your proposals"
 msgstr "あなたの提案: "
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:13
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:13
 msgid "Important Information"
 msgstr "重要な情報"
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:29
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:29
 #: pretalx/orga/templates/orga/cfp/text.html:67
 #: pretalx/orga/templates/orga/review/dashboard.html:115
 #: pretalx/orga/templates/orga/speaker/information_list.html:22
@@ -1120,6 +1124,7 @@ msgid "Title"
 msgstr "タイトル"
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:30
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:30
 #: pretalx/orga/templates/orga/cft/track_view.html:11
 #: pretalx/orga/templates/orga/review/dashboard.html:117
 #: pretalx/orga/templates/orga/submission/list.html:78
@@ -1141,10 +1146,12 @@ msgid "Create a new proposal"
 msgstr "新しい提案を作る"
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:96
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:64
 msgid "It seems like you haven't submitted anything to this event yet."
 msgstr "まだあなたはこのイベントに対して提案を行っていないようです。"
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:99
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:67
 msgid "If you did, maybe you used a different account? Check your emails!"
 msgstr ""
 "もしそうだとしたら、もしかして違うアカウントを使っていませんか？メールを"
@@ -1159,8 +1166,81 @@ msgstr ""
 "をお待ちしております。"
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:108
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:76
 msgid "Submit something now!"
 msgstr "何か提案しましょう！"
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:9
+#, fuzzy
+#| msgid "Use tracks"
+msgid "Your track"
+msgstr "トラックを利用する"
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:19
+#, fuzzy
+#| msgid "Use tracks"
+msgid "Your track:"
+msgstr "トラックを利用する"
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:21
+#, fuzzy
+#| msgid "Current state of your proposal:"
+msgid "Current state of your track:"
+msgstr "あなたの提案の現在の状況"
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:27
+#, fuzzy
+#| msgid "Contact us"
+msgid "Contact:"
+msgid_plural "Contacts:"
+msgstr[0] "お問い合わせ"
+msgstr[1] "お問い合わせ"
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:58
+#, fuzzy
+#| msgid "Cancel proposal"
+msgid "Cancel track"
+msgstr "提案をキャンセルする"
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:60
+#, fuzzy
+#| msgid ""
+#| "You can withdraw your proposal from the selection process here. You "
+#| "cannot undo this - if you are just uncertain if you can or should hold "
+#| "your session, please contact the organiser instead."
+msgid ""
+"You can cancel your track from the selection process here. You cannot undo "
+"this - if you are just uncertain if you can or should hold your track, "
+"please contact the organiser instead."
+msgstr ""
+"選考中に、こちらからあなたの提案を撤回することができます。この動作はやり直し"
+"ができません。撤回しても良いかどうか確かでない場合は主催者に連絡してくださ"
+"い。"
+
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:9
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:24
+#, fuzzy
+#| msgid "Use tracks"
+msgid "Your tracks"
+msgstr "トラックを利用する"
+
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:58
+#, fuzzy
+#| msgid "Create a new event"
+msgid "Create a new track"
+msgstr "新しいイベントを作成"
+
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:71
+#, fuzzy
+#| msgid ""
+#| "If you did not, why not go ahead and create a proposal now? We'd love to "
+#| "hear from you!"
+msgid ""
+"If you did not, why not go ahead and create a track now? We'd love to hear "
+"from you!"
+msgstr ""
+"そうでない方は、プロポーザルを作成してみてはいかがでしょうか？あなたのご意見"
+"をお待ちしております。"
 
 #: pretalx/cfp/templates/cfp/index.html:4
 #: pretalx/cfp/templates/cfp/index.html:8
@@ -1212,14 +1292,14 @@ msgstr "閉じる"
 msgid "Please go back and try again."
 msgstr "戻ってやり直してください。"
 
-#: pretalx/cfp/views/user.py:93 pretalx/orga/views/event.py:574
+#: pretalx/cfp/views/user.py:95 pretalx/orga/views/event.py:574
 msgid ""
 "Your API token has been regenerated. The previous token will not be usable "
 "any longer."
 msgstr ""
 "APIトークンが再生成されました。以前のトークンはもう使うことができません。"
 
-#: pretalx/cfp/views/wizard.py:112
+#: pretalx/cfp/views/wizard.py:110
 #, python-brace-format
 msgid "New proposal: {title}"
 msgstr ""
@@ -2404,7 +2484,7 @@ msgstr ""
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: pretalx/event/models/event.py:523 pretalx/event/models/event.py:742
+#: pretalx/event/models/event.py:524 pretalx/event/models/event.py:743
 #: pretalx/event/stages.py:68 pretalx/orga/templates/orga/base.html:207
 #: pretalx/orga/templates/orga/base.html:304
 #: pretalx/orga/templates/orga/submission/review.html:174
@@ -2412,21 +2492,21 @@ msgstr "プラグイン"
 msgid "Review"
 msgstr "レビュー"
 
-#: pretalx/event/models/event.py:531
+#: pretalx/event/models/event.py:532
 msgid "Selection"
 msgstr "セレクション"
 
-#: pretalx/event/models/event.py:544
+#: pretalx/event/models/event.py:545
 #: pretalx/orga/templates/orga/submission/review.html:165
 #: pretalx/submission/models/review.py:91
 msgid "Score"
 msgstr "スコア"
 
-#: pretalx/event/models/event.py:554
+#: pretalx/event/models/event.py:555
 msgid "Maybe"
 msgstr ""
 
-#: pretalx/event/models/event.py:559
+#: pretalx/event/models/event.py:560
 #: pretalx/orga/templates/orga/cfp/access_code_delete.html:15
 #: pretalx/orga/templates/orga/cfp/question_delete.html:15
 #: pretalx/orga/templates/orga/cft/track_delete.html:15
@@ -2445,7 +2525,7 @@ msgstr ""
 msgid "Yes"
 msgstr "はい"
 
-#: pretalx/event/models/event.py:887
+#: pretalx/event/models/event.py:888
 msgid "News from your content system"
 msgstr "コンテンツシステムからのニュース"
 
@@ -7732,7 +7812,7 @@ msgid "Don't record this session."
 msgstr "動画や録音など記録を希望しません。"
 
 #: pretalx/submission/models/submission.py:346
-#: pretalx/submission/models/track.py:145
+#: pretalx/submission/models/track.py:146
 msgctxt ""
 "used in talk confirm/accept/reject/...-errors, like \"... must be accepted "
 "OR foo OR bar ...\""
@@ -7740,7 +7820,7 @@ msgid " or "
 msgstr " あるいは "
 
 #: pretalx/submission/models/submission.py:354
-#: pretalx/submission/models/track.py:153
+#: pretalx/submission/models/track.py:154
 #, python-brace-format
 msgid "Proposal must be {src_states} not {state} to be {new_state}."
 msgstr ""
@@ -7800,7 +7880,7 @@ msgid ""
 "This track will only be shown to submitters with a matching access code."
 msgstr "このトラックは特別なアクセスコードを所有する投稿者にのみ表示されます。"
 
-#: pretalx/submission/models/track.py:166
+#: pretalx/submission/models/track.py:167
 #, python-brace-format
 msgid "{self.name} Track"
 msgstr ""
@@ -8055,9 +8135,6 @@ msgstr ""
 #~ msgstr ""
 #~ "イベントを実行している主催者は、過去のイベントから設定をコピーして、すべて"
 #~ "のイベントまたは複数のイベントでチームの権限を共有することができます。"
-
-#~ msgid "Create a new event"
-#~ msgstr "新しいイベントを作成"
 
 #~ msgid "event"
 #~ msgid_plural "events"

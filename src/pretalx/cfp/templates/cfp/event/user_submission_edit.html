@@ -10,7 +10,7 @@
 
 
 {% block content %}
-    {% has_perm 'cfp.add_speakers' request.user submission  as can_invite_speakers %}
+    {% has_perm 'cfp.add_speakers' request.submission  as can_invite_speakers %}
     {% compress js %}
         <script defer src="{% static "js/jquery.formset.js" %}"></script>
         <script defer src="{% static "cfp/js/animateFormset.js" %}"></script>

@@ -1,0 +1,76 @@
+{% extends "cfp/event/base.html" %}
+{% load bootstrap4 %}
+{% load compress %}
+{% load formset_tags %}
+{% load i18n %}
+{% load rules %}
+{% load static %}
+
+{% block title %}{% translate "Your track" %} :: {% endblock %}
+
+
+{% block content %}
+    {% compress js %}
+        <script defer src="{% static "js/jquery.formset.js" %}"></script>
+        <script defer src="{% static "cfp/js/animateFormset.js" %}"></script>
+    {% endcompress %}
+    <script src="{% static "vendored/marked.min.js" %}" defer></script> {# do not compress #}
+    <script src="{% static "common/js/markdown.js" %}" defer></script>
+    <h2>{% translate "Your track:" %} {{ track.title }}</h2>
+    <p>
+        {% translate "Current state of your track:" %}
+        {% include "orga/cft/fragment_track_state.html" with state=track.state %}
+    </p>
+    <h5>
+        <form class="add-speaker" action="">
+            <div class="form-group form-inline">
+                {% blocktranslate trimmed count count=track.contacts.count %}
+                    Contact:
+                {% plural %}
+                    Contacts:
+                {% endblocktranslate %}
+                {{ track.display_contact_names }},
+                <div class="input-group">
+                    <input name="email" class="form-control form-control-sm" placeholder="mail@example.org">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success btn-sm">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </h5>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form layout='event' %}
+        <div class="row mt-4">
+            <div class="col-md-3 flip ml-auto">
+                <button type="submit" class="btn btn-block btn-success btn-lg">
+                    {% translate "Save" %}
+                </button>
+            </div>
+        </div>
+    </form>
+    {% if track.state == "submitted" %}
+        <h3>{% translate "Cancel track" %}</h3>
+        <p>
+            {% blocktranslate trimmed %}
+                You can cancel your track from the selection process here. You cannot undo this - if you are
+                just uncertain if you can or should hold your track, please contact the organiser instead.
+            {% endblocktranslate %}
+        </p>
+        <div class="row">
+            <div class="col-md-3 flip ml-auto">
+                <a href="#"
+                    class="btn float-right btn-danger btn-block">
+                    {% translate "Cancel" %}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="user-logs history-sidebar">
+        {% include "common/logs.html" with entries=track.logged_actions hide_orga="true" %}
+    </div>
+{% endblock %}

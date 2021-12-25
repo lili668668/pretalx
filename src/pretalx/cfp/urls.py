@@ -51,6 +51,23 @@ urlpatterns = [
                     name="event.user.submissions",
                 ),
                 path(
+                    "me/tracks/",
+                    user.TracksListView.as_view(),
+                    name="event.user.tracks",
+                ),
+                path(
+                    "me/tracks/<id>/",
+                    include(
+                        [
+                            path(
+                                "",
+                                user.TracksEditView.as_view(),
+                                name="event.user.tracks",
+                            )
+                        ]
+                    )
+                ),
+                path(
                     "me/mails/",
                     user.MailListView.as_view(),
                     name="event.user.mails",

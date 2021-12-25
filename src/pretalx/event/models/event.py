@@ -251,7 +251,7 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
     plugins = models.TextField(null=True, blank=True, verbose_name=_("Plugins"))
 
     template_names = [
-        f"{t}_template" for t in ("accept", "ack", "reject", "update", "question")
+        f"{t}_template" for t in ("accept", "ack", "ack_track", "reject", "update", "question")
     ]
 
     class urls(EventUrls):
@@ -266,6 +266,7 @@ class Event(LogMixin, FileCleanupMixin, models.Model):
         user = "{base}me/"
         user_delete = "{base}me/delete"
         user_submissions = "{user}submissions/"
+        user_tracks = "{user}tracks/"
         user_mails = "{user}mails/"
         schedule = "{base}schedule/"
         schedule_nojs = "{schedule}nojs"

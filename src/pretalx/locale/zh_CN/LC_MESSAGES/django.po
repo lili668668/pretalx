@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-27 02:03+0000\n"
+"POT-Creation-Date: 2021-12-25 13:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -286,36 +286,36 @@ msgid ""
 "Community Room."
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:341 pretalx/cfp/flow.py:365
+#: pretalx/cfp/cft_flow.py:341 pretalx/cfp/flow.py:364
 #: pretalx/orga/forms/cfp.py:398 pretalx/orga/templates/orga/base.html:262
 #: pretalx/orga/templates/orga/submission/content.html:135
 msgid "Questions"
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:345 pretalx/cfp/flow.py:369
+#: pretalx/cfp/cft_flow.py:345 pretalx/cfp/flow.py:368
 msgid "Tell us more!"
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:350 pretalx/cfp/flow.py:374
+#: pretalx/cfp/cft_flow.py:350 pretalx/cfp/flow.py:373
 msgid "Before we can save your proposal, we have some more questions for you."
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:391 pretalx/cfp/flow.py:415
+#: pretalx/cfp/cft_flow.py:391 pretalx/cfp/flow.py:414
 msgid "Account"
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:396 pretalx/cfp/flow.py:420
+#: pretalx/cfp/cft_flow.py:396 pretalx/cfp/flow.py:419
 msgid "That's it about your proposal! We now just need a way to contact you."
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:402 pretalx/cfp/flow.py:426
+#: pretalx/cfp/cft_flow.py:402 pretalx/cfp/flow.py:425
 msgid ""
 "To create your proposal, you need an account on this page. This not only "
 "gives us a way to contact you, it also gives you the possibility to edit "
 "your proposal or to view its current state."
 msgstr ""
 
-#: pretalx/cfp/cft_flow.py:417 pretalx/cfp/flow.py:441
+#: pretalx/cfp/cft_flow.py:417 pretalx/cfp/flow.py:440
 msgid ""
 "There was an error when logging in. Please contact the organiser for further "
 "help."
@@ -347,22 +347,22 @@ msgid ""
 "Let's get started, this won't take long."
 msgstr ""
 
-#: pretalx/cfp/flow.py:333
+#: pretalx/cfp/flow.py:332
 msgid ""
 "Congratulations, you've submitted your proposal! You can continue to make "
 "changes to it up to the submission deadline, and you will be notified of any "
 "changes or questions."
 msgstr ""
 
-#: pretalx/cfp/flow.py:458
+#: pretalx/cfp/flow.py:457
 msgid "Profile"
 msgstr ""
 
-#: pretalx/cfp/flow.py:462
+#: pretalx/cfp/flow.py:461
 msgid "Tell us something about yourself!"
 msgstr ""
 
-#: pretalx/cfp/flow.py:467
+#: pretalx/cfp/flow.py:466
 msgid ""
 "This information will be publicly displayed next to your session - you can "
 "always edit for as long as proposals are still open."
@@ -622,7 +622,7 @@ msgid "Abstract:"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/invitation.html:30
-#: pretalx/event/models/event.py:549 pretalx/submission/models/question.py:369
+#: pretalx/event/models/event.py:550 pretalx/submission/models/question.py:369
 #: pretalx/submission/models/submission.py:652
 msgid "No"
 msgstr ""
@@ -765,6 +765,7 @@ msgstr ""
 #: pretalx/cfp/templates/cfp/event/user_profile.html:55
 #: pretalx/cfp/templates/cfp/event/user_profile.html:76
 #: pretalx/cfp/templates/cfp/event/user_submission_edit.html:139
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:51
 #: pretalx/common/phrases.py:44
 #: pretalx/orga/templates/orga/cfp/access_code_form.html:53
 #: pretalx/orga/templates/orga/mails/outbox_form.html:109
@@ -959,6 +960,7 @@ msgid ""
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submission_invitation.html:31
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:69
 #: pretalx/common/phrases.py:45
 msgid "Cancel"
 msgstr ""
@@ -985,10 +987,12 @@ msgid "Your proposals"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:13
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:13
 msgid "Important Information"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:29
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:29
 #: pretalx/orga/templates/orga/cfp/text.html:67
 #: pretalx/orga/templates/orga/review/dashboard.html:115
 #: pretalx/orga/templates/orga/speaker/information_list.html:22
@@ -999,6 +1003,7 @@ msgid "Title"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:30
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:30
 #: pretalx/orga/templates/orga/cft/track_view.html:11
 #: pretalx/orga/templates/orga/review/dashboard.html:117
 #: pretalx/orga/templates/orga/submission/list.html:78
@@ -1020,10 +1025,12 @@ msgid "Create a new proposal"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:96
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:64
 msgid "It seems like you haven't submitted anything to this event yet."
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:99
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:67
 msgid "If you did, maybe you used a different account? Check your emails!"
 msgstr ""
 
@@ -1034,7 +1041,52 @@ msgid ""
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/event/user_submissions.html:108
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:76
 msgid "Submit something now!"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:9
+msgid "Your track"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:19
+msgid "Your track:"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:21
+msgid "Current state of your track:"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:27
+msgid "Contact:"
+msgid_plural "Contacts:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:58
+msgid "Cancel track"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_track_edit.html:60
+msgid ""
+"You can cancel your track from the selection process here. You cannot undo "
+"this - if you are just uncertain if you can or should hold your track, "
+"please contact the organiser instead."
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:9
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:24
+msgid "Your tracks"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:58
+msgid "Create a new track"
+msgstr ""
+
+#: pretalx/cfp/templates/cfp/event/user_tracks.html:71
+msgid ""
+"If you did not, why not go ahead and create a track now? We'd love to hear "
+"from you!"
 msgstr ""
 
 #: pretalx/cfp/templates/cfp/index.html:4
@@ -1083,13 +1135,13 @@ msgstr ""
 msgid "Please go back and try again."
 msgstr ""
 
-#: pretalx/cfp/views/user.py:93 pretalx/orga/views/event.py:574
+#: pretalx/cfp/views/user.py:95 pretalx/orga/views/event.py:574
 msgid ""
 "Your API token has been regenerated. The previous token will not be usable "
 "any longer."
 msgstr ""
 
-#: pretalx/cfp/views/wizard.py:112
+#: pretalx/cfp/views/wizard.py:110
 #, python-brace-format
 msgid "New proposal: {title}"
 msgstr ""
@@ -2115,7 +2167,7 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: pretalx/event/models/event.py:523 pretalx/event/models/event.py:742
+#: pretalx/event/models/event.py:524 pretalx/event/models/event.py:743
 #: pretalx/event/stages.py:68 pretalx/orga/templates/orga/base.html:207
 #: pretalx/orga/templates/orga/base.html:304
 #: pretalx/orga/templates/orga/submission/review.html:174
@@ -2123,21 +2175,21 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: pretalx/event/models/event.py:531
+#: pretalx/event/models/event.py:532
 msgid "Selection"
 msgstr ""
 
-#: pretalx/event/models/event.py:544
+#: pretalx/event/models/event.py:545
 #: pretalx/orga/templates/orga/submission/review.html:165
 #: pretalx/submission/models/review.py:91
 msgid "Score"
 msgstr ""
 
-#: pretalx/event/models/event.py:554
+#: pretalx/event/models/event.py:555
 msgid "Maybe"
 msgstr ""
 
-#: pretalx/event/models/event.py:559
+#: pretalx/event/models/event.py:560
 #: pretalx/orga/templates/orga/cfp/access_code_delete.html:15
 #: pretalx/orga/templates/orga/cfp/question_delete.html:15
 #: pretalx/orga/templates/orga/cft/track_delete.html:15
@@ -2156,7 +2208,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: pretalx/event/models/event.py:887
+#: pretalx/event/models/event.py:888
 msgid "News from your content system"
 msgstr ""
 
@@ -6775,7 +6827,7 @@ msgid "Don't record this session."
 msgstr ""
 
 #: pretalx/submission/models/submission.py:346
-#: pretalx/submission/models/track.py:145
+#: pretalx/submission/models/track.py:146
 msgctxt ""
 "used in talk confirm/accept/reject/...-errors, like \"... must be accepted "
 "OR foo OR bar ...\""
@@ -6783,7 +6835,7 @@ msgid " or "
 msgstr ""
 
 #: pretalx/submission/models/submission.py:354
-#: pretalx/submission/models/track.py:153
+#: pretalx/submission/models/track.py:154
 #, python-brace-format
 msgid "Proposal must be {src_states} not {state} to be {new_state}."
 msgstr ""
@@ -6831,7 +6883,7 @@ msgid ""
 "This track will only be shown to submitters with a matching access code."
 msgstr ""
 
-#: pretalx/submission/models/track.py:166
+#: pretalx/submission/models/track.py:167
 #, python-brace-format
 msgid "{self.name} Track"
 msgstr ""

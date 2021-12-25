@@ -1,0 +1,84 @@
+{% extends "cfp/event/base.html" %}
+{% load compress %}
+{% load html_signal %}
+{% load i18n %}
+{% load rich_text %}
+{% load rules %}
+{% load static %}
+
+{% block title %}{% translate "Your tracks" %} :: {% endblock %}
+
+{% block content %}
+    {% if information %}
+        <h2>{% translate "Important Information" %}</h2>
+        {% for info in information %}
+            <h4>{{ info.title }}</h4>
+            {{ info.text|rich_text }}
+            {% if info.resource %}
+                <a href="{{ info.resource.url }}"><i class="fa fa-file-o"></i> {{ info.resource.name }}</a>
+            {% endif %}
+            {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %}
+    {% endif %}
+    {% html_signal "pretalx.cfp.signals.html_above_submission_list" sender=request.event request=request %}
+    <h2>{% translate "Your tracks" %}</h2>
+    {% if tracks %}
+        <table class="table table-sm table-responsive table-responsive-md table-flip">
+            <thead>
+                <tr>
+                    <th>{% translate "Title" %}</th>
+                    <th>{% translate "State" %}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for track in tracks %}
+                    <tr>
+                        <td>
+                            <a href="{{ track.urls.user_base }}">
+                                {{ track.name }}
+                            </a>
+                        </td>
+                        <td>
+                            {% include "orga/cft/fragment_track_state.html" with state=track.state %}
+                        </td>
+                        <td class="flip text-right">
+                            <a href="{{ track.urls.user_base }}" class="btn btn-sm btn-info">
+                                <i class="fa fa-{{ track.editable|yesno:'edit,eye' }}"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>
+            {% if request.event.cft.is_open %}
+                <a class="btn btn-success btn-lg"
+                    href="{{ request.event.urls.join }}">
+                    {% translate "Create a new track" %}
+                </a>
+            {% endif %}
+        </p>
+    {% else %}
+        <p class="text-center">
+            {% translate "It seems like you haven't submitted anything to this event yet." %}
+        </p>
+        <p class="text-center">
+            {% translate "If you did, maybe you used a different account? Check your emails!" %}
+        </p>
+        {% if request.event.cft.is_open %}
+            <p class="text-center">
+                {% translate "If you did not, why not go ahead and create a track now? We'd love to hear from you!" %}
+            </p>
+            <p class="text-center">
+                <a class="btn btn-success btn-lg btn-block"
+                    href="{{ request.event.urls.join }}">
+                    {% translate "Submit something now!" %}
+                </a>
+            </p>
+        {% endif %}
+    {% endif %}
+    {% compress js %}
+        <script defer src="{% static "common/js/copy.js" %}"></script>
+    {% endcompress %}
+{% endblock %}

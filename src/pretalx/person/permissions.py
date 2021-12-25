@@ -14,6 +14,17 @@ def can_change_submissions(user, obj):
     )
 
 
+@rules.predicate
+def can_change_tracks(user, obj):
+    event = getattr(obj, "event", None)
+    if not user or user.is_anonymous or not obj or not event:
+        return False
+    return (
+        user.is_administrator
+        or event.teams.fitler(members__in=[user], can_change_tracks=True).exists()
+    )
+
+
 def get_reviewer_teams(user, event):
     return event.teams.filter(members__in=[user], is_reviewer=True)
 

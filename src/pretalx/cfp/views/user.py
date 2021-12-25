@@ -31,7 +31,9 @@ from pretalx.person.forms import LoginInfoForm, SpeakerProfileForm
 from pretalx.person.permissions import person_can_view_information
 from pretalx.schedule.forms import AvailabilitiesFormMixin
 from pretalx.submission.forms import InfoForm, QuestionsForm, ResourceForm
-from pretalx.submission.models import Resource, Submission, SubmissionStates
+from pretalx.submission.forms import InfoTrackForm
+from pretalx.submission.models import Resource, Submission, SubmissionStates, Track
+from pretalx.person.models import Contact
 
 
 @method_decorator(csp_update(IMG_SRC="https://www.gravatar.com"), name="dispatch")
@@ -131,6 +133,20 @@ class SubmissionViewMixin:
         )
 
 
+class TrackViewMixin:
+    permission_required = "submission.edit_track"
+
+    def get_object(self):
+        users = [self.request.user] if not self.request.user.is_anonymous else []
+        return get_object_or_404(
+            self.request.event.tracks.prefetch_related(
+                "contacts"
+            ),
+            contacts__user__in=users,
+            id=self.kwargs.get("id"),
+        )
+
+
 class SubmissionsListView(LoggedInEventPageMixin, ListView):
     template_name = "cfp/event/user_submissions.html"
     context_object_name = "submissions"
@@ -145,6 +161,22 @@ class SubmissionsListView(LoggedInEventPageMixin, ListView):
 
     def get_queryset(self):
         return self.request.event.submissions.filter(speakers__in=[self.request.user])
+
+
+class TracksListView(LoggedInEventPageMixin, ListView):
+    template_name = "cfp/event/user_tracks.html"
+    context_object_name = "tracks"
+
+    @context
+    def information(self):
+        return [
+            i
+            for i in self.request.event.information.all()
+            if person_can_view_information(self.request.user, i)
+        ]
+
+    def get_queryset(self):
+        return self.request.event.tracks.filter(contacts__user__in=[self.request.user])
 
 
 class SubmissionsWithdrawView(LoggedInEventPageMixin, SubmissionViewMixin, DetailView):
@@ -368,6 +400,45 @@ class SubmissionsEditView(LoggedInEventPageMixin, SubmissionViewMixin, UpdateVie
             messages.success(self.request, phrases.base.saved)
         else:
             messages.error(self.request, phrases.cfp.submission_uneditable)
+        return redirect(self.object.urls.user_base)
+
+
+class TracksEditView(LoggedInEventPageMixin, TrackViewMixin, UpdateView):
+    template_name = "cfp/event/user_track_edit.html"
+    model = Track
+    form_class = InfoTrackForm
+    context_object_name = "track"
+    permission_required = "submission.view_track"
+    write_permission_required = "submission.edit_track"
+
+    def get_permission_object(self):
+        return self.object
+
+    @cached_property
+    def object(self):
+        return self.get_object()
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        return self.form_invalid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["event"] = self.request.event
+        kwargs["field_configuration"] = self.request.event.cft_flow.config.get(
+            "info", {}
+        ).get("fields")
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        if form.has_changed():
+            form.instance.log_action(
+                "pretalx.track.update", person=self.request.user
+            )
+        messages.success(self.request, phrases.base.saved)
         return redirect(self.object.urls.user_base)
 
 
